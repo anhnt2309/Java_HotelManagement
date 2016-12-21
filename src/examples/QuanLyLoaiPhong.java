@@ -74,8 +74,6 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN LOẠI PHÒNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/home-icon.png"))); // NOI18N
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Mã loại phòng");
         jLabel3.setToolTipText("");
@@ -99,19 +97,15 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         Text_LoaiPhong_TenLP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         Button_ThemLP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Button_ThemLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/15645141_1010939249052726_2122672426_n.png"))); // NOI18N
         Button_ThemLP.setText("Thêm");
 
         Button_XoaLP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Button_XoaLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/15577497_1010939239052727_1333025312_n.png"))); // NOI18N
         Button_XoaLP.setText("Xóa");
 
         Button_SuaLP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Button_SuaLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/15571337_1010939225719395_1079359906_n.png"))); // NOI18N
         Button_SuaLP.setText("Sửa");
 
         Button_NhapLaiLP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Button_NhapLaiLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/replace.png"))); // NOI18N
         Button_NhapLaiLP.setText("Nhập lại");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -190,7 +184,6 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         Text_NhapTTTKLP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         Button_TimLP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Button_TimLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/15577458_1010939232386061_1547226116_n.png"))); // NOI18N
         Button_TimLP.setText("Tìm kiếm");
 
         Table_LoaiPhong.setModel(new javax.swing.table.DefaultTableModel(
