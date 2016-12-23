@@ -18,6 +18,13 @@ public class LoaiPhong_POJO {
 
     public LoaiPhong_POJO() {
     }
+    public LoaiPhong_POJO(String malp, String loaiphong, int sogiuong, double dongia,String ghichu){
+        MaLP = malp;
+        LoaiPhong = loaiphong;
+        SoGiuong = sogiuong;
+        DonGia=dongia;
+        GhiChu=ghichu;
+    }
     
     public void setMaLP(String MaLP) {
         this.MaLP = MaLP;

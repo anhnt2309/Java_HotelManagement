@@ -47,6 +47,6 @@ Contributor(s):
     <property name="hibernate.connection.password">123456</property>
     <!-- List of XML mapping files -->
     <mapping resource="mapping_LP.hbm.xml"/>
-   
+    <mapping resource="mapping_TaiKhoanDangNhap.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

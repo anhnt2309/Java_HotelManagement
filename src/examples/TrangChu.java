@@ -40,12 +40,27 @@ QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
 QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
 QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
 QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
+
+//creat Frame
+JFrame DMK = new DoiMatKhau();
+
+// user
+static TaiKhoanDangNhap tkTC ;
     /**
      * Creates new form TrangChu
      */
     public TrangChu() {
         initComponents();
-        //add các menu item ben trai
+        
+        
+        
+        
+      
+ }
+    
+public void Display(int i){
+    if ( i == 0 ){
+    //add các menu item ben trai
         //Su Dung phong
         AddLabelTinhTrangPhong();
         AddLabelSuDungDichVu();
@@ -62,19 +77,34 @@ QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
         AddLabelBCKhachHang();
         AddLabelBCNhanVien();
         AddLabelBCDoanhThu();
-        
-        
-        
-        ArrayList<LoaiPhong_POJO>  dsLP = new ArrayList<LoaiPhong_POJO>();
-        
-        dsLP = LoaiPhong_Controller.getDSLoaiPhong();
-        for (int i = 0 ; i< dsLP.size(); i++){
-        System.out.println("Malp: "+ dsLP.get(i).getMaLP());
-        System.out.println("Loai Phong: " + dsLP.get(i).getLoaiPhong());
-        System.out.println("So Giuong: "+dsLP.get(i).getSoGiuong());
-        System.out.println("Don Gia: "+dsLP.get(i).getDonGia());
     }
+    if (i ==1 ){
+        //add các menu item ben trai
+        //Su Dung phong
+        AddLabelTinhTrangPhong();
+        AddLabelSuDungDichVu();
+        AddLabelDatPhong();
+        AddLabelTraPhong();
+        
+        Tab_tk.remove(QLTK);
+       
     }
+        
+}
+
+public static void SetCurrentUser(TaiKhoanDangNhap tk){
+    tkTC = new TaiKhoanDangNhap();
+    tkTC.setMaTK(tk.getMaTK());
+    tkTC.setMaNV(tk.getMaNV());
+    tkTC.setLoaiTK(tk.getLoaiTK());
+    tkTC.setUser(tk.getUser());
+    tkTC.setPassWord(tk.getPassWord());
+    tkTC.setNgayTao(tk.getNgayTao());
+}
+
+public static TaiKhoanDangNhap GetCurrentUser(){
+    return tkTC;
+}
 //Su Dung
 public void AddLabelTinhTrangPhong(){
      jSeparator_SD1 = new JSeparator();
@@ -106,7 +136,7 @@ public void AddLabelTinhTrangPhong(){
          }
           @Override
              public void mouseEntered(MouseEvent e) {
-                lb_TrinhTrangPhong.setFont(new Font(lb_TrinhTrangPhong.getFont().getName(),Font.ITALIC, 20));
+                lb_TrinhTrangPhong.setFont(new Font(lb_TrinhTrangPhong.getFont().getName(),Font.ITALIC, lb_TrinhTrangPhong.getFont().getSize()));
                 lb_TrinhTrangPhong.setForeground(Color.red);
                 
              }
@@ -278,6 +308,7 @@ public void AddLabelQLLoaiPhong(){
                quanLyLoaiPhong.setVisible(true);
                quanLyNhanVien.setVisible(false);    
                quanLyKhachHang.setVisible(false);
+                 
              }
 
              @Override
@@ -290,7 +321,11 @@ public void AddLabelQLLoaiPhong(){
             public void mouseExited(MouseEvent e) {
                  lb_QLLoaiPhong.setFont(new Font(lb_QLLoaiPhong.getFont().getName(),Font.PLAIN, lb_QLLoaiPhong.getFont().getSize()));
                  lb_QLLoaiPhong.setForeground(Color.black);
-            }        
+            }
+
+            
+            
+            
     });
 }
 public void AddLabelQLNhanVien(){
@@ -487,17 +522,15 @@ public void AddLabelBCDoanhThu(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        Tab_tk = new javax.swing.JTabbedPane();
+        TK = new javax.swing.JPanel();
         jToolBar2 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btn_DoiMatKhau = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        btn_QuenMatKhau = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JToolBar.Separator();
-        jButton3 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        btn_DangXuat = new javax.swing.JButton();
+        QLTK = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         btn_QLTaiKhoan = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
@@ -543,40 +576,31 @@ public void AddLabelBCDoanhThu(){
         jToolBar2.add(btn_DoiMatKhau);
         jToolBar2.add(jSeparator2);
 
-        btn_QuenMatKhau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Re-Enter Pincode_48px.png"))); // NOI18N
-        btn_QuenMatKhau.setText("Quên Mật Khẩu");
-        btn_QuenMatKhau.setFocusable(false);
-        btn_QuenMatKhau.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_QuenMatKhau.setIconTextGap(5);
-        btn_QuenMatKhau.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_QuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_DangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Safe Out_48px.png"))); // NOI18N
+        btn_DangXuat.setText("Đăng Xuất");
+        btn_DangXuat.setFocusable(false);
+        btn_DangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_DangXuat.setIconTextGap(5);
+        btn_DangXuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_DangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_QuenMatKhauMouseClicked(evt);
+                btn_DangXuatMouseClicked(evt);
             }
         });
-        jToolBar2.add(btn_QuenMatKhau);
-        jToolBar2.add(jSeparator3);
+        jToolBar2.add(btn_DangXuat);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Safe Out_48px.png"))); // NOI18N
-        jButton3.setText("Đăng Xuất");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setIconTextGap(5);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton3);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout TKLayout = new javax.swing.GroupLayout(TK);
+        TK.setLayout(TKLayout);
+        TKLayout.setHorizontalGroup(
+            TKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        TKLayout.setVerticalGroup(
+            TKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Tài Khoản Của Tôi", jPanel1);
+        Tab_tk.addTab("Tài Khoản Của Tôi", TK);
 
         jToolBar1.setRollover(true);
 
@@ -593,18 +617,18 @@ public void AddLabelBCDoanhThu(){
         });
         jToolBar1.add(btn_QLTaiKhoan);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout QLTKLayout = new javax.swing.GroupLayout(QLTK);
+        QLTK.setLayout(QLTKLayout);
+        QLTKLayout.setHorizontalGroup(
+            QLTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        QLTKLayout.setVerticalGroup(
+            QLTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Quản Lý Tài Khoản", jPanel2);
+        Tab_tk.addTab("Quản Lý Tài Khoản", QLTK);
 
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -639,9 +663,9 @@ public void AddLabelBCDoanhThu(){
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jXTaskPane_SDPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jXTaskPane_QuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jXTaskPane_BaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 747, Short.MAX_VALUE))
         );
@@ -686,13 +710,13 @@ public void AddLabelBCDoanhThu(){
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(Tab_tk)
             .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Tab_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                 .addContainerGap())
@@ -715,14 +739,17 @@ public void AddLabelBCDoanhThu(){
 
     private void btn_DoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DoiMatKhauMouseClicked
         // TODO add your handling code here:
-        new DoiMatKhau().setVisible(true);
+        if(!DMK.isVisible()){
+            DMK.setVisible(true);
+        }
     }//GEN-LAST:event_btn_DoiMatKhauMouseClicked
 
-    private void btn_QuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QuenMatKhauMouseClicked
-        // TODO add your handling code here:\
-        new QuenMatKhau().setVisible(true);
+    private void btn_DangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangXuatMouseClicked
+        // TODO add your handling code here:
+        new DangNhap().setVisible(true);
+        this.dispose();
         
-    }//GEN-LAST:event_btn_QuenMatKhauMouseClicked
+    }//GEN-LAST:event_btn_DangXuatMouseClicked
  
     /**
      * @param args the command line arguments
@@ -761,22 +788,20 @@ public void AddLabelBCDoanhThu(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane LayerPane_Trai;
+    private javax.swing.JPanel QLTK;
+    private javax.swing.JPanel TK;
+    private javax.swing.JTabbedPane Tab_tk;
+    private javax.swing.JButton btn_DangXuat;
     private javax.swing.JButton btn_DoiMatKhau;
     private javax.swing.JButton btn_QLTaiKhoan;
-    private javax.swing.JButton btn_QuenMatKhau;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
-    private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private org.jdesktop.swingx.JXTaskPane jXTaskPane_BaoCao;

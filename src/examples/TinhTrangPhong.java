@@ -14,10 +14,10 @@ import javax.swing.SwingConstants;
  * @author admin
  */
 public class TinhTrangPhong extends javax.swing.JPanel {
-    String phongTrong_url= "/Users/admin/NetbeansProjects/QLKS/Resources/Icon/Structural_000000_25.png";
-    String phongDatTruocTT_url = "/Users/admin/NetbeansProjects/QLKS/Resources/Icon/Fire Station_000000_25.png";
-    String phongDatTruocOnl_url = "/Users/admin/NetbeansProjects/QLKS/Resources/Icon/Police Station_000000_25.png";
-    String phongDaCoKhach_url = "/Users/admin/NetbeansProjects/QLKS/Resources/Icon/Hotel_000000_25.png";
+    String phongTrong_url= "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Structural_000000_25.png";
+    String phongDatTruocTT_url = "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Fire Station_000000_25.png";
+    String phongDatTruocOnl_url = "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Police Station_000000_25.png";
+    String phongDaCoKhach_url = "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Hotel_000000_25.png";
     /**
      * Creates new form TinhTrangPhong
      */
@@ -40,7 +40,7 @@ public class TinhTrangPhong extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        Panel_Phong = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -54,8 +54,6 @@ public class TinhTrangPhong extends javax.swing.JPanel {
         jButton10 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-
-        setSize(new java.awt.Dimension(770, 553));
 
         jXTitledSeparator1.setFont(new java.awt.Font("Lucida Grande", 2, 12)); // NOI18N
         jXTitledSeparator1.setTitle("Tình Trạng Các Phòng");
@@ -87,18 +85,21 @@ public class TinhTrangPhong extends javax.swing.JPanel {
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel1.add(jLabel4);
 
-        jPanel3.setLayout(new java.awt.GridLayout(4, 4, 20, 20));
+        Panel_Phong.setLayout(new java.awt.GridLayout(4, 4, 20, 20));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Structural_000000_25.png"))); // NOI18N
         jButton1.setText("jButton1");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jPanel3.add(jButton1);
+        Panel_Phong.add(jButton1);
 
         jButton2.setText("jButton2");
-        jPanel3.add(jButton2);
+        Panel_Phong.add(jButton2);
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -106,37 +107,37 @@ public class TinhTrangPhong extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3);
+        Panel_Phong.add(jButton3);
 
         jButton9.setText("jButton9");
-        jPanel3.add(jButton9);
+        Panel_Phong.add(jButton9);
 
         jButton8.setText("jButton8");
-        jPanel3.add(jButton8);
+        Panel_Phong.add(jButton8);
 
         jButton7.setText("jButton7");
-        jPanel3.add(jButton7);
+        Panel_Phong.add(jButton7);
 
         jButton4.setText("jButton4");
-        jPanel3.add(jButton4);
+        Panel_Phong.add(jButton4);
 
         jButton5.setText("jButton5");
-        jPanel3.add(jButton5);
+        Panel_Phong.add(jButton5);
 
         jButton12.setText("jButton12");
-        jPanel3.add(jButton12);
+        Panel_Phong.add(jButton12);
 
         jButton6.setText("jButton6");
-        jPanel3.add(jButton6);
+        Panel_Phong.add(jButton6);
 
         jButton10.setText("jButton10");
-        jPanel3.add(jButton10);
+        Panel_Phong.add(jButton10);
 
         jButton13.setText("jButton13");
-        jPanel3.add(jButton13);
+        Panel_Phong.add(jButton13);
 
         jButton11.setText("jButton11");
-        jPanel3.add(jButton11);
+        Panel_Phong.add(jButton11);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -147,7 +148,7 @@ public class TinhTrangPhong extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Panel_Phong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -157,7 +158,7 @@ public class TinhTrangPhong extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Panel_Phong, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -167,14 +168,17 @@ public class TinhTrangPhong extends javax.swing.JPanel {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        JButton btnew = new JButton("Phòng new ");
-        btnew.setIcon(new ImageIcon(phongTrong_url));
-       
-        jPanel3.add(btnew);
+        JButton btnew2 = new JButton("Phòng new ");
+        btnew2.setIcon(new ImageIcon(phongTrong_url));
+        btnew2.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnew2.setVerticalTextPosition(SwingConstants.BOTTOM);
+        Panel_Phong.add(btnew2);
+        btnew2.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Panel_Phong;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -193,7 +197,6 @@ public class TinhTrangPhong extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator1;
     // End of variables declaration//GEN-END:variables
 }
