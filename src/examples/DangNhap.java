@@ -14,6 +14,7 @@ import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.Collections;
+
 /**
  *
  * @author ezrealan
@@ -98,6 +99,11 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 255));
         jLabel2.setText("Quên mật khẩu?");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel2);
         jLabel2.setBounds(370, 344, 110, 20);
 
@@ -115,46 +121,45 @@ public class DangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_lb_DangNhapMousePressed
 
     private void lb_DangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_DangNhapMouseClicked
-      
-        ArrayList<TaiKhoanDangNhap>  dsTK = new ArrayList<TaiKhoanDangNhap>();       
+
+        ArrayList<TaiKhoanDangNhap> dsTK = new ArrayList<TaiKhoanDangNhap>();
         dsTK = TaiKhoanDangNhap_Controller.getDSTK();
-        int flag =0;
-        for (int i =0 ; i<dsTK.size(); i++){
-            if(text_user.getText().equals(dsTK.get(i).getUser()) == true 
-                    && password.getText().equals(dsTK.get(i).getPassWord()) == true){
-                flag =1;
-                if (dsTK.get(i).getLoaiTK().equals("Admin")){
+        int flag = 0;
+        for (int i = 0; i < dsTK.size(); i++) {
+            if (text_user.getText().equals(dsTK.get(i).getUser()) == true
+                    && password.getText().equals(dsTK.get(i).getPassWord()) == true) {
+                flag = 1;
+                if (dsTK.get(i).getLoaiTK().equals("Admin")) {
                     int k = 0;
                     JOptionPane.showMessageDialog(null, "ADMIN Đăng Nhập Thành Công!!!");
-                       
-                     TrangChu tc = new TrangChu();
-                     TrangChu.SetCurrentUser(dsTK.get(i));
+
+                    TrangChu tc = new TrangChu();
+                    TrangChu.SetCurrentUser(dsTK.get(i));
                     tc.Display(k);
-                     this.dispose();                  
-                     tc.setVisible(true);
+                    this.dispose();
+                    tc.setVisible(true);
                 }
-                if (dsTK.get(i).getLoaiTK().equals("Tiếp Tân") == true){
-                    int j =1 ;
-                  JOptionPane.showMessageDialog(null, "TIẾP TÂN Đăng Nhập Thành Công!!!");
-                     TrangChu tc = new TrangChu();
-                     TrangChu.SetCurrentUser(dsTK.get(i));
+                if (dsTK.get(i).getLoaiTK().equals("Tiếp Tân") == true) {
+                    int j = 1;
+                    JOptionPane.showMessageDialog(null, "TIẾP TÂN Đăng Nhập Thành Công!!!");
+                    TrangChu tc = new TrangChu();
+                    TrangChu.SetCurrentUser(dsTK.get(i));
                     tc.Display(j);
-                     this.dispose();                   
-                     tc.setVisible(true);
+                    this.dispose();
+                    tc.setVisible(true);
                 }
-            }     
+            }
         }
-      if (flag == 0){
-          JOptionPane.showMessageDialog(null, "Không Tìm Thấy Tài Khoản");
-      }
-        
+        if (flag == 0) {
+            JOptionPane.showMessageDialog(null, "Không Tìm Thấy Tài Khoản");
+        }
+
     }//GEN-LAST:event_lb_DangNhapMouseClicked
 
     private void lb_DangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lb_DangNhapKeyPressed
         // TODO add your handling code here:
-       
 
-        
+
     }//GEN-LAST:event_lb_DangNhapKeyPressed
 
     private void passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordMouseClicked
@@ -164,48 +169,62 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void passwordMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordMouseDragged
         // TODO add your handling code here:
-         password.setText("");
+        password.setText("");
     }//GEN-LAST:event_passwordMouseDragged
 
     private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
         // TODO add your handling code here:       
-         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-               ArrayList<TaiKhoanDangNhap>  dsTK = new ArrayList<TaiKhoanDangNhap>();       
-        dsTK = TaiKhoanDangNhap_Controller.getDSTK();
-        int flag =0;
-        for (int i =0 ; i<dsTK.size(); i++){
-            if(text_user.getText().equals(dsTK.get(i).getUser()) == true 
-                    && password.getText().equals(dsTK.get(i).getPassWord()) == true){
-                flag =1;
-                if (dsTK.get(i).getLoaiTK().equals("Admin")){
-                    int k = 0;
-                    JOptionPane.showMessageDialog(null, "ADMIN Đăng Nhập Thành Công!!!");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ArrayList<TaiKhoanDangNhap> dsTK = new ArrayList<TaiKhoanDangNhap>();
+            dsTK = TaiKhoanDangNhap_Controller.getDSTK();
+            int flag_TenDN = 0;
+            int flag_pass = 0;
+            for (int i = 0; i < dsTK.size(); i++) {
+                if (text_user.getText().equals(dsTK.get(i).getUser()) == true) {
+                    flag_TenDN = 1;
 
-                     TrangChu tc = new TrangChu();
-                    tc.Display(k);
-                     this.dispose();                  
-                     tc.setVisible(true);
+                    if (password.getText().equals(dsTK.get(i).getPassWord()) == true) {
+                        flag_pass = 1;
+                        if (dsTK.get(i).getLoaiTK().equals("Admin")) {
+                            int k = 0;
+                            JOptionPane.showMessageDialog(null, "ADMIN\n" + "Đăng Nhập Thành Công!!!");
+                            TrangChu tc = new TrangChu();
+                            tc.Display(k);
+                            this.dispose();
+                            tc.setVisible(true);
+                        }
+                        if (dsTK.get(i).getLoaiTK().equals("Tiếp Tân") == true) {
+                            int j = 1;
+                            JOptionPane.showMessageDialog(null, "TIẾP TÂN\n" + " Đăng Nhập Thành Công!!!");
+                            TrangChu tc = new TrangChu();
+                            tc.Display(j);
+                            this.dispose();
+                            tc.setVisible(true);
+                        }
+                    }
                 }
-                if (dsTK.get(i).getLoaiTK().equals("Tiếp Tân") == true){
-                    int j =1 ;
-                  JOptionPane.showMessageDialog(null, "TIẾP TÂN Đăng Nhập Thành Công!!!");
-                     TrangChu tc = new TrangChu();
-                    tc.Display(j);
-                     this.dispose();                   
-                     tc.setVisible(true);
+            }
+            if (flag_TenDN == 0) {
+                JOptionPane.showMessageDialog(null, "Không Tìm Thấy Tài Khoản", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (flag_pass == 0) {
+                    JOptionPane.showMessageDialog(null, "Mật Khẩu Không Đúng", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
-            }     
+            }
+
         }
-      if (flag == 0){
-          JOptionPane.showMessageDialog(null, "Không Tìm Thấy Tài Khoản");
-      }
-    }
     }//GEN-LAST:event_passwordKeyPressed
 
     private void text_userFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_text_userFocusLost
         // TODO add your handling code here:
-          password.setText("");
+        password.setText("");
     }//GEN-LAST:event_text_userFocusLost
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        QuenMatKhau tc = new QuenMatKhau();
+        tc.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,16 +240,24 @@ public class DangNhap extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

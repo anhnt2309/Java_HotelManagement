@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 24, 2016 1:58:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="examples.TaiKhoanDangNhap" table="TBLTAIKHOANDANGNHAP">
+        <id name="MaTK" type="string">
+            <column name="MATK" length="20" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="MaNV" type="string">
+            <column name="MANV" length="20" />
+        </property>
+        <property name="LoaiTK" type="string">
+            <column name="LOAITK" length="50" />
+        </property>
+        <property name="User" type="string">
+            <column name="USER_DK" length="50" />
+        </property>
+        <property name="PassWord" type="string">
+            <column name="PASSWORD" length="50" />
+        </property>
+        <property name="NgayTao" type="date">
+            <column name="NGTAO" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

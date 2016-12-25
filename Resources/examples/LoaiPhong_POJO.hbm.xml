@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 24, 2016 1:58:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="examples.LoaiPhong_POJO" table="TBLLOAIPHONG">
+        <id name="MaLP" type="string">
+            <column name="MALP" length="20" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="LoaiPhong" type="string">
+            <column name="LOAIPHONG" length="20" />
+        </property>
+        <property name="SoGiuong" type="integer">
+            <column name="SOGIUONG" length="10" />
+        </property>
+        <property name="DonGia" type="double">
+            <column name="DONGIA" length="10" />
+        </property>
+        <property name="GhiChu" type="string">
+            <column name="GHICHU" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

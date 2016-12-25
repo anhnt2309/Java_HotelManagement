@@ -60,5 +60,6 @@ Contributor(s):
      <property name="NgayTao" type="date">
       <column length="0" name="NGTAO"/>
     </property>
+    
   </class>
 </hibernate-mapping>

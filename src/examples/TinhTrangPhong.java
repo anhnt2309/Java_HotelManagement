@@ -5,8 +5,18 @@
  */
 package examples;
 
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLayeredPane;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
 /**
@@ -14,15 +24,138 @@ import javax.swing.SwingConstants;
  * @author admin
  */
 public class TinhTrangPhong extends javax.swing.JPanel {
-    String phongTrong_url= "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Structural_000000_25.png";
+
+    String phongTrong_url = "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Structural_000000_25.png";
     String phongDatTruocTT_url = "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Fire Station_000000_25.png";
     String phongDatTruocOnl_url = "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Police Station_000000_25.png";
     String phongDaCoKhach_url = "D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Hotel_000000_25.png";
+
+    JButton[] buttons;
+
+    JPopupMenu menu_Btn;
+
+    JMenuItem m1, m2;
+
+//    TrangDatPhong trangDatPhong = new TrangDatPhong();
+//TraPhong traPhong = new TraPhong();
+//TinhTrangPhong tinhTrangPhong = new TinhTrangPhong();
+//QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
+//QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
+//QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
+//QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
     /**
      * Creates new form TinhTrangPhong
      */
     public TinhTrangPhong() {
         initComponents();
+        LoadPhong();
+    }
+class MenuActionListener implements ActionListener {
+  public void actionPerformed(ActionEvent e) {
+      if(e.getSource() == m1){
+          
+      }
+      if (e.getSource() == m2 ){
+          JPanel trangTraPhong = TrangChu.getTraPhong();
+          JLayeredPane pn = TrangChu.getPanel();
+                        pn.add(trangTraPhong);
+
+                        trangTraPhong.setVisible(true);
+                        setVisible(false);
+      }
+    
+
+  }
+}
+    public void LoadPhong() {
+        m1 = new JMenuItem("Sử Dụng Dịch Vụ", new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Service Bell_000000_25.png"));
+        m2 = new JMenuItem("Trả Phòng", new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+
+        
+        //add listener
+        m1.addActionListener(new MenuActionListener());
+        m2.addActionListener(new MenuActionListener());
+        
+        menu_Btn = new JPopupMenu();
+        
+        // add menu item to menu 
+        menu_Btn.add(m1);
+        menu_Btn.add(m2);
+        
+        
+
+        final ArrayList<Phong> dsTK = Phong_Controller.getDSPhong();
+//        dsTK = Phong_Controller.getDSPhong();
+        buttons = new JButton[dsTK.size()];
+        for (int i = 0; i < dsTK.size(); i++) {
+            buttons[i] = new JButton(dsTK.get(i).getTenPhong());
+            if (dsTK.get(i).getTinhTrang().equals("Có Khách")) {
+                buttons[i].setIcon(new ImageIcon(phongDaCoKhach_url));
+            }
+            if (dsTK.get(i).getTinhTrang().equals("Trống")) {
+                buttons[i].setIcon(new ImageIcon(phongTrong_url));
+            }
+            if (dsTK.get(i).getTinhTrang().equals("Đặt Trước Trực Tiếp")) {
+                buttons[i].setIcon(new ImageIcon(phongDatTruocTT_url));
+            }
+            if (dsTK.get(i).getTinhTrang().equals("Đặt Trước online")) {
+                buttons[i].setIcon(new ImageIcon(phongDatTruocOnl_url));
+            }
+            buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
+            buttons[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+            final String TinhTrang = dsTK.get(i).getTinhTrang();
+            buttons[i].addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (TinhTrang.equals("Trống")) {
+                        JPanel trangDatPhong = TrangChu.getDatPhong();
+                        if (trangDatPhong.isVisible() == true) {
+                            trangDatPhong.setVisible(false);
+                        }
+
+                        JLayeredPane pn = TrangChu.getPanel();
+                        pn.add(trangDatPhong);
+
+                        trangDatPhong.setVisible(true);
+                        setVisible(false);
+//                  traPhong.setVisible(false);
+//               tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//               quanLyLoaiPhong.setVisible(false);
+//               quanLyNhanVien.setVisible(false);
+//               quanLyKhachHang.setVisible(false);
+                    }
+                    if (TinhTrang.equals("Có Khách")) {
+                        //Get button position
+                        Component b = (Component) e.getSource();
+                        Point p = b.getLocationOnScreen();
+
+                        // this - represents current frame
+                        // 0,0 is the co ordinate where the popup
+                        // is shown
+                        menu_Btn.show(b, 0, 0);
+                        // Now set the location of the JPopupMenu
+                        // This location is relative to the screen
+                        menu_Btn.setLocation(p.x, p.y + b.getHeight());
+                    }
+
+                }
+            });
+            Panel_Phong.add(buttons[i]);
+            buttons[i].setVisible(true);
+
+        }
+    }
+
+    public void HienThiPhong() {
+        JButton btnew2 = new JButton("Phòng new ");
+        btnew2.setIcon(new ImageIcon(phongTrong_url));
+        btnew2.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnew2.setVerticalTextPosition(SwingConstants.BOTTOM);
+        Panel_Phong.add(btnew2);
+        btnew2.setVisible(true);
+
     }
 
     /**
@@ -41,19 +174,6 @@ public class TinhTrangPhong extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Panel_Phong = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
 
         jXTitledSeparator1.setFont(new java.awt.Font("Lucida Grande", 2, 12)); // NOI18N
         jXTitledSeparator1.setTitle("Tình Trạng Các Phòng");
@@ -87,58 +207,6 @@ public class TinhTrangPhong extends javax.swing.JPanel {
 
         Panel_Phong.setLayout(new java.awt.GridLayout(4, 4, 20, 20));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Structural_000000_25.png"))); // NOI18N
-        jButton1.setText("jButton1");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        Panel_Phong.add(jButton1);
-
-        jButton2.setText("jButton2");
-        Panel_Phong.add(jButton2);
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        Panel_Phong.add(jButton3);
-
-        jButton9.setText("jButton9");
-        Panel_Phong.add(jButton9);
-
-        jButton8.setText("jButton8");
-        Panel_Phong.add(jButton8);
-
-        jButton7.setText("jButton7");
-        Panel_Phong.add(jButton7);
-
-        jButton4.setText("jButton4");
-        Panel_Phong.add(jButton4);
-
-        jButton5.setText("jButton5");
-        Panel_Phong.add(jButton5);
-
-        jButton12.setText("jButton12");
-        Panel_Phong.add(jButton12);
-
-        jButton6.setText("jButton6");
-        Panel_Phong.add(jButton6);
-
-        jButton10.setText("jButton10");
-        Panel_Phong.add(jButton10);
-
-        jButton13.setText("jButton13");
-        Panel_Phong.add(jButton13);
-
-        jButton11.setText("jButton11");
-        Panel_Phong.add(jButton11);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,36 +230,9 @@ public class TinhTrangPhong extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        JButton btnew2 = new JButton("Phòng new ");
-        btnew2.setIcon(new ImageIcon(phongTrong_url));
-        btnew2.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnew2.setVerticalTextPosition(SwingConstants.BOTTOM);
-        Panel_Phong.add(btnew2);
-        btnew2.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_Phong;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -26,7 +26,7 @@ public class LoaiPhong_Controller {
                 = HibernateSessionFactory.getSessionFactory().openSession();
         try {
             LP = (LoaiPhong_POJO) session.get(LoaiPhong_POJO.class, MaLP);
-
+           
         } catch (Exception e) {
             System.err.println(e);
         } finally {

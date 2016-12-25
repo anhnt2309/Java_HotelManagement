@@ -5,17 +5,28 @@
  */
 package examples;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dell
  */
 public class QuenMatKhau extends javax.swing.JFrame {
 
+    ArrayList<TaiKhoanDangNhap> dsTK;
+    Tblnhanvien nv1;
+
     /**
      * Creates new form QuenMatKhau
      */
     public QuenMatKhau() {
         initComponents();
+        dsTK = new ArrayList<TaiKhoanDangNhap>();
+        dsTK = TaiKhoanDangNhap_Controller.getDSTK();
+        String manv = dsTK.get(0).getMaNV();
+        nv1 = NhanVien_Controller.getNV(manv);
+
     }
 
     /**
@@ -89,10 +100,20 @@ public class QuenMatKhau extends javax.swing.JFrame {
         Button_LayMK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_LayMK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Checked_000000_25.png"))); // NOI18N
         Button_LayMK.setText("Hoàn tất");
+        Button_LayMK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_LayMKMouseClicked(evt);
+            }
+        });
 
         Button_HuyLayMK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_HuyLayMK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Cancel_000000_25.png"))); // NOI18N
         Button_HuyLayMK.setText("Hủy bỏ");
+        Button_HuyLayMK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_HuyLayMKMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -126,26 +147,27 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Text_LayLaiMK_TenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(Text_LayLaiMK_MaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(Text_LayLaiMK_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Button_LayMK)
-                    .addComponent(Button_HuyLayMK))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(Text_LayLaiMK_TenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(Text_LayLaiMK_MaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(Text_LayLaiMK_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Button_LayMK)
+                            .addComponent(Button_HuyLayMK))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -192,6 +214,45 @@ public class QuenMatKhau extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Button_LayMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_LayMKMouseClicked
+        // TODO add your handling code here:
+        String tenDN = Text_LayLaiMK_TenDN.getText();
+        String maNV = Text_LayLaiMK_MaNV.getText();
+        String email = Text_LayLaiMK_Email.getText();
+        int check_tenDN = 0;
+        int Check_maNV = 0;
+        int Check_email = 0;
+
+        for (int i = 0; i < dsTK.size(); i++) {
+            if (tenDN.equals(dsTK.get(i).getUser()) == true) {
+                check_tenDN = 1;
+                if (maNV.equals(nv1.getManv()) == true) {
+                    Check_maNV = 1;
+                    if (email.equals(nv1.getEmailNv()) == true) {
+                        Check_email = 1;
+                        JOptionPane.showMessageDialog(jPanel3, "Mật Khẩu Của Bạn:\n" + dsTK.get(i).getPassWord(), "Thành Công", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        }
+        if (check_tenDN == 0) {
+            JOptionPane.showMessageDialog(jPanel3, "Tên Đăng Nhập Không Đúng", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (Check_maNV == 0) {
+                JOptionPane.showMessageDialog(jPanel3, "Mã Nhân Viên Không Đúng", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (Check_email == 0) {
+                    JOptionPane.showMessageDialog(jPanel3, "Email Không Đúng", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_Button_LayMKMouseClicked
+
+    private void Button_HuyLayMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_HuyLayMKMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_Button_HuyLayMKMouseClicked
 
     /**
      * @param args the command line arguments

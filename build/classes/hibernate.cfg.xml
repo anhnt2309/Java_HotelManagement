@@ -48,5 +48,7 @@ Contributor(s):
     <!-- List of XML mapping files -->
     <mapping resource="mapping_LP.hbm.xml"/>
     <mapping resource="mapping_TaiKhoanDangNhap.hbm.xml"/>
+    <mapping resource="Tblnhanvien.hbm.xml"/>
+    <mapping resource="mapping_Phong.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

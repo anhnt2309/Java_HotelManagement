@@ -12,7 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.*;
+import static java.awt.PageAttributes.MediaType.D;
 import java.util.ArrayList;
+import static javafx.scene.input.KeyCode.V;
 import javax.swing.*;
 /**
  *
@@ -33,8 +35,8 @@ public class TrangChu extends javax.swing.JFrame {
 
 //Component[] innerFrameComponents;
 //Create các panel
-TrangDatPhong trangDatPhong = new TrangDatPhong();
-TraPhong traPhong = new TraPhong();
+static TrangDatPhong trangDatPhong = new TrangDatPhong();
+static TraPhong traPhong = new TraPhong();
 TinhTrangPhong tinhTrangPhong = new TinhTrangPhong();
 QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
 QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
@@ -43,6 +45,7 @@ QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
 
 //creat Frame
 JFrame DMK = new DoiMatKhau();
+JFrame TKQL = new QuanLyTaiKhoan();
 
 // user
 static TaiKhoanDangNhap tkTC ;
@@ -375,7 +378,7 @@ public void AddLabelQLDichVu(){
              @Override
              public void mouseClicked(MouseEvent e) {
                 LayerPane_Trai.add(quanLyDichVu);
-               traPhong.setVisible(true);
+               traPhong.setVisible(false);
                trangDatPhong.setVisible(false);
                tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(true);
@@ -408,10 +411,10 @@ public void AddLabelQLKhachHang(){
              @Override
              public void mouseClicked(MouseEvent e) {
                 LayerPane_Trai.add(quanLyKhachHang);
-               traPhong.setVisible(true);
+               traPhong.setVisible(false);
                trangDatPhong.setVisible(false);
                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(true);
+                quanLyDichVu.setVisible(false);
                quanLyLoaiPhong.setVisible(false);
                quanLyNhanVien.setVisible(false);   
                quanLyKhachHang.setVisible(true);
@@ -513,6 +516,22 @@ public void AddLabelBCDoanhThu(){
             }        
     });
 }
+
+public static JLayeredPane getPanel(){
+    return LayerPane_Trai;
+}
+public static JPanel getTraPhong(){
+    return traPhong;
+}
+
+public static JPanel getDatPhong(){
+    return trangDatPhong;
+}
+
+//public static JPanel getSuDungPhong(){
+//    return SuDungDichVu;
+//}
+
    /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -732,8 +751,13 @@ public void AddLabelBCDoanhThu(){
 
     private void btn_QLTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLTaiKhoanMouseClicked
         // TODO add your handling code here:
-       
-                new QuanLyTaiKhoan().setVisible(true);
+       if(!TKQL.isVisible()){
+            TKQL.setVisible(true);
+        }
+        else{
+            TKQL.setAlwaysOnTop(true);            
+        }
+              
                
     }//GEN-LAST:event_btn_QLTaiKhoanMouseClicked
 
@@ -741,6 +765,9 @@ public void AddLabelBCDoanhThu(){
         // TODO add your handling code here:
         if(!DMK.isVisible()){
             DMK.setVisible(true);
+        }
+        else{
+            DMK.setAlwaysOnTop(true);            
         }
     }//GEN-LAST:event_btn_DoiMatKhauMouseClicked
 
@@ -787,7 +814,7 @@ public void AddLabelBCDoanhThu(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane LayerPane_Trai;
+    private static javax.swing.JLayeredPane LayerPane_Trai;
     private javax.swing.JPanel QLTK;
     private javax.swing.JPanel TK;
     private javax.swing.JTabbedPane Tab_tk;

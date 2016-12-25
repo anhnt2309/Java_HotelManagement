@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 24, 2016 1:58:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="examples.Tblnhanvien" table="TBLNHANVIEN" >
+        <id name="manv" type="string">
+            <column name="MANV" />
+            <generator class="assigned" />
+        </id>
+        <property name="tennv" type="string">
+            <column name="TENNV" />
+        </property>
+        <property name="ngvl" type="date">
+            <column name="NGVL" length="23" />
+        </property>
+        <property name="diachinv" type="string">
+            <column name="DIACHINV" />
+        </property>
+        <property name="ngsinhnv" type="date">
+            <column name="NGSINHNV" length="23" />
+        </property>
+        <property name="sdtnv" type="string">
+            <column name="SDTNV" />
+        </property>
+        <property name="emailNv" type="string">
+            <column name="EMAIL_NV" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
