@@ -172,11 +172,13 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="label_MALP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Text_LoaiPhong_MaLP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Label_GT" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="Text_LoaiPhong_GiaTien" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="label_MALP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text_LoaiPhong_MaLP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text_LoaiPhong_GiaTien" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">

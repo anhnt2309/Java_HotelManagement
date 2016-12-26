@@ -90,6 +90,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Mật khẩu");
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/staff_login.png"))); // NOI18N
+
         Combo_TK_MaNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Combo_TK_MaNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -97,16 +99,20 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
         Password_TaoMK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        Button_ThemTK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Button_ThemTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Button_ThemTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Plus_000000_25.png"))); // NOI18N
         Button_ThemTK.setText("Thêm");
 
-        Button_XoaTK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Button_XoaTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Button_XoaTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Cancel_000000_25.png"))); // NOI18N
         Button_XoaTK.setText("Xóa");
 
-        Button_SuaTK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Button_SuaTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Button_SuaTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Recycling_000000_25.png"))); // NOI18N
         Button_SuaTK.setText("Sửa");
 
-        Button_NhapLaiTK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Button_NhapLaiTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Button_NhapLaiTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Edit_000000_25.png"))); // NOI18N
         Button_NhapLaiTK.setText("Nhập lại");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -176,6 +182,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         Text_TimKiemTK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         Button_TimKiemTK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Button_TimKiemTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search_000000_25.png"))); // NOI18N
         Button_TimKiemTK.setText("Tìm kiếm");
 
         jXTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -196,9 +203,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Combo_ThongTinTK, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +213,12 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Button_TimKiemTK)
                 .addGap(24, 24, 24))
-            .addComponent(jScrollPane2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +233,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                     .addComponent(Text_TimKiemTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Button_TimKiemTK))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

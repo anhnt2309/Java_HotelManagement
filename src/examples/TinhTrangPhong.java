@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -50,39 +51,38 @@ public class TinhTrangPhong extends javax.swing.JPanel {
         initComponents();
         LoadPhong();
     }
-class MenuActionListener implements ActionListener {
-  public void actionPerformed(ActionEvent e) {
-      if(e.getSource() == m1){
-          
-      }
-      if (e.getSource() == m2 ){
-          JPanel trangTraPhong = TrangChu.getTraPhong();
-          JLayeredPane pn = TrangChu.getPanel();
-                        pn.add(trangTraPhong);
 
-                        trangTraPhong.setVisible(true);
-                        setVisible(false);
-      }
-    
+    class MenuActionListener implements ActionListener {
 
-  }
-}
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == m1) {
+
+            }
+            if (e.getSource() == m2) {
+                JPanel trangTraPhong = TrangChu.getTraPhong();
+                JLayeredPane pn = TrangChu.getPanel();
+                pn.add(trangTraPhong);
+
+                trangTraPhong.setVisible(true);
+                setVisible(false);
+            }
+
+        }
+    }
+
     public void LoadPhong() {
         m1 = new JMenuItem("Sử Dụng Dịch Vụ", new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Service Bell_000000_25.png"));
         m2 = new JMenuItem("Trả Phòng", new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
 
-        
         //add listener
         m1.addActionListener(new MenuActionListener());
         m2.addActionListener(new MenuActionListener());
-        
+
         menu_Btn = new JPopupMenu();
-        
+
         // add menu item to menu 
         menu_Btn.add(m1);
         menu_Btn.add(m2);
-        
-        
 
         final ArrayList<Phong> dsTK = Phong_Controller.getDSPhong();
 //        dsTK = Phong_Controller.getDSPhong();
@@ -103,7 +103,9 @@ class MenuActionListener implements ActionListener {
             }
             buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
             buttons[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+            buttons[i].setName(dsTK.get(i).getMaPhong());
             final String TinhTrang = dsTK.get(i).getTinhTrang();
+            final String MaPhong = dsTK.get(i).getMaPhong().toString();
             buttons[i].addActionListener(new ActionListener() {
 
                 @Override
@@ -118,13 +120,10 @@ class MenuActionListener implements ActionListener {
                         pn.add(trangDatPhong);
 
                         trangDatPhong.setVisible(true);
+                        JComboBox<Object> comboBox =TrangDatPhong.getComboBox_Phong();
+                        comboBox.setSelectedItem(MaPhong);
                         setVisible(false);
-//                  traPhong.setVisible(false);
-//               tinhTrangPhong.setVisible(false);
-//                quanLyDichVu.setVisible(false);
-//               quanLyLoaiPhong.setVisible(false);
-//               quanLyNhanVien.setVisible(false);
-//               quanLyKhachHang.setVisible(false);
+
                     }
                     if (TinhTrang.equals("Có Khách")) {
                         //Get button position

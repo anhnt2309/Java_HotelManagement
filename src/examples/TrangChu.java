@@ -16,523 +16,612 @@ import static java.awt.PageAttributes.MediaType.D;
 import java.util.ArrayList;
 import static javafx.scene.input.KeyCode.V;
 import javax.swing.*;
+
 /**
  *
  * @author admin
  */
 public class TrangChu extends javax.swing.JFrame {
- JSeparator jSeparator_SD1 ;
- JSeparator jSeparator_SD2 ;
- JSeparator jSeparator_SD3 ;
- 
- JSeparator jSeparator_QL1 ;
- JSeparator jSeparator_QL2 ;
- JSeparator jSeparator_QL3;
- JSeparator jSeparator_QL4;
- 
- JSeparator jSeparator_BC1;
- JSeparator jSeparator_BC2;
+
+    JSeparator jSeparator_SD1;
+    JSeparator jSeparator_SD2;
+    JSeparator jSeparator_SD3;
+    JSeparator jSeparator_SD4;
+
+    JSeparator jSeparator_QL1;
+    JSeparator jSeparator_QL2;
+    JSeparator jSeparator_QL3;
+    JSeparator jSeparator_QL4;
+    JSeparator jSeparator_QL5;
+
+    JSeparator jSeparator_BC1;
+    JSeparator jSeparator_BC2;
 
 //Component[] innerFrameComponents;
 //Create các panel
-static TrangDatPhong trangDatPhong = new TrangDatPhong();
-static TraPhong traPhong = new TraPhong();
-TinhTrangPhong tinhTrangPhong = new TinhTrangPhong();
-QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
-QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
-QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
-QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
+    static TrangDatPhong trangDatPhong = new TrangDatPhong();
+    static TraPhong traPhong = new TraPhong();
+    TinhTrangPhong tinhTrangPhong = new TinhTrangPhong();
+    QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
+    QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
+    QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
+    QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
+    QuanLyphong quanLyPhong = new QuanLyphong();
+    QuanLyThuephong quanLyThuephong = new QuanLyThuephong();
+    SuDungDichVu suDungDichVu = new SuDungDichVu();
 
 //creat Frame
-JFrame DMK = new DoiMatKhau();
-JFrame TKQL = new QuanLyTaiKhoan();
+    JFrame DMK = new DoiMatKhau();
+    JFrame TKQL = new QuanLyTaiKhoan();
 
 // user
-static TaiKhoanDangNhap tkTC ;
+    static TaiKhoanDangNhap tkTC;
+
     /**
      * Creates new form TrangChu
      */
     public TrangChu() {
         initComponents();
-        
-        
-        
-        
-      
- }
-    
-public void Display(int i){
-    if ( i == 0 ){
-    //add các menu item ben trai
-        //Su Dung phong
-        AddLabelTinhTrangPhong();
-        AddLabelSuDungDichVu();
-        AddLabelDatPhong();
-        AddLabelTraPhong();
-        
-        //Quan Ly Phong
-        AddLabelQLLoaiPhong();
-        AddLabelQLNhanVien();
-        AddLabelQLDichVu();
-        AddLabelQLKhachHang();
-        
-        //Bao Cao
-        AddLabelBCKhachHang();
-        AddLabelBCNhanVien();
-        AddLabelBCDoanhThu();
-    }
-    if (i ==1 ){
-        //add các menu item ben trai
-        //Su Dung phong
-        AddLabelTinhTrangPhong();
-        AddLabelSuDungDichVu();
-        AddLabelDatPhong();
-        AddLabelTraPhong();
-        
-        Tab_tk.remove(QLTK);
-       
-    }
-        
-}
 
-public static void SetCurrentUser(TaiKhoanDangNhap tk){
-    tkTC = new TaiKhoanDangNhap();
-    tkTC.setMaTK(tk.getMaTK());
-    tkTC.setMaNV(tk.getMaNV());
-    tkTC.setLoaiTK(tk.getLoaiTK());
-    tkTC.setUser(tk.getUser());
-    tkTC.setPassWord(tk.getPassWord());
-    tkTC.setNgayTao(tk.getNgayTao());
-}
+    }
 
-public static TaiKhoanDangNhap GetCurrentUser(){
-    return tkTC;
-}
+    public void Display(int i) {
+        if (i == 0) {
+            //add các menu item ben trai
+            //Su Dung phong
+            AddLabelTinhTrangPhong();
+            AddLabelThuePhong();
+            AddLabelSuDungDichVu();
+            AddLabelDatPhong();
+            AddLabelTraPhong();
+
+            //Quan Ly Phong
+            AddLabelQLLoaiPhong();
+            AddLabelQLPhong();
+            AddLabelQLNhanVien();
+            AddLabelQLDichVu();
+            AddLabelQLKhachHang();
+
+            //Bao Cao
+            AddLabelBCKhachHang();
+            AddLabelBCNhanVien();
+            AddLabelBCDoanhThu();
+        }
+        if (i == 1) {
+            //add các menu item ben trai
+            //Su Dung phong
+            AddLabelTinhTrangPhong();
+            AddLabelSuDungDichVu();
+            AddLabelDatPhong();
+            AddLabelTraPhong();
+
+            Tab_tk.remove(QLTK);
+
+        }
+
+    }
+
+    public static void SetCurrentUser(TaiKhoanDangNhap tk) {
+        tkTC = new TaiKhoanDangNhap();
+        tkTC.setMaTK(tk.getMaTK());
+        tkTC.setMaNV(tk.getMaNV());
+        tkTC.setLoaiTK(tk.getLoaiTK());
+        tkTC.setUser(tk.getUser());
+        tkTC.setPassWord(tk.getPassWord());
+        tkTC.setNgayTao(tk.getNgayTao());
+    }
+
+    public static TaiKhoanDangNhap GetCurrentUser() {
+        return tkTC;
+    }
 //Su Dung
-public void AddLabelTinhTrangPhong(){
-     jSeparator_SD1 = new JSeparator();
-     //add tình trạng phòng component to jxtaskpane
+
+    public void AddLabelTinhTrangPhong() {
+        jSeparator_SD1 = new JSeparator();
+        //add tình trạng phòng component to jxtaskpane
         final JLabel lb_TrinhTrangPhong = new JLabel("Tình Trạng Phòng");
         lb_TrinhTrangPhong.setSize(228, 150);
         lb_TrinhTrangPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Hotel_000000_25.png"));
         jXTaskPane_SDPhong.add(lb_TrinhTrangPhong);
-           
+
         jXTaskPane_SDPhong.add(jSeparator_SD1);
-        
-     //set listener
-     lb_TrinhTrangPhong.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            
-              LayerPane_Trai.add(tinhTrangPhong);
-               tinhTrangPhong.setVisible(true);
+
+        //set listener
+        lb_TrinhTrangPhong.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                LayerPane_Trai.add(tinhTrangPhong);
+                tinhTrangPhong.setVisible(true);
                 traPhong.setVisible(false);
-               trangDatPhong.setVisible(false);
-               quanLyDichVu.setVisible(false);
-               quanLyLoaiPhong.setVisible(false);
-               quanLyNhanVien.setVisible(false);
-               quanLyKhachHang.setVisible(false);
-               
+                trangDatPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+
 //                int i =jLayeredPane1.getLayer(tinhTrangPhong);
 //                jLayeredPane1.getComponent(i).setVisible(true);
 //              jLayeredPane1.moveToFront(tinhTrangPhong);
-         }
-          @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_TrinhTrangPhong.setFont(new Font(lb_TrinhTrangPhong.getFont().getName(),Font.ITALIC, lb_TrinhTrangPhong.getFont().getSize()));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_TrinhTrangPhong.setFont(new Font(lb_TrinhTrangPhong.getFont().getName(), Font.ITALIC, lb_TrinhTrangPhong.getFont().getSize()));
                 lb_TrinhTrangPhong.setForeground(Color.red);
-                
-             }
+
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_TrinhTrangPhong.setFont(new Font(lb_TrinhTrangPhong.getFont().getName(),Font.PLAIN, lb_TrinhTrangPhong.getFont().getSize()));
-                 lb_TrinhTrangPhong.setForeground(Color.black);
+                lb_TrinhTrangPhong.setFont(new Font(lb_TrinhTrangPhong.getFont().getName(), Font.PLAIN, lb_TrinhTrangPhong.getFont().getSize()));
+                lb_TrinhTrangPhong.setForeground(Color.black);
             }
-         
-});
-}
-public void AddLabelSuDungDichVu(){
-    jSeparator_SD2 = new JSeparator();
-    //Sử dụng dịch vụ 
-        final  JLabel lb_SuDungDichVu = new JLabel("Sử Dụng Dịch ");
+
+        });
+    }
+
+    public void AddLabelSuDungDichVu() {
+        jSeparator_SD2 = new JSeparator();
+        //Sử dụng dịch vụ
+        final JLabel lb_SuDungDichVu = new JLabel("Sử Dụng Dịch Vụ");
         lb_SuDungDichVu.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Service Bell_000000_25.png"));
         jXTaskPane_SDPhong.add(lb_SuDungDichVu);
-        
-         jXTaskPane_SDPhong.add(jSeparator_SD2);
-         
-    // set listener
-    lb_SuDungDichVu.addMouseListener(new MouseAdapter(){
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-        }
-         @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_SuDungDichVu.setFont(new Font(lb_SuDungDichVu.getFont().getName(),Font.ITALIC, lb_SuDungDichVu.getFont().getSize()));
+
+        jXTaskPane_SDPhong.add(jSeparator_SD2);
+
+        // set listener
+        lb_SuDungDichVu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               LayerPane_Trai.add(suDungDichVu);
+                tinhTrangPhong.setVisible(false);
+                traPhong.setVisible(false);
+                trangDatPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_SuDungDichVu.setFont(new Font(lb_SuDungDichVu.getFont().getName(), Font.ITALIC, lb_SuDungDichVu.getFont().getSize()));
                 lb_SuDungDichVu.setForeground(Color.red);
-                
-             }
+
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_SuDungDichVu.setFont(new Font(lb_SuDungDichVu.getFont().getName(),Font.PLAIN, lb_SuDungDichVu.getFont().getSize()));
-                 lb_SuDungDichVu.setForeground(Color.black);
+                lb_SuDungDichVu.setFont(new Font(lb_SuDungDichVu.getFont().getName(), Font.PLAIN, lb_SuDungDichVu.getFont().getSize()));
+                lb_SuDungDichVu.setForeground(Color.black);
             }
-    });
-}
-public void AddLabelDatPhong(){
-      jSeparator_SD3 = new JSeparator();
-      //Dat phong  tru
+        });
+    }
+
+    public void AddLabelDatPhong() {
+        jSeparator_SD3 = new JSeparator();
+        //Dat phong  tru
         final JLabel lb_DatPhong = new JLabel("Đặt Phòng  ");
         lb_DatPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Police Station_000000_25.png"));
         jXTaskPane_SDPhong.add(lb_DatPhong);
-        
-         jXTaskPane_SDPhong.add(jSeparator_SD3);
-         
-             //gan listener
+
+        jXTaskPane_SDPhong.add(jSeparator_SD3);
+
+        //gan listener
         lb_DatPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               
-                 LayerPane_Trai.add(trangDatPhong);
-                 trangDatPhong.setVisible(true);             
-                  traPhong.setVisible(false);
-               tinhTrangPhong.setVisible(false);
+
+                LayerPane_Trai.add(trangDatPhong);
+                trangDatPhong.setVisible(true);
+                traPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
-               quanLyLoaiPhong.setVisible(false);
-               quanLyNhanVien.setVisible(false);
-               quanLyKhachHang.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_DatPhong.setFont(new Font(lb_DatPhong.getFont().getName(), Font.ITALIC, lb_DatPhong.getFont().getSize()));
+                lb_DatPhong.setForeground(Color.red);
 
             }
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_DatPhong.setFont(new Font(lb_DatPhong.getFont().getName(),Font.ITALIC, lb_DatPhong.getFont().getSize()));
-                lb_DatPhong.setForeground(Color.red);
-                
-             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_DatPhong.setFont(new Font(lb_DatPhong.getFont().getName(),Font.PLAIN, lb_DatPhong.getFont().getSize()));
-                 lb_DatPhong.setForeground(Color.black);
+                lb_DatPhong.setFont(new Font(lb_DatPhong.getFont().getName(), Font.PLAIN, lb_DatPhong.getFont().getSize()));
+                lb_DatPhong.setForeground(Color.black);
             }
-    });
-}
-public void AddLabelTraPhong(){
-     //Tra Phon
+        });
+    }
+
+    public void AddLabelTraPhong() {
+        //Tra Phon
         final JLabel lb_TraPhong = new JLabel("Trả Phòng  ");
         lb_TraPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_SDPhong.add(lb_TraPhong);
-       
-     //set listener
-     lb_TraPhong.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                LayerPane_Trai.add(traPhong);
-               traPhong.setVisible(true);
-               trangDatPhong.setVisible(false);
-               tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-               quanLyLoaiPhong.setVisible(false);
-               quanLyNhanVien.setVisible(false);
-               quanLyKhachHang.setVisible(false);
-             }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_TraPhong.setFont(new Font(lb_TraPhong.getFont().getName(),Font.ITALIC, lb_TraPhong.getFont().getSize()));
+        //set listener
+        lb_TraPhong.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LayerPane_Trai.add(traPhong);
+                traPhong.setVisible(true);
+                trangDatPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_TraPhong.setFont(new Font(lb_TraPhong.getFont().getName(), Font.ITALIC, lb_TraPhong.getFont().getSize()));
                 lb_TraPhong.setForeground(Color.red);
-                
-             }
+
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_TraPhong.setFont(new Font(lb_TraPhong.getFont().getName(),Font.PLAIN, lb_TraPhong.getFont().getSize()));
-                 lb_TraPhong.setForeground(Color.black);
-            }        
-    });
-        
-}
+                lb_TraPhong.setFont(new Font(lb_TraPhong.getFont().getName(), Font.PLAIN, lb_TraPhong.getFont().getSize()));
+                lb_TraPhong.setForeground(Color.black);
+            }
+        });
+
+    }
+
+    public void AddLabelThuePhong() {
+        jSeparator_SD4 = new JSeparator();
+        //thue Phon
+        final JLabel lb_ThuePhong = new JLabel("Thuê Phòng  ");
+        lb_ThuePhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        jXTaskPane_SDPhong.add(lb_ThuePhong);
+        jXTaskPane_SDPhong.add(jSeparator_SD4);
+        //set listener
+        lb_ThuePhong.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LayerPane_Trai.add(quanLyThuephong);
+                traPhong.setVisible(false);
+                trangDatPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(true);
+                suDungDichVu.setVisible(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_ThuePhong.setFont(new Font(lb_ThuePhong.getFont().getName(), Font.ITALIC, lb_ThuePhong.getFont().getSize()));
+                lb_ThuePhong.setForeground(Color.red);
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                lb_ThuePhong.setFont(new Font(lb_ThuePhong.getFont().getName(), Font.PLAIN, lb_ThuePhong.getFont().getSize()));
+                lb_ThuePhong.setForeground(Color.black);
+            }
+        });
+    }
 
 //Quan ly
 //chua co panel
-public void AddLabelQLPhong(){
-    jSeparator_QL1 = new JSeparator();
-     // Phong
-        final JLabel lb_QLPhong = new JLabel("Quản lý Phòng  ");
-        lb_QLPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
-        jXTaskPane_QuanLy.add(lb_QLPhong);
-        jXTaskPane_QuanLy.add(jSeparator_QL1);
-       
-     //set listener
-     lb_QLPhong.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                LayerPane_Trai.add(traPhong);
-               traPhong.setVisible(true);
-               trangDatPhong.setVisible(false);
-               tinhTrangPhong.setVisible(false);                
-             }
-
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_QLPhong.setFont(new Font(lb_QLPhong.getFont().getName(),Font.ITALIC, lb_QLPhong.getFont().getSize()));
-                lb_QLPhong.setForeground(Color.red);
-                
-             }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                 lb_QLPhong.setFont(new Font(lb_QLPhong.getFont().getName(),Font.PLAIN, lb_QLPhong.getFont().getSize()));
-                 lb_QLPhong.setForeground(Color.black);
-            }        
-    });
-        
-}
-
-public void AddLabelQLLoaiPhong(){
-    jSeparator_QL2 = new JSeparator();
-    // QL Loai Phong
+    public void AddLabelQLLoaiPhong() {
+        jSeparator_QL2 = new JSeparator();
+        // QL Loai Phong
         final JLabel lb_QLLoaiPhong = new JLabel("Quản Lý Loại Phòng  ");
         lb_QLLoaiPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_QuanLy.add(lb_QLLoaiPhong);
         jXTaskPane_QuanLy.add(jSeparator_QL2);
-       
-     //set listener
-     lb_QLLoaiPhong.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                LayerPane_Trai.add(quanLyLoaiPhong);
-               traPhong.setVisible(false);
-               trangDatPhong.setVisible(false);
-               tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-               quanLyLoaiPhong.setVisible(true);
-               quanLyNhanVien.setVisible(false);    
-               quanLyKhachHang.setVisible(false);
-                 
-             }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_QLLoaiPhong.setFont(new Font(lb_QLLoaiPhong.getFont().getName(),Font.ITALIC, lb_QLLoaiPhong.getFont().getSize()));
-                lb_QLLoaiPhong.setForeground(Color.red);                
-             }
+        //set listener
+        lb_QLLoaiPhong.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LayerPane_Trai.add(quanLyLoaiPhong);
+                traPhong.setVisible(false);
+                trangDatPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(true);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_QLLoaiPhong.setFont(new Font(lb_QLLoaiPhong.getFont().getName(), Font.ITALIC, lb_QLLoaiPhong.getFont().getSize()));
+                lb_QLLoaiPhong.setForeground(Color.red);
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_QLLoaiPhong.setFont(new Font(lb_QLLoaiPhong.getFont().getName(),Font.PLAIN, lb_QLLoaiPhong.getFont().getSize()));
-                 lb_QLLoaiPhong.setForeground(Color.black);
+                lb_QLLoaiPhong.setFont(new Font(lb_QLLoaiPhong.getFont().getName(), Font.PLAIN, lb_QLLoaiPhong.getFont().getSize()));
+                lb_QLLoaiPhong.setForeground(Color.black);
             }
 
-            
-            
-            
-    });
-}
-public void AddLabelQLNhanVien(){
-    jSeparator_QL3 = new JSeparator();
-      // QL nhan vien
+        });
+    }
+
+    public void AddLabelQLNhanVien() {
+        jSeparator_QL3 = new JSeparator();
+        // QL nhan vien
         final JLabel lb_QLNhanVien = new JLabel("Quản Lý Nhân Viên  ");
         lb_QLNhanVien.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_QuanLy.add(lb_QLNhanVien);
         jXTaskPane_QuanLy.add(jSeparator_QL3);
-       
-     //set listener
-     lb_QLNhanVien.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                LayerPane_Trai.add(quanLyNhanVien);
-               traPhong.setVisible(false);
-               trangDatPhong.setVisible(false);
-               tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-               quanLyLoaiPhong.setVisible(false);
-               quanLyNhanVien.setVisible(true);              
-               quanLyKhachHang.setVisible(false);
-             }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_QLNhanVien.setFont(new Font(lb_QLNhanVien.getFont().getName(),Font.ITALIC, lb_QLNhanVien.getFont().getSize()));
-                lb_QLNhanVien.setForeground(Color.red);                
-             }
+        //set listener
+        lb_QLNhanVien.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LayerPane_Trai.add(quanLyNhanVien);
+                traPhong.setVisible(false);
+                trangDatPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(true);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_QLNhanVien.setFont(new Font(lb_QLNhanVien.getFont().getName(), Font.ITALIC, lb_QLNhanVien.getFont().getSize()));
+                lb_QLNhanVien.setForeground(Color.red);
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_QLNhanVien.setFont(new Font(lb_QLNhanVien.getFont().getName(),Font.PLAIN, lb_QLNhanVien.getFont().getSize()));
-                 lb_QLNhanVien.setForeground(Color.black);
-            }        
-    });
-}
-public void AddLabelQLDichVu(){
-    jSeparator_QL4 = new JSeparator();
-    // QL Dich Vu
+                lb_QLNhanVien.setFont(new Font(lb_QLNhanVien.getFont().getName(), Font.PLAIN, lb_QLNhanVien.getFont().getSize()));
+                lb_QLNhanVien.setForeground(Color.black);
+            }
+        });
+    }
+
+    public void AddLabelQLDichVu() {
+        jSeparator_QL4 = new JSeparator();
+        // QL Dich Vu
         final JLabel lb_QLDichVu = new JLabel("Quản Lý Dịch Vụ  ");
         lb_QLDichVu.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_QuanLy.add(lb_QLDichVu);
         jXTaskPane_QuanLy.add(jSeparator_QL4);
-     //set listener
-     lb_QLDichVu.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
+        //set listener
+        lb_QLDichVu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 LayerPane_Trai.add(quanLyDichVu);
-               traPhong.setVisible(false);
-               trangDatPhong.setVisible(false);
-               tinhTrangPhong.setVisible(false);
+                traPhong.setVisible(false);
+                trangDatPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(true);
-               quanLyLoaiPhong.setVisible(false);
-               quanLyNhanVien.setVisible(false); 
-               quanLyKhachHang.setVisible(false);
-             }
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+            }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_QLDichVu.setFont(new Font(lb_QLDichVu.getFont().getName(),Font.ITALIC, lb_QLDichVu.getFont().getSize()));
-                lb_QLDichVu.setForeground(Color.red);                
-             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_QLDichVu.setFont(new Font(lb_QLDichVu.getFont().getName(), Font.ITALIC, lb_QLDichVu.getFont().getSize()));
+                lb_QLDichVu.setForeground(Color.red);
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_QLDichVu.setFont(new Font(lb_QLDichVu.getFont().getName(),Font.PLAIN, lb_QLDichVu.getFont().getSize()));
-                 lb_QLDichVu.setForeground(Color.black);
-            }        
-    });
-}
-public void AddLabelQLKhachHang(){
-     // QL Khach Hang
+                lb_QLDichVu.setFont(new Font(lb_QLDichVu.getFont().getName(), Font.PLAIN, lb_QLDichVu.getFont().getSize()));
+                lb_QLDichVu.setForeground(Color.black);
+            }
+        });
+    }
+
+    public void AddLabelQLKhachHang() {
+        // QL Khach Hang
         final JLabel lb_QLKhachHang = new JLabel("Quản Lý Khách Hàng  ");
         lb_QLKhachHang.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_QuanLy.add(lb_QLKhachHang);
-       
-     //set listener
-     lb_QLKhachHang.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                LayerPane_Trai.add(quanLyKhachHang);
-               traPhong.setVisible(false);
-               trangDatPhong.setVisible(false);
-               tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-               quanLyLoaiPhong.setVisible(false);
-               quanLyNhanVien.setVisible(false);   
-               quanLyKhachHang.setVisible(true);
-             }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_QLKhachHang.setFont(new Font(lb_QLKhachHang.getFont().getName(),Font.ITALIC, lb_QLKhachHang.getFont().getSize()));
-                lb_QLKhachHang.setForeground(Color.red);                
-             }
+        //set listener
+        lb_QLKhachHang.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LayerPane_Trai.add(quanLyKhachHang);
+                traPhong.setVisible(false);
+                trangDatPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(true);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_QLKhachHang.setFont(new Font(lb_QLKhachHang.getFont().getName(), Font.ITALIC, lb_QLKhachHang.getFont().getSize()));
+                lb_QLKhachHang.setForeground(Color.red);
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_QLKhachHang.setFont(new Font(lb_QLKhachHang.getFont().getName(),Font.PLAIN, lb_QLKhachHang.getFont().getSize()));
-                 lb_QLKhachHang.setForeground(Color.black);
-            }        
-    });
-}
+                lb_QLKhachHang.setFont(new Font(lb_QLKhachHang.getFont().getName(), Font.PLAIN, lb_QLKhachHang.getFont().getSize()));
+                lb_QLKhachHang.setForeground(Color.black);
+            }
+        });
+    }
+
+    public void AddLabelQLPhong() {
+        jSeparator_QL5 = new JSeparator();
+        // QL Khach Hang
+        final JLabel lb_QLPhong = new JLabel("Quản Lý Phòng ");
+        lb_QLPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        jXTaskPane_QuanLy.add(lb_QLPhong);
+        jXTaskPane_QuanLy.add(jSeparator_QL5);
+
+        //set listener
+        lb_QLPhong.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LayerPane_Trai.add(quanLyPhong);
+                traPhong.setVisible(false);
+                trangDatPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(true);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_QLPhong.setFont(new Font(lb_QLPhong.getFont().getName(), Font.ITALIC, lb_QLPhong.getFont().getSize()));
+                lb_QLPhong.setForeground(Color.red);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                lb_QLPhong.setFont(new Font(lb_QLPhong.getFont().getName(), Font.PLAIN, lb_QLPhong.getFont().getSize()));
+                lb_QLPhong.setForeground(Color.black);
+            }
+        });
+    }
 
 //Bao cao
-public void AddLabelBCKhachHang(){
-    jSeparator_BC1 = new JSeparator();
-     // QL Loai Phong
+    public void AddLabelBCKhachHang() {
+        jSeparator_BC1 = new JSeparator();
+        // QL Loai Phong
         final JLabel lb_BCKhachHang = new JLabel("Báo Cáo Khách Hàng  ");
         lb_BCKhachHang.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_BaoCao.add(lb_BCKhachHang);
         jXTaskPane_BaoCao.add(jSeparator_BC1);
-     //set listener
-     lb_BCKhachHang.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-             //Xuất báo cáo           
-             }
+        //set listener
+        lb_BCKhachHang.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Xuất báo cáo
+            }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_BCKhachHang.setFont(new Font(lb_BCKhachHang.getFont().getName(),Font.ITALIC, lb_BCKhachHang.getFont().getSize()));
-                lb_BCKhachHang.setForeground(Color.red);                
-             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_BCKhachHang.setFont(new Font(lb_BCKhachHang.getFont().getName(), Font.ITALIC, lb_BCKhachHang.getFont().getSize()));
+                lb_BCKhachHang.setForeground(Color.red);
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_BCKhachHang.setFont(new Font(lb_BCKhachHang.getFont().getName(),Font.PLAIN, lb_BCKhachHang.getFont().getSize()));
-                 lb_BCKhachHang.setForeground(Color.black);
-            }        
-    });
-}
-public void AddLabelBCNhanVien(){
-    jSeparator_BC2 = new JSeparator();
-     // QL Loai Phong
+                lb_BCKhachHang.setFont(new Font(lb_BCKhachHang.getFont().getName(), Font.PLAIN, lb_BCKhachHang.getFont().getSize()));
+                lb_BCKhachHang.setForeground(Color.black);
+            }
+        });
+    }
+
+    public void AddLabelBCNhanVien() {
+        jSeparator_BC2 = new JSeparator();
+        // QL Loai Phong
         final JLabel lb_BCNhanVien = new JLabel("Báo Cáo Nhân Viên ");
         lb_BCNhanVien.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_BaoCao.add(lb_BCNhanVien);
         jXTaskPane_BaoCao.add(jSeparator_BC2);
-       
-     //set listener
-     lb_BCNhanVien.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-             //Xuất báo cáo           
-             }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_BCNhanVien.setFont(new Font(lb_BCNhanVien.getFont().getName(),Font.ITALIC, lb_BCNhanVien.getFont().getSize()));
-                lb_BCNhanVien.setForeground(Color.red);                
-             }
+        //set listener
+        lb_BCNhanVien.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Xuất báo cáo
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_BCNhanVien.setFont(new Font(lb_BCNhanVien.getFont().getName(), Font.ITALIC, lb_BCNhanVien.getFont().getSize()));
+                lb_BCNhanVien.setForeground(Color.red);
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_BCNhanVien.setFont(new Font(lb_BCNhanVien.getFont().getName(),Font.PLAIN, lb_BCNhanVien.getFont().getSize()));
-                 lb_BCNhanVien.setForeground(Color.black);
-            }        
-    });
-}
-public void AddLabelBCDoanhThu(){
-    // QL Loai Phong
+                lb_BCNhanVien.setFont(new Font(lb_BCNhanVien.getFont().getName(), Font.PLAIN, lb_BCNhanVien.getFont().getSize()));
+                lb_BCNhanVien.setForeground(Color.black);
+            }
+        });
+    }
+
+    public void AddLabelBCDoanhThu() {
+        // QL Loai Phong
         final JLabel lb_BCDoanhThu = new JLabel("Báo Cáo Doanh Thu ");
         lb_BCDoanhThu.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
         jXTaskPane_BaoCao.add(lb_BCDoanhThu);
-       
-     //set listener
-     lb_BCDoanhThu.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-             //Xuất báo cáo           
-             }
 
-             @Override
-             public void mouseEntered(MouseEvent e) {
-                lb_BCDoanhThu.setFont(new Font(lb_BCDoanhThu.getFont().getName(),Font.ITALIC, lb_BCDoanhThu.getFont().getSize()));
-                lb_BCDoanhThu.setForeground(Color.red);                
-             }
+        //set listener
+        lb_BCDoanhThu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Xuất báo cáo
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lb_BCDoanhThu.setFont(new Font(lb_BCDoanhThu.getFont().getName(), Font.ITALIC, lb_BCDoanhThu.getFont().getSize()));
+                lb_BCDoanhThu.setForeground(Color.red);
+            }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                 lb_BCDoanhThu.setFont(new Font(lb_BCDoanhThu.getFont().getName(),Font.PLAIN, lb_BCDoanhThu.getFont().getSize()));
-                 lb_BCDoanhThu.setForeground(Color.black);
-            }        
-    });
-}
+                lb_BCDoanhThu.setFont(new Font(lb_BCDoanhThu.getFont().getName(), Font.PLAIN, lb_BCDoanhThu.getFont().getSize()));
+                lb_BCDoanhThu.setForeground(Color.black);
+            }
+        });
+    }
 
-public static JLayeredPane getPanel(){
-    return LayerPane_Trai;
-}
-public static JPanel getTraPhong(){
-    return traPhong;
-}
+    public static JLayeredPane getPanel() {
+        return LayerPane_Trai;
+    }
 
-public static JPanel getDatPhong(){
-    return trangDatPhong;
-}
+    public static JPanel getTraPhong() {
+        return traPhong;
+    }
+
+    public static JPanel getDatPhong() {
+        return trangDatPhong;
+    }
 
 //public static JPanel getSuDungPhong(){
 //    return SuDungDichVu;
 //}
-
-   /**
+    /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
@@ -568,6 +657,7 @@ public static JPanel getDatPhong(){
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản Lý Khách Sạn");
+        setResizable(false);
         setSize(new java.awt.Dimension(1000, 730));
 
         jToolBar2.setRollover(true);
@@ -612,7 +702,7 @@ public static JPanel getDatPhong(){
         TK.setLayout(TKLayout);
         TKLayout.setHorizontalGroup(
             TKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
+            .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 1041, Short.MAX_VALUE)
         );
         TKLayout.setVerticalGroup(
             TKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -640,7 +730,7 @@ public static JPanel getDatPhong(){
         QLTK.setLayout(QLTKLayout);
         QLTKLayout.setHorizontalGroup(
             QLTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1041, Short.MAX_VALUE)
         );
         QLTKLayout.setVerticalGroup(
             QLTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -729,7 +819,7 @@ public static JPanel getDatPhong(){
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tab_tk)
+            .addComponent(Tab_tk, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
             .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -751,23 +841,21 @@ public static JPanel getDatPhong(){
 
     private void btn_QLTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLTaiKhoanMouseClicked
         // TODO add your handling code here:
-       if(!TKQL.isVisible()){
+        if (!TKQL.isVisible()) {
             TKQL.setVisible(true);
+        } else {
+            TKQL.setAlwaysOnTop(true);
         }
-        else{
-            TKQL.setAlwaysOnTop(true);            
-        }
-              
-               
+
+
     }//GEN-LAST:event_btn_QLTaiKhoanMouseClicked
 
     private void btn_DoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DoiMatKhauMouseClicked
         // TODO add your handling code here:
-        if(!DMK.isVisible()){
+        if (!DMK.isVisible()) {
             DMK.setVisible(true);
-        }
-        else{
-            DMK.setAlwaysOnTop(true);            
+        } else {
+            DMK.setAlwaysOnTop(true);
         }
     }//GEN-LAST:event_btn_DoiMatKhauMouseClicked
 
@@ -775,9 +863,9 @@ public static JPanel getDatPhong(){
         // TODO add your handling code here:
         new DangNhap().setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btn_DangXuatMouseClicked
- 
+
     /**
      * @param args the command line arguments
      */
@@ -785,7 +873,7 @@ public static JPanel getDatPhong(){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
