@@ -54,7 +54,24 @@ public class LoaiPhong_Controller {
         }
         return dsLP;
     }
+public static ArrayList<LoaiPhong_POJO> getDSLoaiPhongTheoMa(String x,String maLP) {
+        ArrayList<LoaiPhong_POJO> dsLP = null;
+       
+        Session session;
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            String sql = "from LoaiPhong_POJO where "+x+" = '"+maLP+"'";
+            Query query = session.createQuery(sql);
+            dsLP = (ArrayList<LoaiPhong_POJO>) query.list();
 
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return dsLP;
+    }
     public static boolean themLoaiPhong(LoaiPhong_POJO lp) {
         Session session
                 = HibernateSessionFactory.getSessionFactory().openSession();

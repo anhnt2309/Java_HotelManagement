@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="431cf158-0411-405e-8da0-7db7a6480b00">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     TBLNHANVIEN."MANV" AS TBLNHANVIEN_MANV,
+     TBLNHANVIEN."TENNV" AS TBLNHANVIEN_TENNV,
+     TBLNHANVIEN."NGVL" AS TBLNHANVIEN_NGVL,
+     TBLNHANVIEN."DIACHINV" AS TBLNHANVIEN_DIACHINV,
+     TBLNHANVIEN."NGSINHNV" AS TBLNHANVIEN_NGSINHNV,
+     TBLNHANVIEN."SDTNV" AS TBLNHANVIEN_SDTNV,
+     TBLNHANVIEN."EMAIL_NV" AS TBLNHANVIEN_EMAIL_NV
+FROM
+     "dbo"."TBLNHANVIEN" TBLNHANVIEN]]>
+	</queryString>
+	<field name="TBLNHANVIEN_MANV" class="java.lang.String"/>
+	<field name="TBLNHANVIEN_TENNV" class="java.lang.String"/>
+	<field name="TBLNHANVIEN_NGVL" class="java.sql.Timestamp"/>
+	<field name="TBLNHANVIEN_DIACHINV" class="java.lang.String"/>
+	<field name="TBLNHANVIEN_NGSINHNV" class="java.sql.Timestamp"/>
+	<field name="TBLNHANVIEN_SDTNV" class="java.lang.String"/>
+	<field name="TBLNHANVIEN_EMAIL_NV" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="134" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="141" y="51" width="263" height="62" uuid="5288e4eb-f520-47e1-812d-02d1ae3e9dc2"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Nhân viên]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="48a698f8-323f-43a2-b1c4-91dcd0791c6b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="79" height="15" forecolor="#736343" uuid="581a555d-63b2-4266-87f6-cd7a45fa51f4"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Mã Nhân Viên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="100" y="0" width="79" height="15" forecolor="#736343" uuid="722752c3-ee7a-4252-b46f-51be31f45002"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Họ và tên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="181" y="1" width="79" height="15" forecolor="#736343" uuid="77e4fff6-b17c-496d-b044-05ceab33bb12"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Ngày vào làm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="260" y="0" width="79" height="15" forecolor="#736343" uuid="d9f5f3ec-0f1d-421a-8198-3232a1dc24eb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Địa chỉ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="339" y="1" width="79" height="15" forecolor="#736343" uuid="cf86d6cd-62c4-436f-a602-e807d77d7d10"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Ngày sinh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="418" y="1" width="79" height="15" forecolor="#736343" uuid="e2343498-a052-4ce9-9ad0-8f8eec323954"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Số điện thoại]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="497" y="1" width="79" height="15" forecolor="#736343" uuid="75987830-c03c-42bf-9ad2-730cb3f0572d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="36d45ca3-6fa3-4b36-8692-bb4e128058e7"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="79" height="15" uuid="3ea3ef7d-3241-4978-8ee8-c1aff468a28a"/>
+					<textFieldExpression><![CDATA[$F{TBLNHANVIEN_MANV}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="181" y="0" width="79" height="15" uuid="09379a8b-a3c4-4f4d-9f57-8bb7dc8a0834"/>
+					<textFieldExpression><![CDATA[$F{TBLNHANVIEN_NGVL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="339" y="0" width="79" height="15" uuid="ad3c6866-8eb5-4ee6-b079-3becfb7c6ba5"/>
+					<textFieldExpression><![CDATA[$F{TBLNHANVIEN_NGSINHNV}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="418" y="0" width="79" height="15" uuid="47597c1a-de86-4042-9f16-d50471ed4427"/>
+					<textFieldExpression><![CDATA[$F{TBLNHANVIEN_SDTNV}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="260" y="0" width="79" height="15" uuid="d434c874-3e41-4b7c-9502-90099d403c80"/>
+					<textFieldExpression><![CDATA[$F{TBLNHANVIEN_DIACHINV}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="79" y="0" width="102" height="15" uuid="6ab8230c-d3e5-4fcd-a886-dfcf17dcb953"/>
+					<textFieldExpression><![CDATA[$F{TBLNHANVIEN_TENNV}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="501" y="0" width="51" height="15" uuid="ae8460c9-e19b-4499-a411-30845fb5531a"/>
+					<textFieldExpression><![CDATA[$F{TBLNHANVIEN_EMAIL_NV}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="bbf01040-8693-47cc-b6b7-7b7db6b84a0b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="88545129-6da2-4aa0-a57a-cf38c341b73a"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="8793a2a0-3b7c-4323-9913-f85d97395e2e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="f5c3d658-a038-4d6b-a3c6-117d32d1d21b"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="d200f30d-a3dc-49fc-adb8-8a5b077f89ff"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

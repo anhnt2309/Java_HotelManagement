@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Long
  */
 public class QuanLyLoaiPhong extends javax.swing.JPanel {
-
+ ArrayList<LoaiPhong_POJO> dsLP;
     /** Creates new form QuanLyLoaiPhong */
     public QuanLyLoaiPhong() {
         initComponents();
@@ -28,8 +28,6 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) Table_LoaiPhong.getModel();
         Object[] row = new Object[5];
-        
-        
         for (int i = 0 ; i< dsLP.size(); i++){
             row[0] =  dsLP.get(i).getMaLP();
             row[1] =  dsLP.get(i).getLoaiPhong();
@@ -37,10 +35,8 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
             row[3] =  dsLP.get(i).getDonGia();
             row[4] =  dsLP.get(i).getGhiChu();    
             model.addRow(row);
-        }
-        
+        }   
    }
-    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -73,8 +69,8 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         ComboBox_ChonTTLP = new javax.swing.JComboBox<>();
         Text_NhapTTTKLP = new javax.swing.JTextField();
         Button_TimLP = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Table_LoaiPhong = new org.jdesktop.swingx.JXTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table_LoaiPhong = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -260,37 +256,33 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         jLabel7.setText("Tìm kiếm loại phòng theo:");
 
         ComboBox_ChonTTLP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ComboBox_ChonTTLP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBox_ChonTTLP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã loại phòng", "Tên loại phòng" }));
 
         Text_NhapTTTKLP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         Button_TimLP.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_TimLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search_000000_25.png"))); // NOI18N
         Button_TimLP.setText("Tìm kiếm");
+        Button_TimLP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_TimLPMouseClicked(evt);
+            }
+        });
 
         Table_LoaiPhong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã Loại Phòng", "Tên Loại Phòng", "Số Giường", "Giá", "Ghi Chú"
+                "Mã loại phòng", "Tên loại phòng", "Số giường", "Giá tiền", "Ghi chú"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        Table_LoaiPhong.setEditable(false);
+        ));
         Table_LoaiPhong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Table_LoaiPhongMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(Table_LoaiPhong);
+        jScrollPane1.setViewportView(Table_LoaiPhong);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -314,7 +306,7 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2)))
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -330,21 +322,10 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
                     .addComponent(Text_NhapTTTKLP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Button_TimLP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Table_LoaiPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_LoaiPhongMouseClicked
-        // TODO add your handling code here:
-        int i = Table_LoaiPhong.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) Table_LoaiPhong.getModel();
-        Text_LoaiPhong_MaLP.setText(model.getValueAt(i, 0).toString());
-        Text_LoaiPhong_TenLP.setText(model.getValueAt(i, 1).toString()); 
-        Combo_LoaiPhong_SoGiuong.setSelectedItem(model.getValueAt(i,2).toString());    
-        Text_LoaiPhong_GiaTien.setText(model.getValueAt(i, 3).toString());
-        Text_LoaiPhong_GhiChu.setText(model.getValueAt(i, 4).toString());
-    }//GEN-LAST:event_Table_LoaiPhongMouseClicked
 
    public void resetTable(){
        DefaultTableModel model = (DefaultTableModel) Table_LoaiPhong.getModel();
@@ -416,6 +397,72 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         Combo_LoaiPhong_SoGiuong.setSelectedIndex(0);
     }//GEN-LAST:event_Button_NhapLaiLPMouseClicked
 
+    private void Button_TimLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_TimLPMouseClicked
+        // TODO add your handling code here:
+        if (Text_NhapTTTKLP.getText().equals("") == true) {
+            resetTable();
+
+        } else {
+            if (ComboBox_ChonTTLP.getSelectedItem().equals("Mã loại phòng") == true) {
+                String maLP = Text_NhapTTTKLP.getText();
+                dsLP = new ArrayList<LoaiPhong_POJO>();
+                dsLP = LoaiPhong_Controller.getDSLoaiPhongTheoMa("MaLP", maLP);
+                if (dsLP.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Không Có Loại Phòng", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    DefaultTableModel model = (DefaultTableModel) Table_LoaiPhong.getModel();
+                    Object[] row = new Object[5];
+                    model.setRowCount(0);
+                    for (int i = 0; i < dsLP.size(); i++) {
+                        row[0] = dsLP.get(i).getMaLP();
+                        row[1] = dsLP.get(i).getLoaiPhong();
+                        row[2] = dsLP.get(i).getSoGiuong();
+                        row[3] = dsLP.get(i).getDonGia();
+                        row[4] = dsLP.get(i).getGhiChu();
+                        model.addRow(row);
+
+                    }
+                    JOptionPane.showMessageDialog(jPanel2, "Tìm Thấy Loại Phòng!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+            }
+
+            if (ComboBox_ChonTTLP.getSelectedItem().equals("Tên loại phòng") == true) {
+                String tenLP = Text_NhapTTTKLP.getText();
+                dsLP = new ArrayList<LoaiPhong_POJO>();
+                dsLP = LoaiPhong_Controller.getDSLoaiPhongTheoMa("LoaiPhong", tenLP);
+                if (dsLP.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Không Có Loại Phòng", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    DefaultTableModel model = (DefaultTableModel) Table_LoaiPhong.getModel();
+                    Object[] row = new Object[5];
+                    model.setRowCount(0);
+                    for (int i = 0; i < dsLP.size(); i++) {
+                        row[0] = dsLP.get(i).getMaLP();
+                        row[1] = dsLP.get(i).getLoaiPhong();
+                        row[2] = dsLP.get(i).getSoGiuong();
+                        row[3] = dsLP.get(i).getDonGia();
+                        row[4] = dsLP.get(i).getGhiChu();
+                        model.addRow(row);
+
+                    }
+                    JOptionPane.showMessageDialog(jPanel2, "Tìm Thấy Loại Phòng!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_Button_TimLPMouseClicked
+
+    private void Table_LoaiPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_LoaiPhongMouseClicked
+        // TODO add your handling code here:
+        int i = Table_LoaiPhong.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) Table_LoaiPhong.getModel();
+        Text_LoaiPhong_MaLP.setText(model.getValueAt(i, 0).toString());
+        Text_LoaiPhong_TenLP.setText(model.getValueAt(i, 1).toString());
+        Combo_LoaiPhong_SoGiuong.setSelectedItem(model.getValueAt(i, 2).toString());
+        Text_LoaiPhong_GiaTien.setText(model.getValueAt(i, 3).toString());
+        Text_LoaiPhong_GhiChu.setText(model.getValueAt(i, 4).toString());
+    }//GEN-LAST:event_Table_LoaiPhongMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_NhapLaiLP;
@@ -426,7 +473,7 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> ComboBox_ChonTTLP;
     private javax.swing.JComboBox<String> Combo_LoaiPhong_SoGiuong;
     private javax.swing.JLabel Label_GT;
-    private org.jdesktop.swingx.JXTable Table_LoaiPhong;
+    private javax.swing.JTable Table_LoaiPhong;
     private javax.swing.JTextField Text_LoaiPhong_GhiChu;
     private javax.swing.JTextField Text_LoaiPhong_GiaTien;
     private javax.swing.JTextField Text_LoaiPhong_MaLP;
@@ -440,7 +487,7 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_LP;
     private javax.swing.JLabel label_MALP;
     // End of variables declaration//GEN-END:variables

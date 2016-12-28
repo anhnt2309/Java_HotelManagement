@@ -49,6 +49,7 @@ public class TinhTrangPhong extends javax.swing.JPanel {
      */
     public TinhTrangPhong() {
         initComponents();
+       
         LoadPhong();
     }
 
@@ -174,8 +175,16 @@ public class TinhTrangPhong extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         Panel_Phong = new javax.swing.JPanel();
 
-        jXTitledSeparator1.setFont(new java.awt.Font("Lucida Grande", 2, 12)); // NOI18N
-        jXTitledSeparator1.setTitle("Tình Trạng Các Phòng");
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 5, 20, 20));
 
@@ -228,6 +237,18 @@ public class TinhTrangPhong extends javax.swing.JPanel {
                 .addComponent(Panel_Phong, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_formFocusGained
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

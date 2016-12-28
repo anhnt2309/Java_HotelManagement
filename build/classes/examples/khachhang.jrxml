@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3fde1e2f-d8c2-4bed-ad2e-e8655a550b7f">
+	<property name="ireport.zoom" value="1.4641000000000015"/>
+	<property name="ireport.x" value="32"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     TBLKHACHHANG."MAKH" AS TBLKHACHHANG_MAKH,
+     TBLKHACHHANG."TENKH" AS TBLKHACHHANG_TENKH,
+     TBLKHACHHANG."NGSINHKH" AS TBLKHACHHANG_NGSINHKH,
+     TBLKHACHHANG."SODTKH" AS TBLKHACHHANG_SODTKH,
+     TBLKHACHHANG."QUOCTICHKH" AS TBLKHACHHANG_QUOCTICHKH,
+     TBLKHACHHANG."DIACHIKH" AS TBLKHACHHANG_DIACHIKH
+FROM
+     "dbo"."TBLKHACHHANG" TBLKHACHHANG]]>
+	</queryString>
+	<field name="TBLKHACHHANG_MAKH" class="java.lang.String"/>
+	<field name="TBLKHACHHANG_TENKH" class="java.lang.String"/>
+	<field name="TBLKHACHHANG_NGSINHKH" class="java.sql.Timestamp"/>
+	<field name="TBLKHACHHANG_SODTKH" class="java.lang.String"/>
+	<field name="TBLKHACHHANG_QUOCTICHKH" class="java.lang.String"/>
+	<field name="TBLKHACHHANG_DIACHIKH" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="71" uuid="8f9c85c7-37d1-468c-ae23-c605a7b47388"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Khách Hàng]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="30" width="555" height="1" uuid="efc608e1-0165-4465-8252-bfc612f84fb2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="14" width="92" height="15" uuid="6a2316ca-a7c0-4f63-9099-4054317e8bb5"/>
+				<textElement textAlignment="Center">
+					<font isStrikeThrough="true"/>
+				</textElement>
+				<text><![CDATA[Mã KH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="14" width="92" height="15" uuid="4ec216bc-05ad-4121-b7e0-59e53eec2ba8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tên Khách Hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="14" width="92" height="15" uuid="2f67f100-8129-4db2-9af2-1dd3d99738be"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Ngày Sinh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="14" width="92" height="15" uuid="b254e3e2-edab-42db-ad22-d2573c0e22c6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Số Điện Thoại]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="14" width="92" height="15" uuid="4f9e8a6d-3629-474b-807e-aeb8d23dbc96"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Quốc Tịch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="463" y="14" width="92" height="15" uuid="12118cdb-03ab-4994-96fe-6e098c04fd17"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Địa Chỉ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="10" width="555" height="1" uuid="56abb040-451c-4acb-b24e-b393b3310a94"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="-5" width="92" height="15" uuid="b168d9c8-26be-47d8-adf5-062838a3b52b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLKHACHHANG_MAKH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="92" y="-5" width="92" height="15" uuid="70b9c782-e08c-4145-bdb5-574efeb862e3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TBLKHACHHANG_TENKH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="184" y="-5" width="92" height="15" uuid="2a6bbf60-80c7-4432-90d7-497cec8b523c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLKHACHHANG_NGSINHKH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="-5" width="92" height="15" uuid="91509e7b-78aa-4c57-88a2-d9e8c591ee76"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLKHACHHANG_SODTKH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="368" y="-5" width="92" height="15" uuid="f218e739-3dd5-4b3d-b997-10d9178c3c67"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLKHACHHANG_QUOCTICHKH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="460" y="-5" width="92" height="15" uuid="fb00fa5e-0ff3-4fe7-8325-cfa8fbc5f104"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TBLKHACHHANG_DIACHIKH}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="-2" width="555" height="1" uuid="e9a2a7f7-83dd-4ced-917a-b616dfa87f46"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="-5" width="80" height="20" uuid="79cd26a9-15be-4e5f-a484-b07b6e0f5642"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="512" y="-5" width="40" height="20" uuid="038c6ded-eda4-4cb9-b20c-8683aa9bd422"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="-5" width="197" height="20" uuid="ca506a4f-47c2-4c0a-a43b-f5c7f9e5ac72"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

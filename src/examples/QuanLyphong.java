@@ -1,5 +1,10 @@
 package examples;
 
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,12 +18,37 @@ package examples;
  * @author Long
  */
 public class QuanLyphong extends javax.swing.JPanel {
-
     /** Creates new form QuanLyLoaiPhong */
     public QuanLyphong() {
         initComponents();
+        LoadDataToTable();
     }
-
+public void LoadDataToTable(){
+        ArrayList<Phong> dsPhong = new ArrayList<Phong>();       
+        dsPhong = Phong_Controller.getDSPhong();
+        DefaultTableModel model = (DefaultTableModel) Table_Phong.getModel();
+        Object[] row = new Object[7];
+        for (int i = 0 ; i< dsPhong.size(); i++){
+            row[0] = dsPhong.get(i).getMaPhong();
+            row[1] = dsPhong.get(i).getMaLP();
+            row[2] = dsPhong.get(i).getTenPhong();
+            row[3] = dsPhong.get(i).getTinhTrang();
+            model.addRow(row);
+        }
+        
+        ArrayList<LoaiPhong_POJO>  dsLoaiPhong = new ArrayList<LoaiPhong_POJO>();       
+        dsLoaiPhong = LoaiPhong_Controller.getDSLoaiPhong();
+       
+        for (int j =0 ; j < dsLoaiPhong.size(); j ++){
+            Combo_MaLP.addItem( dsLoaiPhong.get(j).getMaLP());
+        }          
+   }
+public void resetTable() {
+        DefaultTableModel model = (DefaultTableModel) Table_Phong.getModel();
+        model.setRowCount(0);
+        LoadDataToTable();
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -38,13 +68,13 @@ public class QuanLyphong extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         Text_Phong_MaP = new javax.swing.JTextField();
         Text_Phong_TenP = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Combo_MaLP = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         Button_ThemLP = new javax.swing.JButton();
         Button_XoaLP = new javax.swing.JButton();
         Button_SuaLP = new javax.swing.JButton();
         Button_NhapLaiLP = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        Combo_TTP = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         ComboBox_ChonTTP = new javax.swing.JComboBox<>();
         Text_NhapTTTKP = new javax.swing.JTextField();
@@ -96,22 +126,35 @@ public class QuanLyphong extends javax.swing.JPanel {
 
         Text_Phong_TenP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         Button_ThemLP.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_ThemLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Plus_000000_25.png"))); // NOI18N
         Button_ThemLP.setText("Thêm");
         Button_ThemLP.setPreferredSize(new java.awt.Dimension(100, 33));
+        Button_ThemLP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_ThemLPMouseClicked(evt);
+            }
+        });
 
         Button_XoaLP.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_XoaLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Cancel_000000_25.png"))); // NOI18N
         Button_XoaLP.setText("Xóa");
         Button_XoaLP.setPreferredSize(new java.awt.Dimension(100, 33));
+        Button_XoaLP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_XoaLPMouseClicked(evt);
+            }
+        });
 
         Button_SuaLP.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_SuaLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Recycling_000000_25.png"))); // NOI18N
         Button_SuaLP.setText("Sửa");
         Button_SuaLP.setPreferredSize(new java.awt.Dimension(100, 33));
+        Button_SuaLP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_SuaLPMouseClicked(evt);
+            }
+        });
         Button_SuaLP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Button_SuaLPActionPerformed(evt);
@@ -122,6 +165,11 @@ public class QuanLyphong extends javax.swing.JPanel {
         Button_NhapLaiLP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Edit_000000_25.png"))); // NOI18N
         Button_NhapLaiLP.setText("Nhập lại");
         Button_NhapLaiLP.setPreferredSize(new java.awt.Dimension(100, 33));
+        Button_NhapLaiLP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_NhapLaiLPMouseClicked(evt);
+            }
+        });
         Button_NhapLaiLP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Button_NhapLaiLPActionPerformed(evt);
@@ -155,7 +203,7 @@ public class QuanLyphong extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo_TTP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Có Khách", "Trống", "Đặt Trước Trực Tiếp", "Đặt Trước online" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -177,7 +225,7 @@ public class QuanLyphong extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, 0, 126, Short.MAX_VALUE))
+                                .addComponent(Combo_MaLP, 0, 126, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(Text_Phong_TenP, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -186,7 +234,7 @@ public class QuanLyphong extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Combo_TTP, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -202,7 +250,7 @@ public class QuanLyphong extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(Text_Phong_MaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Combo_MaLP, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -210,7 +258,7 @@ public class QuanLyphong extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Combo_TTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -230,15 +278,17 @@ public class QuanLyphong extends javax.swing.JPanel {
 
         Table_Phong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mã  phòng", "Tên phòng", "Mã loại phòng ", "Tình trạng phòng"
+                "Mã  phòng", "Mã loại phòng ", "Tên phòng", "Tình trạng phòng"
             }
         ));
+        Table_Phong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Table_PhongMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Table_Phong);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -291,6 +341,73 @@ public class QuanLyphong extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_NhapLaiLPActionPerformed
 
+    private void Table_PhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_PhongMouseClicked
+                // TODO add your handling code here:
+        int i = Table_Phong.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) Table_Phong.getModel();
+        Text_Phong_MaP.setText(model.getValueAt(i, 0).toString());
+        Combo_MaLP.setSelectedItem(model.getValueAt(i, 1).toString());
+        Text_Phong_TenP.setText(model.getValueAt(i, 2).toString());
+        Combo_TTP.setSelectedItem(model.getValueAt(i, 3).toString());
+    }//GEN-LAST:event_Table_PhongMouseClicked
+
+    private void Button_ThemLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_ThemLPMouseClicked
+        // TODO add your handling code here:
+        String MaPhong = Text_Phong_MaP.getText();
+        String TenPhong = Text_Phong_TenP.getText();
+        String MaLP = Combo_MaLP.getSelectedItem().toString();
+        String TinhTrang = Combo_TTP.getSelectedItem().toString();
+        Phong P = new Phong(MaPhong,MaLP,TenPhong,TinhTrang); 
+        Phong_Controller.themPhong(P);
+        JOptionPane.showMessageDialog(jPanel2, "Thêm Phòng Thành Công!!!");
+        resetTable();
+              
+
+    }//GEN-LAST:event_Button_ThemLPMouseClicked
+
+    private void Button_XoaLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_XoaLPMouseClicked
+        // TODO add your handling code here:
+        String MaPhong = Text_Phong_MaP.getText();
+         if (MaPhong.equals("") == true){
+             return;
+         }
+         else{
+         JOptionPane tbXoa = new JOptionPane();
+         int t = tbXoa.showConfirmDialog(jPanel2, "Bạn có chắc chắn muốn xóa?", "XÓA",JOptionPane.OK_OPTION);
+         if (t == 0){
+              Phong_Controller.xoaPhong(MaPhong);
+               JOptionPane.showMessageDialog(jPanel2, "Xóa Phòng Thành Công!!!");
+               resetTable();
+         }
+         }
+    }//GEN-LAST:event_Button_XoaLPMouseClicked
+
+    private void Button_SuaLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_SuaLPMouseClicked
+        // TODO add your handling code here:
+        String MaPhong = Text_Phong_MaP.getText();
+        String TenPhong = Text_Phong_TenP.getText();
+        String MaLP = Combo_MaLP.getSelectedItem().toString();
+        String TinhTrang = Combo_TTP.getSelectedItem().toString();
+   
+        Phong P = new Phong(MaPhong, MaLP, TenPhong, TinhTrang);
+         JOptionPane tbSua = new JOptionPane();
+         int t = tbSua.showConfirmDialog(jPanel2, "Bạn có chắc chắn muốn sửa?", "SỬA",JOptionPane.OK_OPTION);
+         if (t == 0){
+              Phong_Controller.capNhatPhong(P);
+              JOptionPane.showMessageDialog(jPanel2, "Sửa Phòng Thành Công!!!","THÔNG BÁO",JOptionPane.INFORMATION_MESSAGE);             
+              resetTable();
+         }
+         
+    }//GEN-LAST:event_Button_SuaLPMouseClicked
+
+    private void Button_NhapLaiLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiLPMouseClicked
+        // TODO add your handling code here:
+        Text_Phong_MaP.setText("");
+        Text_Phong_TenP.setText("");
+        Combo_MaLP.setSelectedIndex(0);
+        Combo_TTP.setSelectedIndex(0);
+    }//GEN-LAST:event_Button_NhapLaiLPMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_NhapLaiLP;
@@ -299,12 +416,12 @@ public class QuanLyphong extends javax.swing.JPanel {
     private javax.swing.JButton Button_TimP;
     private javax.swing.JButton Button_XoaLP;
     private javax.swing.JComboBox<String> ComboBox_ChonTTP;
+    private javax.swing.JComboBox<String> Combo_MaLP;
+    private javax.swing.JComboBox<String> Combo_TTP;
     private javax.swing.JTable Table_Phong;
     private javax.swing.JTextField Text_NhapTTTKP;
     private javax.swing.JTextField Text_Phong_MaP;
     private javax.swing.JTextField Text_Phong_TenP;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

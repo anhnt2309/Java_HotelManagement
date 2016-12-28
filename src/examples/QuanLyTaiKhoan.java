@@ -5,6 +5,14 @@
  */
 package examples;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dell
@@ -16,8 +24,33 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
      */
     public QuanLyTaiKhoan() {
         initComponents();
+        LoadDataToTable();
     }
-
+public void LoadDataToTable(){
+        ArrayList<TaiKhoanDangNhap> dsTK = new ArrayList<TaiKhoanDangNhap>();       
+        dsTK = TaiKhoanDangNhap_Controller.getDSTK();
+        DefaultTableModel model = (DefaultTableModel) Table_TK.getModel();
+        Object[] row = new Object[6];
+        for (int i = 0 ; i< dsTK.size(); i++){
+            row[0] = dsTK.get(i).getMaTK();
+            row[1] = dsTK.get(i).getMaNV();
+            row[2] = dsTK.get(i).getLoaiTK();
+            row[3] = dsTK.get(i).getNgayTao();
+            row[4] = dsTK.get(i).getUser();
+            model.addRow(row);
+        }
+        ArrayList<Tblnhanvien>  dsNV = new ArrayList<Tblnhanvien>();       
+        dsNV = NhanVien_Controller.getDSNV();
+       
+        for (int j =0 ; j < dsNV.size(); j ++){
+            Combo_TK_MaNV.addItem( dsNV.get(j).getManv());
+        }
+   }
+public void resetTable() {
+        DefaultTableModel model = (DefaultTableModel) Table_TK.getModel();
+        model.setRowCount(0);
+        LoadDataToTable();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,12 +75,16 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         Button_XoaTK = new javax.swing.JButton();
         Button_SuaTK = new javax.swing.JButton();
         Button_NhapLaiTK = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        Text_MaTK = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        Combo_LoaiTK = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         Combo_ThongTinTK = new javax.swing.JComboBox<>();
         Text_TimKiemTK = new javax.swing.JTextField();
         Button_TimKiemTK = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jXTable1 = new org.jdesktop.swingx.JXTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table_TK = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản Lý Tài Khoản");
@@ -93,7 +130,6 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/staff_login.png"))); // NOI18N
 
         Combo_TK_MaNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Combo_TK_MaNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Text_TaoTK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -102,18 +138,46 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         Button_ThemTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_ThemTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Plus_000000_25.png"))); // NOI18N
         Button_ThemTK.setText("Thêm");
+        Button_ThemTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_ThemTKMouseClicked(evt);
+            }
+        });
 
         Button_XoaTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_XoaTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Cancel_000000_25.png"))); // NOI18N
         Button_XoaTK.setText("Xóa");
+        Button_XoaTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_XoaTKMouseClicked(evt);
+            }
+        });
 
         Button_SuaTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_SuaTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Recycling_000000_25.png"))); // NOI18N
         Button_SuaTK.setText("Sửa");
+        Button_SuaTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_SuaTKMouseClicked(evt);
+            }
+        });
 
         Button_NhapLaiTK.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_NhapLaiTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Edit_000000_25.png"))); // NOI18N
         Button_NhapLaiTK.setText("Nhập lại");
+        Button_NhapLaiTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_NhapLaiTKMouseClicked(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Mã tài khoản");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Loại tài khoản");
+
+        Combo_LoaiTK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiếp tân", "Admin", "Quản lý" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -122,7 +186,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Button_ThemTK, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,16 +198,33 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                         .addComponent(Button_NhapLaiTK)
                         .addGap(41, 41, 41))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text_TaoTK, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Combo_TK_MaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Password_TaoMK, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(26, 26, 26)
+                                .addComponent(Text_MaTK))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(Combo_LoaiTK, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(30, 30, 30))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Combo_TK_MaNV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Text_TaoTK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Password_TaoMK, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
@@ -155,11 +236,15 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(Combo_TK_MaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Combo_TK_MaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(Text_MaTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(Text_TaoTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_TaoTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(Combo_LoaiTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -185,18 +270,20 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         Button_TimKiemTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search_000000_25.png"))); // NOI18N
         Button_TimKiemTK.setText("Tìm kiếm");
 
-        jXTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table_TK.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã tài khoản", "Mã nhân viên", "Loại tài khoản", "Ngày tạo", "Tên đăng nhập"
             }
         ));
-        jScrollPane2.setViewportView(jXTable1);
+        Table_TK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Table_TKMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Table_TK);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,7 +303,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -232,8 +319,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                     .addComponent(Combo_ThongTinTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Text_TimKiemTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Button_TimKiemTK))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -261,6 +348,82 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Table_TKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_TKMouseClicked
+        // TODO add your handling code here:
+        
+        int i = Table_TK.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) Table_TK.getModel();
+        Text_MaTK.setText(model.getValueAt(i, 0).toString());
+        Combo_TK_MaNV.setSelectedItem(model.getValueAt(i, 1).toString());
+        Combo_LoaiTK.setSelectedItem(model.getValueAt(i, 2).toString());
+        Text_TaoTK.setText(model.getValueAt(i, 4).toString());
+    }//GEN-LAST:event_Table_TKMouseClicked
+
+    private void Button_ThemTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_ThemTKMouseClicked
+        // TODO add your handling code here:
+        String MaTK = Text_MaTK.getText();
+        String MaNV = Combo_TK_MaNV.getSelectedItem().toString();
+        String LoaiTK = Combo_LoaiTK.getSelectedItem().toString();
+        String User  = Text_TaoTK.getText();
+        String MatKhau  = Password_TaoMK.getText();
+        
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String da = sdf.format(date);
+        Date Ngtao = new Date(da);
+        TaiKhoanDangNhap TK = new TaiKhoanDangNhap(MaTK,MaNV,LoaiTK,User,MatKhau,Ngtao); 
+        TaiKhoanDangNhap_Controller.themTK(TK);
+        JOptionPane.showMessageDialog(jPanel3, "Đăng Kí Tài Khoản Thành Công!!!");
+        resetTable();
+    }//GEN-LAST:event_Button_ThemTKMouseClicked
+
+    private void Button_NhapLaiTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiTKMouseClicked
+        // TODO add your handling code here:
+        Text_MaTK.setText("");
+        Combo_LoaiTK.setSelectedIndex(0);
+        Combo_TK_MaNV.setSelectedIndex(0);
+        Text_TaoTK.setText("");
+        Password_TaoMK.setText("");
+    }//GEN-LAST:event_Button_NhapLaiTKMouseClicked
+
+    private void Button_XoaTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_XoaTKMouseClicked
+        // TODO add your handling code here:
+        String MaTK = Text_MaTK.getText();
+         if (MaTK.equals("") == true){
+             return;
+         }
+         else{
+         JOptionPane tbXoa = new JOptionPane();
+         int t = tbXoa.showConfirmDialog(jPanel3, "Bạn có chắc chắn muốn xóa?", "XÓA",JOptionPane.OK_OPTION);
+         if (t == 0){
+              TaiKhoanDangNhap_Controller.xoaTK(MaTK);
+               JOptionPane.showMessageDialog(jPanel3, "Xóa Tài Khoản Thành Công!!!");
+               resetTable();
+         }
+         }
+    }//GEN-LAST:event_Button_XoaTKMouseClicked
+
+    private void Button_SuaTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_SuaTKMouseClicked
+        // TODO add your handling code here:
+        String MaTK = Text_MaTK.getText();
+        String MaNV = Combo_TK_MaNV.getSelectedItem().toString();
+        String LoaiTK = Combo_LoaiTK.getSelectedItem().toString();
+        String User  = Text_TaoTK.getText();
+        String MatKhau  = Password_TaoMK.getText();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String da = sdf.format(date);
+        Date Ngtao = new Date(da);
+        TaiKhoanDangNhap TK = new TaiKhoanDangNhap(MaTK, MaNV, LoaiTK, User, MatKhau,Ngtao);
+         JOptionPane tbSua = new JOptionPane();
+         int t = tbSua.showConfirmDialog(jPanel3, "Bạn có chắc chắn muốn sửa?", "SỬA",JOptionPane.OK_OPTION);
+         if (t == 0){
+              TaiKhoanDangNhap_Controller.capnhatTK(TK);
+              JOptionPane.showMessageDialog(jPanel3, "Sửa Thông Tin Tài Khoản Thành Công!!!","THÔNG BÁO",JOptionPane.INFORMATION_MESSAGE);             
+              resetTable();
+         }
+    }//GEN-LAST:event_Button_SuaTKMouseClicked
 
     /**
      * @param args the command line arguments
@@ -303,9 +466,12 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JButton Button_ThemTK;
     private javax.swing.JButton Button_TimKiemTK;
     private javax.swing.JButton Button_XoaTK;
+    private javax.swing.JComboBox<String> Combo_LoaiTK;
     private javax.swing.JComboBox<String> Combo_TK_MaNV;
     private javax.swing.JComboBox<String> Combo_ThongTinTK;
     private javax.swing.JPasswordField Password_TaoMK;
+    private javax.swing.JTable Table_TK;
+    private javax.swing.JTextField Text_MaTK;
     private javax.swing.JTextField Text_TaoTK;
     private javax.swing.JTextField Text_TimKiemTK;
     private javax.swing.JLabel jLabel1;
@@ -314,10 +480,11 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
-    private org.jdesktop.swingx.JXTable jXTable1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

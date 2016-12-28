@@ -13,9 +13,17 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.*;
 import static java.awt.PageAttributes.MediaType.D;
+import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.V;
 import javax.swing.*;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -41,7 +49,7 @@ public class TrangChu extends javax.swing.JFrame {
 //Create các panel
     static TrangDatPhong trangDatPhong = new TrangDatPhong();
     static TraPhong traPhong = new TraPhong();
-    TinhTrangPhong tinhTrangPhong = new TinhTrangPhong();
+    static TinhTrangPhong tinhTrangPhong = new TinhTrangPhong();
     QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
     QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
     QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
@@ -49,6 +57,7 @@ public class TrangChu extends javax.swing.JFrame {
     QuanLyphong quanLyPhong = new QuanLyphong();
     QuanLyThuephong quanLyThuephong = new QuanLyThuephong();
     SuDungDichVu suDungDichVu = new SuDungDichVu();
+    XuatBaoCaoDoanhThu xuatBaoCaoDoanhThu = new XuatBaoCaoDoanhThu();
 
 //creat Frame
     JFrame DMK = new DoiMatKhau();
@@ -142,6 +151,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
 
 //                int i =jLayeredPane1.getLayer(tinhTrangPhong);
 //                jLayeredPane1.getComponent(i).setVisible(true);
@@ -177,7 +187,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_SuDungDichVu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               LayerPane_Trai.add(suDungDichVu);
+                LayerPane_Trai.add(suDungDichVu);
                 tinhTrangPhong.setVisible(false);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -188,6 +198,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(true);
+                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -230,6 +241,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -268,6 +280,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -308,6 +321,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(true);
                 suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -350,6 +364,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
 
             }
 
@@ -391,6 +406,8 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
+                
             }
 
             @Override
@@ -429,6 +446,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                 xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -466,6 +484,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                 xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -505,6 +524,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(true);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
+                 xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -534,6 +554,19 @@ public class TrangChu extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Xuất báo cáo
+                   try {
+                    
+                
+                   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    java.sql.Connection con =(java.sql.Connection) DriverManager.getConnection("jdbc:sqlserver://TUAN_ANH:49612;databaseName=QLKS","sa","123456");
+                    JasperReport jr =JasperCompileManager.compileReport("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\src\\examples\\khachhang.jrxml");
+                    JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+                    JasperViewer.viewReport(jp,false);
+                }
+                catch(Exception f)
+                {
+                    System.out.print(f);
+                }
             }
 
             @Override
@@ -562,7 +595,18 @@ public class TrangChu extends javax.swing.JFrame {
         lb_BCNhanVien.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 //Xuất báo cáo
+                try {
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+                    java.sql.Connection con = (java.sql.Connection) DriverManager.getConnection("jdbc:sqlserver://TUAN_ANH:49612;databaseName=QLKS", "sa", "123456");
+                    JasperReport jr = JasperCompileManager.compileReport("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\src\\examples\\report1.jrxml");
+                    JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+                    JasperViewer.viewReport(jp, false);
+                } catch (Exception f) {
+                    System.out.print(f);
+                }
             }
 
             @Override
@@ -590,6 +634,19 @@ public class TrangChu extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Xuất báo cáo
+                      //Xuất báo cáo
+              LayerPane_Trai.add(xuatBaoCaoDoanhThu);
+                trangDatPhong.setVisible(false);
+                traPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(true);
             }
 
             @Override
@@ -617,7 +674,10 @@ public class TrangChu extends javax.swing.JFrame {
     public static JPanel getDatPhong() {
         return trangDatPhong;
     }
-
+    
+    public static JPanel getTinhTrangPhong(){
+        return tinhTrangPhong;
+    }
 //public static JPanel getSuDungPhong(){
 //    return SuDungDichVu;
 //}

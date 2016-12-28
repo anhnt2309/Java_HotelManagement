@@ -5,8 +5,9 @@ package examples;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +18,29 @@ public class QuanLyDichVu extends javax.swing.JPanel {
     /** Creates new form QuanLyLoaiPhong */
     public QuanLyDichVu() {
         initComponents();
+        LoadDataToTable();
     }
+    public void LoadDataToTable() {
+        ArrayList<DichVu_POJO> dsDV = new ArrayList<DichVu_POJO>();
+        dsDV = DichVu_Controller.getDSDichVu();
 
+        DefaultTableModel model = (DefaultTableModel) Table_DichVu.getModel();
+        Object[] row = new Object[4];
+
+        for (int i = 0; i < dsDV.size(); i++) {
+            row[0] = dsDV.get(i).getMaDV();
+            row[1] = dsDV.get(i).getTenDV();
+            row[2] = dsDV.get(i).getGiaDV();
+            row[3] = dsDV.get(i).getDVT();
+            model.addRow(row);
+        }
+    }
+    public void resetTable() {
+        DefaultTableModel model = (DefaultTableModel) Table_DichVu.getModel();
+        model.setRowCount(0);
+        LoadDataToTable();
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -38,19 +60,19 @@ public class QuanLyDichVu extends javax.swing.JPanel {
         Text_GiaTien = new javax.swing.JTextField();
         Text_TenDV = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         Button_ThemDV = new javax.swing.JButton();
         Button_XoaDV = new javax.swing.JButton();
         Button_SuaDV = new javax.swing.JButton();
         Button_NhapLaiDV = new javax.swing.JButton();
+        Combo_DVT = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         ComboBox_ChonDV = new javax.swing.JComboBox<>();
         Text_NhapTTDV = new javax.swing.JTextField();
         Button_TimDV = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table_LoaiPhong = new javax.swing.JTable();
+        Table_DichVu = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -101,24 +123,27 @@ public class QuanLyDichVu extends javax.swing.JPanel {
         Text_TenDV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Loại dịch vụ");
-
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jLabel8.setText("Đơn vị tính");
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Customer-service-icon.png")); // NOI18N
 
         Button_ThemDV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_ThemDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Plus_000000_25.png"))); // NOI18N
         Button_ThemDV.setText("Thêm");
+        Button_ThemDV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_ThemDVMouseClicked(evt);
+            }
+        });
 
         Button_XoaDV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_XoaDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Cancel_000000_25.png"))); // NOI18N
         Button_XoaDV.setText("Xóa");
+        Button_XoaDV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_XoaDVMouseClicked(evt);
+            }
+        });
         Button_XoaDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Button_XoaDVActionPerformed(evt);
@@ -128,10 +153,20 @@ public class QuanLyDichVu extends javax.swing.JPanel {
         Button_SuaDV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_SuaDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Recycling_000000_25.png"))); // NOI18N
         Button_SuaDV.setText("Sửa");
+        Button_SuaDV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_SuaDVMouseClicked(evt);
+            }
+        });
 
         Button_NhapLaiDV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_NhapLaiDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Edit_000000_25.png"))); // NOI18N
         Button_NhapLaiDV.setText("Nhập lại");
+        Button_NhapLaiDV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_NhapLaiDVMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -160,6 +195,8 @@ public class QuanLyDichVu extends javax.swing.JPanel {
                 .addGap(29, 29, 29))
         );
 
+        Combo_DVT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "Lần", "Chiếc", "Ly", "Chai", "Lon", " " }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -184,8 +221,11 @@ public class QuanLyDichVu extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Text_GiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text_TenDV, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Text_TenDV, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                    .addComponent(Combo_DVT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -207,7 +247,7 @@ public class QuanLyDichVu extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Combo_DVT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -229,18 +269,20 @@ public class QuanLyDichVu extends javax.swing.JPanel {
             }
         });
 
-        Table_LoaiPhong.setModel(new javax.swing.table.DefaultTableModel(
+        Table_DichVu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mã dịch vụ", "Tên dịch vụ", "Loại dịch vụ", "Đơn giá "
+                "Mã dịch vụ", "Tên dịch vụ", "Đơn giá", "Đơn vị tính"
             }
         ));
-        jScrollPane1.setViewportView(Table_LoaiPhong);
+        Table_DichVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Table_DichVuMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Table_DichVu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -277,14 +319,10 @@ public class QuanLyDichVu extends javax.swing.JPanel {
                     .addComponent(Text_NhapTTDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Button_TimDV))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void Button_XoaDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_XoaDVActionPerformed
         // TODO add your handling code here:
@@ -298,6 +336,67 @@ public class QuanLyDichVu extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_TimDVActionPerformed
 
+    private void Table_DichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_DichVuMouseClicked
+        // TODO add your handling code here:
+        int i = Table_DichVu.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) Table_DichVu.getModel();
+        Text_MaDV.setText(model.getValueAt(i, 0).toString());
+        Text_TenDV.setText(model.getValueAt(i, 1).toString());
+        Combo_DVT.setSelectedItem(model.getValueAt(i, 3).toString());
+        Text_GiaTien.setText(model.getValueAt(i, 2).toString());
+    }//GEN-LAST:event_Table_DichVuMouseClicked
+
+    private void Button_ThemDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_ThemDVMouseClicked
+        // TODO add your handling code here:
+        String MaDV = Text_MaDV.getText();
+        String TenDV = Text_TenDV.getText();
+        String DVT = Combo_DVT.getSelectedItem().toString();
+        long GiaDV = Long.parseLong(Text_GiaTien.getText());
+        DichVu_POJO DV = new DichVu_POJO(MaDV, TenDV, GiaDV, DVT);
+        DichVu_Controller.themDichVu(DV);
+        JOptionPane.showMessageDialog(jPanel2, "Thêm Dịch Vụ Thành Công!!!");
+        resetTable();
+    }//GEN-LAST:event_Button_ThemDVMouseClicked
+
+    private void Button_XoaDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_XoaDVMouseClicked
+        // TODO add your handling code here:
+        String maDV = Text_MaDV.getText();
+        if (maDV.equals("") == true) {
+            return;
+        } else {
+            JOptionPane tbXoa = new JOptionPane();
+            int t = tbXoa.showConfirmDialog(jPanel2, "Bạn có chắc chắn muốn xóa?", "XÓA", JOptionPane.OK_OPTION);
+            if (t == 0) {
+                DichVu_Controller.xoaDichVu(maDV);
+                JOptionPane.showMessageDialog(jPanel2, "Xóa Dịch Vụ Thành Công!!!");
+                resetTable();
+    }//GEN-LAST:event_Button_XoaDVMouseClicked
+        }
+    }
+    private void Button_SuaDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_SuaDVMouseClicked
+        // TODO add your handling code here:
+        String MaDV = Text_MaDV.getText();
+        String TenDV = Text_TenDV.getText();
+        String DVT = Combo_DVT.getSelectedItem().toString();
+        long GiaDV = Long.parseLong(Text_GiaTien.getText());
+        DichVu_POJO DV = new DichVu_POJO(MaDV, TenDV, GiaDV, DVT);
+
+        JOptionPane tbSua = new JOptionPane();
+        int t = tbSua.showConfirmDialog(jPanel2, "Bạn có chắc chắn muốn sửa?", "SỬA", JOptionPane.OK_OPTION);
+        if (t == 0) {
+            DichVu_Controller.capnhatDichVu(DV);
+            JOptionPane.showMessageDialog(jPanel2, "Sửa Dịch Vụ Thành Công!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+            resetTable();
+        }
+    }//GEN-LAST:event_Button_SuaDVMouseClicked
+
+    private void Button_NhapLaiDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiDVMouseClicked
+        // TODO add your handling code here:
+        Text_MaDV.setText("");
+        Text_TenDV.setText("");
+        Text_GiaTien.setText("");
+        Combo_DVT.setSelectedIndex(0);
+    }//GEN-LAST:event_Button_NhapLaiDVMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_NhapLaiDV;
@@ -306,7 +405,8 @@ public class QuanLyDichVu extends javax.swing.JPanel {
     private javax.swing.JButton Button_TimDV;
     private javax.swing.JButton Button_XoaDV;
     private javax.swing.JComboBox<String> ComboBox_ChonDV;
-    private javax.swing.JTable Table_LoaiPhong;
+    private javax.swing.JComboBox<String> Combo_DVT;
+    private javax.swing.JTable Table_DichVu;
     private javax.swing.JTextField Text_GiaTien;
     private javax.swing.JTextField Text_MaDV;
     private javax.swing.JTextField Text_NhapTTDV;
@@ -322,7 +422,6 @@ public class QuanLyDichVu extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
 }

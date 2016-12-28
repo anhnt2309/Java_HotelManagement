@@ -40,12 +40,14 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
+    
     <class name="examples.LoaiPhong_POJO" table="TBLLOAIPHONG">
          <id name="MaLP" type="string">
       <column length="20" name="MALP"/>
       <generator class="assigned"/>
     </id>
-    <property name="LoaiPhong" type="string">
+    
+    <property name="LoaiPhong" type="org.hibernate.type.StringNVarcharType">
       <column length="20" name="LOAIPHONG"/>
     </property>
     <property name="SoGiuong" type="integer">

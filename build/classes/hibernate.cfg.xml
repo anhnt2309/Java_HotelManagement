@@ -50,5 +50,10 @@ Contributor(s):
     <mapping resource="mapping_TaiKhoanDangNhap.hbm.xml"/>
     <mapping resource="Tblnhanvien.hbm.xml"/>
     <mapping resource="mapping_Phong.hbm.xml"/>
+    <mapping resource="mapping_KhacHang.hbm.xml"/>
+    <mapping resource="mapping_DV.hbm.xml"/>
+  
+    
+    <mapping resource="mapping_ThuePhong.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

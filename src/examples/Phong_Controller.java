@@ -79,7 +79,7 @@ public class Phong_Controller {
     public Phong_Controller() {
     }
     
-    public static boolean xoaLoaiPhong(String MaLP) {
+    public static boolean xoaPhong(String MaLP) {
         Session session
                 = HibernateSessionFactory.getSessionFactory().openSession();
         Phong lp = Phong_Controller.getPhong(MaLP);
