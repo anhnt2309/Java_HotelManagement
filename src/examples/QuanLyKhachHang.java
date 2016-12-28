@@ -187,6 +187,11 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 Button_ThemKHMouseClicked(evt);
             }
         });
+        Button_ThemKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_ThemKHActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -443,6 +448,10 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
               resetTable();
          }
     }//GEN-LAST:event_Button_SuaKHMouseClicked
+
+    private void Button_ThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_ThemKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_ThemKHActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_NhapLaiKH;

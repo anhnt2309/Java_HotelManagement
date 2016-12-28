@@ -19,7 +19,7 @@ public class LoaiPhong_POJO  implements java.io.Serializable {
      private String MaLP;
      private String LoaiPhong;
      private Integer SoGiuong;
-     private double DonGia;
+     private long DonGia;
      private String GhiChu;
 
     public LoaiPhong_POJO() {
@@ -29,7 +29,7 @@ public class LoaiPhong_POJO  implements java.io.Serializable {
     public LoaiPhong_POJO(String MaLP) {
         this.MaLP = MaLP;
     }
-    public LoaiPhong_POJO(String MaLP, String LoaiPhong, Integer SoGiuong, double DonGia, String GhiChu) {
+    public LoaiPhong_POJO(String MaLP, String LoaiPhong, Integer SoGiuong, long DonGia, String GhiChu) {
        this.MaLP = MaLP;
        this.LoaiPhong = LoaiPhong;
        this.SoGiuong = SoGiuong;
@@ -71,11 +71,11 @@ public class LoaiPhong_POJO  implements java.io.Serializable {
 
     
     @Column(name="DONGIA", length=10)
-    public double getDonGia() {
+    public long getDonGia() {
         return this.DonGia;
     }
     
-    public void setDonGia(double DonGia) {
+    public void setDonGia(long DonGia) {
         this.DonGia = DonGia;
     }
 

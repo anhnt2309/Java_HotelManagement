@@ -18,18 +18,18 @@ public class ThuePhong_POJO {
     private String MaPhong;
     private Date NgayThue;
     private Date NgayTra;
-    private long TienDV;
 
     public ThuePhong_POJO() {
     }
 
-    public ThuePhong_POJO(String MaThuePhong, String MaPhong, Date NgayThue, Date NgayTra, long TienDV) {
+    public ThuePhong_POJO(String MaThuePhong, String MaPhong, Date NgayThue, Date NgayTra, String MaKH) {
         this.MaThuePhong = MaThuePhong;
         this.MaPhong = MaPhong;
         this.NgayThue = NgayThue;
         this.NgayTra = NgayTra;
-        this.TienDV = TienDV;
+        this.MaKH = MaKH;
     }
+    
 
     public String getMaThuePhong() {
         return MaThuePhong;
@@ -63,11 +63,15 @@ public class ThuePhong_POJO {
         this.NgayTra = NgayTra;
     }
 
-    public long getTienDV() {
-        return TienDV;
+    public String getMaKH() {
+        return MaKH;
     }
 
-    public void setTienDV(long TienDV) {
-        this.TienDV = TienDV;
-    } 
+    public void setMaKH(String MaKH) {
+        this.MaKH = MaKH;
+    }
+    private String MaKH;
+
+    
+    
 }

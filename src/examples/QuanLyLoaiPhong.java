@@ -340,7 +340,7 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         String maLP = Text_LoaiPhong_MaLP.getText();
         String tenLP = Text_LoaiPhong_TenLP.getText();
         int soGiuong = Integer.parseInt(Combo_LoaiPhong_SoGiuong.getSelectedItem().toString());
-        double gia = Double.parseDouble(Text_LoaiPhong_GiaTien.getText());
+        long gia = Long.parseLong(Text_LoaiPhong_GiaTien.getText());
         String ghiChu= Text_LoaiPhong_GhiChu.getText();
         
         LoaiPhong_POJO LP = new LoaiPhong_POJO(maLP, tenLP, soGiuong, gia, ghiChu);
@@ -373,7 +373,7 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         String maLP = Text_LoaiPhong_MaLP.getText();
         String tenLP = Text_LoaiPhong_TenLP.getText();
         int soGiuong = Integer.parseInt(Combo_LoaiPhong_SoGiuong.getSelectedItem().toString());
-        double gia = Double.parseDouble(Text_LoaiPhong_GiaTien.getText());
+        long gia = Long.parseLong(Text_LoaiPhong_GiaTien.getText());
         String ghiChu= Text_LoaiPhong_GhiChu.getText();
         
          LoaiPhong_POJO LP = new LoaiPhong_POJO(maLP, tenLP, soGiuong, gia, ghiChu);

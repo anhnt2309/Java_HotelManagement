@@ -27,7 +27,7 @@ public void LoadDataToTable(){
         ArrayList<Phong> dsPhong = new ArrayList<Phong>();       
         dsPhong = Phong_Controller.getDSPhong();
         DefaultTableModel model = (DefaultTableModel) Table_Phong.getModel();
-        Object[] row = new Object[7];
+        Object[] row = new Object[5];
         for (int i = 0 ; i< dsPhong.size(); i++){
             row[0] = dsPhong.get(i).getMaPhong();
             row[1] = dsPhong.get(i).getMaLP();
@@ -81,6 +81,26 @@ public void resetTable() {
         Button_TimP = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table_Phong = new javax.swing.JTable();
+
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -407,6 +427,26 @@ public void resetTable() {
         Combo_MaLP.setSelectedIndex(0);
         Combo_TTP.setSelectedIndex(0);
     }//GEN-LAST:event_Button_NhapLaiLPMouseClicked
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        // TODO add your handling code here:
+                 this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_formAncestorAdded
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+         
+         this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_formComponentShown
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+        this.removeAll();
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_formFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

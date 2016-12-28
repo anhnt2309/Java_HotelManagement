@@ -42,21 +42,22 @@ Contributor(s):
 <hibernate-mapping>
   
   <class name="examples.ThuePhong_POJO" table="TBLTHUEPHONG">
-    <id name="MaThuePhong" type="string">
+    <id name="MaThuePhong" type="string" >
       <column length="20" name="MATP"/>
       <generator class="assigned"/>
     </id>
     <property name="MaPhong" type="string">
       <column length="20" name="MAPHONG"/>
     </property>
-    <property name="NgayThue" type="date">
-      <column name="TENPHONG"/>
+    <property name="NgayThue" type="java.util.Date">
+      <column name="NGAYTHUE"/>
     </property>
-    <property name="NgayTra" type="date">
-      <column name="TINHTRANG"/>
+    <property name="NgayTra" type="java.util.Date">
+      <column name="NGAYTRA"/>
     </property>
-    <property name="TienDV" type="long">
-      <column name="TIENDV"/>
+
+    <property name="MaKH" type="string">
+      <column length="20" name="MAKH" />
     </property>
   </class>
 </hibernate-mapping>

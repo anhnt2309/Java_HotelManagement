@@ -13,11 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.*;
 import static java.awt.PageAttributes.MediaType.D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.V;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -49,14 +52,14 @@ public class TrangChu extends javax.swing.JFrame {
 //Create các panel
     static TrangDatPhong trangDatPhong = new TrangDatPhong();
     static TraPhong traPhong = new TraPhong();
-    static TinhTrangPhong tinhTrangPhong = new TinhTrangPhong();
+    static TinhTrangPhong tinhTrangPhong =  new TinhTrangPhong(); ;
     QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
     QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
     QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
     QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
     QuanLyphong quanLyPhong = new QuanLyphong();
     QuanLyThuephong quanLyThuephong = new QuanLyThuephong();
-    SuDungDichVu suDungDichVu = new SuDungDichVu();
+    static SuDungDichVu suDungDichVu = new SuDungDichVu();
     XuatBaoCaoDoanhThu xuatBaoCaoDoanhThu = new XuatBaoCaoDoanhThu();
 
 //creat Frame
@@ -71,7 +74,8 @@ public class TrangChu extends javax.swing.JFrame {
      */
     public TrangChu() {
         initComponents();
-
+         
+       
     }
 
     public void Display(int i) {
@@ -139,8 +143,23 @@ public class TrangChu extends javax.swing.JFrame {
         lb_TrinhTrangPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+              
+                
 
-                LayerPane_Trai.add(tinhTrangPhong);
+//                LayerPane_Trai.add(tinhTrangPhong);
+//                tinhTrangPhong.setVisible(true);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+            
+                  LayerPane_Trai.add(tinhTrangPhong);
                 tinhTrangPhong.setVisible(true);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -187,6 +206,19 @@ public class TrangChu extends javax.swing.JFrame {
         lb_SuDungDichVu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                 LayerPane_Trai.add(suDungDichVu);
+//                suDungDichVu.setVisible(true);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+                
                 LayerPane_Trai.add(suDungDichVu);
                 tinhTrangPhong.setVisible(false);
                 traPhong.setVisible(false);
@@ -229,7 +261,19 @@ public class TrangChu extends javax.swing.JFrame {
         lb_DatPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+//                 LayerPane_Trai.add(trangDatPhong);
+//                trangDatPhong.setVisible(true);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+                
                 LayerPane_Trai.add(trangDatPhong);
                 trangDatPhong.setVisible(true);
                 traPhong.setVisible(false);
@@ -262,13 +306,26 @@ public class TrangChu extends javax.swing.JFrame {
     public void AddLabelTraPhong() {
         //Tra Phon
         final JLabel lb_TraPhong = new JLabel("Trả Phòng  ");
-        lb_TraPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_TraPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\traphong.png"));
         jXTaskPane_SDPhong.add(lb_TraPhong);
 
         //set listener
         lb_TraPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                 LayerPane_Trai.add(traPhong);
+//                traPhong.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+                
                 LayerPane_Trai.add(traPhong);
                 traPhong.setVisible(true);
                 trangDatPhong.setVisible(false);
@@ -303,13 +360,26 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator_SD4 = new JSeparator();
         //thue Phon
         final JLabel lb_ThuePhong = new JLabel("Thuê Phòng  ");
-        lb_ThuePhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_ThuePhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\thuephong.png"));
         jXTaskPane_SDPhong.add(lb_ThuePhong);
         jXTaskPane_SDPhong.add(jSeparator_SD4);
         //set listener
         lb_ThuePhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                LayerPane_Trai.add(quanLyThuephong);
+//                quanLyThuephong.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+//                
                 LayerPane_Trai.add(quanLyThuephong);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -345,7 +415,7 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator_QL2 = new JSeparator();
         // QL Loai Phong
         final JLabel lb_QLLoaiPhong = new JLabel("Quản Lý Loại Phòng  ");
-        lb_QLLoaiPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_QLLoaiPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\loaiphong.png"));
         jXTaskPane_QuanLy.add(lb_QLLoaiPhong);
         jXTaskPane_QuanLy.add(jSeparator_QL2);
 
@@ -353,6 +423,19 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLLoaiPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                  LayerPane_Trai.add(quanLyLoaiPhong);
+//                quanLyLoaiPhong.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+                
                 LayerPane_Trai.add(quanLyLoaiPhong);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -387,7 +470,7 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator_QL3 = new JSeparator();
         // QL nhan vien
         final JLabel lb_QLNhanVien = new JLabel("Quản Lý Nhân Viên  ");
-        lb_QLNhanVien.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_QLNhanVien.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\nhanvien.png"));
         jXTaskPane_QuanLy.add(lb_QLNhanVien);
         jXTaskPane_QuanLy.add(jSeparator_QL3);
 
@@ -395,6 +478,19 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLNhanVien.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                  LayerPane_Trai.add(quanLyNhanVien);
+//                quanLyNhanVien.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+//                
                 LayerPane_Trai.add(quanLyNhanVien);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -407,7 +503,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
                 xuatBaoCaoDoanhThu.setVisible(false);
-                
+
             }
 
             @Override
@@ -428,13 +524,26 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator_QL4 = new JSeparator();
         // QL Dich Vu
         final JLabel lb_QLDichVu = new JLabel("Quản Lý Dịch Vụ  ");
-        lb_QLDichVu.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_QLDichVu.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\dichvu.png"));
         jXTaskPane_QuanLy.add(lb_QLDichVu);
         jXTaskPane_QuanLy.add(jSeparator_QL4);
         //set listener
         lb_QLDichVu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                   LayerPane_Trai.add(quanLyDichVu);
+//                quanLyDichVu.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+                
                 LayerPane_Trai.add(quanLyDichVu);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -446,7 +555,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
-                 xuatBaoCaoDoanhThu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -466,13 +575,26 @@ public class TrangChu extends javax.swing.JFrame {
     public void AddLabelQLKhachHang() {
         // QL Khach Hang
         final JLabel lb_QLKhachHang = new JLabel("Quản Lý Khách Hàng  ");
-        lb_QLKhachHang.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_QLKhachHang.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\quanlynv.png"));
         jXTaskPane_QuanLy.add(lb_QLKhachHang);
 
         //set listener
         lb_QLKhachHang.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                    LayerPane_Trai.add(quanLyKhachHang);
+//                quanLyKhachHang.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyPhong);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+                
                 LayerPane_Trai.add(quanLyKhachHang);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -484,7 +606,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
-                 xuatBaoCaoDoanhThu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -505,7 +627,7 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator_QL5 = new JSeparator();
         // QL Khach Hang
         final JLabel lb_QLPhong = new JLabel("Quản Lý Phòng ");
-        lb_QLPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_QLPhong.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\phong.png"));
         jXTaskPane_QuanLy.add(lb_QLPhong);
         jXTaskPane_QuanLy.add(jSeparator_QL5);
 
@@ -513,6 +635,19 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+//                LayerPane_Trai.add(quanLyPhong);
+//                quanLyPhong.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
+                
                 LayerPane_Trai.add(quanLyPhong);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
@@ -524,7 +659,7 @@ public class TrangChu extends javax.swing.JFrame {
                 quanLyPhong.setVisible(true);
                 quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(false);
-                 xuatBaoCaoDoanhThu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -546,7 +681,7 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator_BC1 = new JSeparator();
         // QL Loai Phong
         final JLabel lb_BCKhachHang = new JLabel("Báo Cáo Khách Hàng  ");
-        lb_BCKhachHang.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_BCKhachHang.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\customer.png"));
         jXTaskPane_BaoCao.add(lb_BCKhachHang);
         jXTaskPane_BaoCao.add(jSeparator_BC1);
         //set listener
@@ -554,17 +689,14 @@ public class TrangChu extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Xuất báo cáo
-                   try {
-                    
-                
-                   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                    java.sql.Connection con =(java.sql.Connection) DriverManager.getConnection("jdbc:sqlserver://TUAN_ANH:49612;databaseName=QLKS","sa","123456");
-                    JasperReport jr =JasperCompileManager.compileReport("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\src\\examples\\khachhang.jrxml");
-                    JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
-                    JasperViewer.viewReport(jp,false);
-                }
-                catch(Exception f)
-                {
+                try {
+
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    java.sql.Connection con = (java.sql.Connection) DriverManager.getConnection("jdbc:sqlserver://TUAN_ANH:49612;databaseName=QLKS", "sa", "123456");
+                    JasperReport jr = JasperCompileManager.compileReport("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\src\\examples\\khachhang.jrxml");
+                    JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+                    JasperViewer.viewReport(jp, false);
+                } catch (Exception f) {
                     System.out.print(f);
                 }
             }
@@ -587,7 +719,7 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator_BC2 = new JSeparator();
         // QL Loai Phong
         final JLabel lb_BCNhanVien = new JLabel("Báo Cáo Nhân Viên ");
-        lb_BCNhanVien.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_BCNhanVien.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\bcnhanvien.png"));
         jXTaskPane_BaoCao.add(lb_BCNhanVien);
         jXTaskPane_BaoCao.add(jSeparator_BC2);
 
@@ -626,7 +758,7 @@ public class TrangChu extends javax.swing.JFrame {
     public void AddLabelBCDoanhThu() {
         // QL Loai Phong
         final JLabel lb_BCDoanhThu = new JLabel("Báo Cáo Doanh Thu ");
-        lb_BCDoanhThu.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\Paid Parking_000000_25.png"));
+        lb_BCDoanhThu.setIcon(new ImageIcon("D:\\V Semester\\Java\\qlks\\Java_HotelManagement\\Resources\\Icon\\bcdoanhthu.png"));
         jXTaskPane_BaoCao.add(lb_BCDoanhThu);
 
         //set listener
@@ -634,19 +766,21 @@ public class TrangChu extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Xuất báo cáo
-                      //Xuất báo cáo
-              LayerPane_Trai.add(xuatBaoCaoDoanhThu);
-                trangDatPhong.setVisible(false);
-                traPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(true);
+                //Xuất báo cáo
+//                 LayerPane_Trai.add(xuatBaoCaoDoanhThu);
+//                xuatBaoCaoDoanhThu.setVisible(true);
+//                LayerPane_Trai.remove(trangDatPhong);
+//                LayerPane_Trai.remove(suDungDichVu);
+//                LayerPane_Trai.remove(quanLyNhanVien);
+//                LayerPane_Trai.remove(quanLyThuephong);
+//                LayerPane_Trai.remove(quanLyLoaiPhong);
+//                LayerPane_Trai.remove(quanLyDichVu);
+//                LayerPane_Trai.remove(quanLyKhachHang);
+//                LayerPane_Trai.remove(traPhong);
+//                LayerPane_Trai.remove(tinhTrangPhong);
+//                LayerPane_Trai.remove(quanLyPhong);
+                
+                
             }
 
             @Override
@@ -674,13 +808,19 @@ public class TrangChu extends javax.swing.JFrame {
     public static JPanel getDatPhong() {
         return trangDatPhong;
     }
-    
-    public static JPanel getTinhTrangPhong(){
+
+    public static JPanel getTinhTrangPhong() {
         return tinhTrangPhong;
     }
+    public static JPanel getSuDungDV(){
+        return suDungDichVu;
+    } 
+    
+   
 //public static JPanel getSuDungPhong(){
 //    return SuDungDichVu;
 //}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -708,6 +848,7 @@ public class TrangChu extends javax.swing.JFrame {
         jXTaskPane_QuanLy = new org.jdesktop.swingx.JXTaskPane();
         jXTaskPane_BaoCao = new org.jdesktop.swingx.JXTaskPane();
         LayerPane_Trai = new javax.swing.JLayeredPane();
+        jLabel2 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -809,13 +950,10 @@ public class TrangChu extends javax.swing.JFrame {
 
         jXTaskPane_SDPhong.setAutoscrolls(true);
         jXTaskPane_SDPhong.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jXTaskPane_SDPhong.setTitle("Sử Dụng Phòng");
 
         jXTaskPane_QuanLy.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jXTaskPane_QuanLy.setTitle("Quản Lý");
 
         jXTaskPane_BaoCao.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jXTaskPane_BaoCao.setTitle("Báo Cáo");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -845,6 +983,11 @@ public class TrangChu extends javax.swing.JFrame {
 
         LayerPane_Trai.setToolTipText("");
         LayerPane_Trai.setLayout(new java.awt.BorderLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/untitled folder/hinh2.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        LayerPane_Trai.add(jLabel2, java.awt.BorderLayout.CENTER);
+
         jSplitPane1.setRightComponent(LayerPane_Trai);
 
         fileMenu.setMnemonic('f');
@@ -879,7 +1022,7 @@ public class TrangChu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tab_tk, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
+            .addComponent(Tab_tk)
             .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -972,6 +1115,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;

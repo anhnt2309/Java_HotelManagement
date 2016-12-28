@@ -53,7 +53,7 @@ Contributor(s):
     <property name="SoGiuong" type="integer">
       <column length="10" name="SOGIUONG"/>
     </property>
-    <property name="DonGia" type="double">
+    <property name="DonGia" type="long">
       <column length="10" name="DONGIA"/>
     </property>
     <property name="GhiChu" type="string">

@@ -56,18 +56,40 @@ public class TinhTrangPhong extends javax.swing.JPanel {
     class MenuActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == m1) {
-
+           if (e.getSource() == m1) {
+                String MaPhong = m1.getName();
+                JPanel suDungDichVu = TrangChu.getSuDungDV();
+                JLayeredPane pn = TrangChu.getPanel();
+                pn.add(suDungDichVu);
+                             
+                suDungDichVu.setVisible(true);
+                setVisible(false);
+                              
+               
+                  ArrayList<ThuePhong_POJO> dsTP = new ArrayList<ThuePhong_POJO>();
+                  dsTP = ThuePhong_Controller.getDSThuePhong();
+                   String MaTP = "";
+                  for (int i = 0 ; i < dsTP.size(); i ++){
+                      if (dsTP.get(i).getMaPhong().equals(MaPhong) == true){
+                          MaTP = dsTP.get(i).getMaThuePhong();
+                      }
+                  }
+                
+                JComboBox<Object> comboBox = SuDungDichVu.getMaTP();
+                comboBox.setSelectedItem(MaTP);
             }
             if (e.getSource() == m2) {
+                String MaPhong = m2.getName();
                 JPanel trangTraPhong = TrangChu.getTraPhong();
                 JLayeredPane pn = TrangChu.getPanel();
                 pn.add(trangTraPhong);
 
                 trangTraPhong.setVisible(true);
                 setVisible(false);
-            }
 
+                JComboBox<Object> comboBox = TraPhong.getMaPhong();
+                comboBox.setSelectedItem(MaPhong);
+            }
         }
     }
 
@@ -127,6 +149,9 @@ public class TinhTrangPhong extends javax.swing.JPanel {
 
                     }
                     if (TinhTrang.equals("Có Khách")) {
+                         m2.setName(MaPhong);
+                        m1.setName(MaPhong);
+                        
                         //Get button position
                         Component b = (Component) e.getSource();
                         Point p = b.getLocationOnScreen();

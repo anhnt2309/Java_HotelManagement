@@ -52,8 +52,8 @@ Contributor(s):
     <mapping resource="mapping_Phong.hbm.xml"/>
     <mapping resource="mapping_KhacHang.hbm.xml"/>
     <mapping resource="mapping_DV.hbm.xml"/>
-  
-    
     <mapping resource="mapping_ThuePhong.hbm.xml"/>
+    <mapping resource="mapping_DatPhong.hbm.xml"/>
+    <mapping resource="mapping_SDDV.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

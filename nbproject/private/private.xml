@@ -3,11 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/NhanVien_Controller.java</file>
-            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/Tblnhanvien.hbm.xml</file>
-            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/QuanLyKhachHang.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/DangNhap.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/QuanLyDichVu.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/QuanLyphong.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/QuanLyThuephong.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/SDDichVu_Controller.java</file>
             <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/Tblnhanvien.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/SuDungDichVu.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/QuanLyLoaiPhong.java</file>
             <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/QuanLyNhanVien.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/mapping_LP.hbm.xml</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/TrangChu.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/TinhTrangPhong.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/LoaiPhong_POJO.java</file>
+            <file>file:/D:/V%20Semester/Java/qlks/Java_HotelManagement/src/examples/TraPhong.java</file>
         </group>
     </open-files>
 </project-private>

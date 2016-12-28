@@ -40,7 +40,7 @@ public class ThuePhong_Controller {
         Session session;
         session = HibernateSessionFactory.getSessionFactory().openSession();
         try {
-            String sql = "from ThuePhong_Controller";
+            String sql = "from ThuePhong_POJO";
             Query query = session.createQuery(sql);
             dsTP = (ArrayList<ThuePhong_POJO>) query.list();
 
@@ -75,17 +75,37 @@ public class ThuePhong_Controller {
         return true;
     }
     
-    public static boolean xoaLoaiPhong(String MaLP) {
+    public static boolean xoaThuePhong(String MaLP) {
         Session session
                 = HibernateSessionFactory.getSessionFactory().openSession();
-        Phong lp = Phong_Controller.getPhong(MaLP);
-        if (lp == null) {
+        ThuePhong_POJO tp = ThuePhong_Controller.getThuePhong(MaLP);
+        if (tp == null) {
             return false;
         }
         Transaction trans = null;
         try {
             trans = session.beginTransaction();
-            session.delete(lp);
+            session.delete(tp);
+            trans.commit();
+        } catch (HibernateException ex) {
+//Log the exception
+            trans.rollback();
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return true;
+    }
+    public static boolean capnhatTP(ThuePhong_POJO TP) {
+        Session session
+                = HibernateSessionFactory.getSessionFactory().openSession();
+        if (getThuePhong(TP.getMaThuePhong()) == null) {
+            return false;
+        }
+        Transaction trans = null;
+        try {
+            trans = session.beginTransaction();
+            session.update(TP);
             trans.commit();
         } catch (HibernateException ex) {
 //Log the exception
