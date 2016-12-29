@@ -161,6 +161,7 @@ public class TrangChu extends javax.swing.JFrame {
             
                   LayerPane_Trai.add(tinhTrangPhong);
                 tinhTrangPhong.setVisible(true);
+                hinh_lb.setVisible(false);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -221,6 +222,7 @@ public class TrangChu extends javax.swing.JFrame {
                 
                 LayerPane_Trai.add(suDungDichVu);
                 tinhTrangPhong.setVisible(false);
+                  hinh_lb.setVisible(false);
                 traPhong.setVisible(false);
                 trangDatPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -276,6 +278,7 @@ public class TrangChu extends javax.swing.JFrame {
                 
                 LayerPane_Trai.add(trangDatPhong);
                 trangDatPhong.setVisible(true);
+                  hinh_lb.setVisible(false);
                 traPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -328,6 +331,7 @@ public class TrangChu extends javax.swing.JFrame {
                 
                 LayerPane_Trai.add(traPhong);
                 traPhong.setVisible(true);
+                  hinh_lb.setVisible(false);
                 trangDatPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -382,6 +386,7 @@ public class TrangChu extends javax.swing.JFrame {
 //                
                 LayerPane_Trai.add(quanLyThuephong);
                 traPhong.setVisible(false);
+                  hinh_lb.setVisible(false);
                 trangDatPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -438,6 +443,7 @@ public class TrangChu extends javax.swing.JFrame {
                 
                 LayerPane_Trai.add(quanLyLoaiPhong);
                 traPhong.setVisible(false);
+                  hinh_lb.setVisible(false);
                 trangDatPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -493,6 +499,7 @@ public class TrangChu extends javax.swing.JFrame {
 //                
                 LayerPane_Trai.add(quanLyNhanVien);
                 traPhong.setVisible(false);
+                  hinh_lb.setVisible(false);
                 trangDatPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -546,6 +553,7 @@ public class TrangChu extends javax.swing.JFrame {
                 
                 LayerPane_Trai.add(quanLyDichVu);
                 traPhong.setVisible(false);
+                  hinh_lb.setVisible(false);
                 trangDatPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(true);
@@ -597,6 +605,7 @@ public class TrangChu extends javax.swing.JFrame {
                 
                 LayerPane_Trai.add(quanLyKhachHang);
                 traPhong.setVisible(false);
+                  hinh_lb.setVisible(false);
                 trangDatPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -650,6 +659,7 @@ public class TrangChu extends javax.swing.JFrame {
                 
                 LayerPane_Trai.add(quanLyPhong);
                 traPhong.setVisible(false);
+                  hinh_lb.setVisible(false);
                 trangDatPhong.setVisible(false);
                 tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(false);
@@ -767,18 +777,19 @@ public class TrangChu extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 //Xuất báo cáo
                 //Xuất báo cáo
-//                 LayerPane_Trai.add(xuatBaoCaoDoanhThu);
-//                xuatBaoCaoDoanhThu.setVisible(true);
-//                LayerPane_Trai.remove(trangDatPhong);
-//                LayerPane_Trai.remove(suDungDichVu);
-//                LayerPane_Trai.remove(quanLyNhanVien);
-//                LayerPane_Trai.remove(quanLyThuephong);
-//                LayerPane_Trai.remove(quanLyLoaiPhong);
-//                LayerPane_Trai.remove(quanLyDichVu);
-//                LayerPane_Trai.remove(quanLyKhachHang);
-//                LayerPane_Trai.remove(traPhong);
-//                LayerPane_Trai.remove(tinhTrangPhong);
-//                LayerPane_Trai.remove(quanLyPhong);
+                LayerPane_Trai.add(xuatBaoCaoDoanhThu);
+                trangDatPhong.setVisible(true);
+                hinh_lb.setVisible(false);
+                traPhong.setVisible(false);
+                tinhTrangPhong.setVisible(false);
+                quanLyDichVu.setVisible(false);
+                quanLyLoaiPhong.setVisible(false);
+                quanLyNhanVien.setVisible(false);
+                quanLyKhachHang.setVisible(false);
+                quanLyPhong.setVisible(false);
+                quanLyThuephong.setVisible(false);
+                suDungDichVu.setVisible(false);
+                xuatBaoCaoDoanhThu.setVisible(true);
                 
                 
             }
@@ -848,7 +859,7 @@ public class TrangChu extends javax.swing.JFrame {
         jXTaskPane_QuanLy = new org.jdesktop.swingx.JXTaskPane();
         jXTaskPane_BaoCao = new org.jdesktop.swingx.JXTaskPane();
         LayerPane_Trai = new javax.swing.JLayeredPane();
-        jLabel2 = new javax.swing.JLabel();
+        hinh_lb = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -984,9 +995,9 @@ public class TrangChu extends javax.swing.JFrame {
         LayerPane_Trai.setToolTipText("");
         LayerPane_Trai.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/untitled folder/hinh2.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        LayerPane_Trai.add(jLabel2, java.awt.BorderLayout.CENTER);
+        hinh_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/untitled folder/hinh2.jpg"))); // NOI18N
+        hinh_lb.setText("jLabel2");
+        LayerPane_Trai.add(hinh_lb, java.awt.BorderLayout.CENTER);
 
         jSplitPane1.setRightComponent(LayerPane_Trai);
 
@@ -1114,8 +1125,8 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btn_QLTaiKhoan;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel hinh_lb;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;

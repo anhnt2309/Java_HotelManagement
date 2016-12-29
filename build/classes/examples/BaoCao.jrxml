@@ -43,11 +43,11 @@ WHERE
 					<rightPen lineStyle="Double"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="334" height="43" forecolor="#FFFFFF" uuid="9692dda8-a3af-4782-8cd0-1fa203e25b91"/>
+					<reportElement x="0" y="0" width="235" height="43" forecolor="#FFFFFF" uuid="9692dda8-a3af-4782-8cd0-1fa203e25b91"/>
 					<textElement textAlignment="Left">
 						<font size="24" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Báo Cáo Doanh Thu Tháng:]]></text>
+					<text><![CDATA[Báo Cáo Doanh Thu]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0.00">
 					<reportElement x="284" y="57" width="176" height="35" forecolor="#FFFFFF" uuid="5fb59d8b-0e61-4c23-9aaf-163705b75d23"/>
@@ -57,14 +57,14 @@ WHERE
 					<textFieldExpression><![CDATA[$V{SUM}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0">
-					<reportElement x="334" y="0" width="56" height="43" forecolor="#FFFFFF" uuid="b0a42ec4-3635-4576-a4ca-a732ca83b708"/>
+					<reportElement x="405" y="0" width="56" height="43" forecolor="#FFFFFF" uuid="b0a42ec4-3635-4576-a4ca-a732ca83b708"/>
 					<textElement>
 						<font size="24"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{a}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0">
-					<reportElement x="460" y="0" width="64" height="43" forecolor="#FFFFFF" uuid="b66b2a72-cace-4836-b37a-2d674ad9686b"/>
+					<reportElement x="531" y="0" width="64" height="43" forecolor="#FFFFFF" uuid="b66b2a72-cace-4836-b37a-2d674ad9686b"/>
 					<textElement>
 						<font size="24"/>
 					</textElement>
@@ -78,7 +78,7 @@ WHERE
 					<text><![CDATA[Tổng doanh thu]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="390" y="0" width="70" height="43" forecolor="#FFFFFF" uuid="8c713a40-1161-42eb-8436-b958e5a47919"/>
+					<reportElement x="461" y="0" width="70" height="43" forecolor="#FFFFFF" uuid="8c713a40-1161-42eb-8436-b958e5a47919"/>
 					<textElement textAlignment="Center">
 						<font size="24" isBold="true"/>
 					</textElement>
@@ -90,6 +90,13 @@ WHERE
 						<font size="24"/>
 					</textElement>
 					<text><![CDATA[(VND)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="316" y="0" width="89" height="43" forecolor="#FFFFFF" uuid="100e58be-3122-4d5d-afae-ed37c996da04"/>
+					<textElement textAlignment="Center">
+						<font size="24" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tháng:]]></text>
 				</staticText>
 			</frame>
 		</band>

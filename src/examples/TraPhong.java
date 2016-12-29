@@ -54,11 +54,20 @@ public class TraPhong extends javax.swing.JPanel {
     public void LoadTable_MaTP(String maTP) {
         ArrayList<SDDichVu_POJO> dsTP = new ArrayList<SDDichVu_POJO>();
         dsTP = SDDichVu_Controller.getDSSD();
+        
+         ArrayList<DichVu_POJO> dsDV = new ArrayList<DichVu_POJO>();
+        dsDV = DichVu_Controller.getDSDichVu();
+        
         DefaultTableModel model = (DefaultTableModel) Table_TraPhong.getModel();
         Object[] row = new Object[6];
         for (int i = 0; i < dsTP.size(); i++) {
             if (dsTP.get(i).getMaTP().equals(maTP) == true) {
-                row[0] = dsTP.get(i).getMaSD();
+                for (int j = 0 ; j< dsDV.size(); j++){
+                    if (dsDV.get(j).getMaDV().equals(dsTP.get(i).getMaDV()) == true){
+                           row[0] = dsDV.get(i).getTenDV();
+                    }
+                }
+             
                 row[1] = dsTP.get(i).getMaDV();
                 row[2] = dsTP.get(i).getMaNV();
                 row[3] = dateFormat(dsTP.get(i).getNgaySD().toString());
@@ -221,11 +230,12 @@ public class TraPhong extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cbx_MaTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(Date_NgayDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Date_NgayDen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(cbx_MaTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -322,7 +332,7 @@ public class TraPhong extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã sử dụng", "Mã dịch vụ", "Mã nhân viên", "Ngày sử dụng", "Số lượng", "Tiền sử dụng"
+                "Tên dịch vụ", "Mã dịch vụ", "Mã nhân viên", "Ngày sử dụng", "Số lượng", "Tiền sử dụng"
             }
         ));
         jScrollPane1.setViewportView(Table_TraPhong);
