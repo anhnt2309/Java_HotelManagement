@@ -38,6 +38,13 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         dsKH = KhachHang_Controller.getDSKH();
         DefaultTableModel model = (DefaultTableModel) Table_KH.getModel();
         Object[] row = new Object[6];
+        
+        //code gọi
+        KhachHang_Controller kh  = new KhachHang_Controller();
+        String makh = kh.LayMaKH();
+        ////set vào textbox
+        Text_MaKH.setText(makh);
+        
         for (int i = 0; i < dsKH.size(); i++) {
             row[0] = dsKH.get(i).getMaKH();
             row[1] = dsKH.get(i).getTenKH();
@@ -135,6 +142,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         jLabel7.setText("Ngày sinh");
 
         Text_MaKH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Text_MaKH.setEnabled(false);
 
         Text_TenKH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -404,7 +412,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void Button_NhapLaiKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiKHMouseClicked
         // TODO add your handling code here:
-        Text_MaKH.setText("");
         Text_TenKH.setText("");
         Text_SDT.setText("");
         Text_QuocTich.setText("");

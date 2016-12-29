@@ -27,6 +27,12 @@ public class QuanLyDichVu extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) Table_DichVu.getModel();
         Object[] row = new Object[4];
 
+        //code gọi
+        DichVu_Controller dv = new DichVu_Controller();
+        String madv = dv.LayMaDV();
+        ////set vào textbox
+        Text_MaDV.setText(madv);
+        
         for (int i = 0; i < dsDV.size(); i++) {
             row[0] = dsDV.get(i).getMaDV();
             row[1] = dsDV.get(i).getTenDV();
@@ -112,6 +118,7 @@ public class QuanLyDichVu extends javax.swing.JPanel {
         jLabel5.setText("Đơn Giá");
 
         Text_MaDV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Text_MaDV.setEnabled(false);
         Text_MaDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Text_MaDVActionPerformed(evt);
@@ -392,7 +399,6 @@ public class QuanLyDichVu extends javax.swing.JPanel {
 
     private void Button_NhapLaiDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiDVMouseClicked
         // TODO add your handling code here:
-        Text_MaDV.setText("");
         Text_TenDV.setText("");
         Text_GiaTien.setText("");
         Combo_DVT.setSelectedIndex(0);

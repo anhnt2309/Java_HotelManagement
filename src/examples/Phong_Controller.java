@@ -5,6 +5,7 @@
  */
 package examples;
 
+import static examples.NhanVien_Controller.NextID;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -121,6 +122,14 @@ public class Phong_Controller {
         }
         return true;
     }
+    //hàm lấy id
+        public String LayMaPhong()
+        {
+        ArrayList<Phong>  dsPhong = new ArrayList<Phong>();       
+        dsPhong = Phong_Controller.getDSPhong();
+        dsPhong.get(dsPhong.size()-1).getMaPhong();
+            return NextID(dsPhong.get(dsPhong.size()-1).getMaPhong(), "PH");
+        }
 }
 
    

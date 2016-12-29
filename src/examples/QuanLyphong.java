@@ -27,6 +27,11 @@ public void LoadDataToTable(){
         ArrayList<Phong> dsPhong = new ArrayList<Phong>();       
         dsPhong = Phong_Controller.getDSPhong();
         DefaultTableModel model = (DefaultTableModel) Table_Phong.getModel();
+        //code gọi
+        Phong_Controller ph = new Phong_Controller();
+        String maph = ph.LayMaPhong();
+        ////set vào textbox
+        Text_Phong_MaP.setText(maph);
         Object[] row = new Object[5];
         for (int i = 0 ; i< dsPhong.size(); i++){
             row[0] = dsPhong.get(i).getMaPhong();
@@ -143,6 +148,7 @@ public void resetTable() {
         jLabel6.setText("Mã loại phòng ");
 
         Text_Phong_MaP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Text_Phong_MaP.setEnabled(false);
 
         Text_Phong_TenP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -423,7 +429,6 @@ public void resetTable() {
 
     private void Button_NhapLaiLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiLPMouseClicked
         // TODO add your handling code here:
-        Text_Phong_MaP.setText("");
         Text_Phong_TenP.setText("");
         Combo_MaLP.setSelectedIndex(0);
         Combo_TTP.setSelectedIndex(0);

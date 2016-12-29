@@ -5,6 +5,7 @@
  */
 package examples;
 
+import static examples.NhanVien_Controller.NextID;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -138,6 +139,14 @@ public static ArrayList<LoaiPhong_POJO> getDSLoaiPhongTheoMa(String x,String maL
         }
         return true;
     }
+    //hàm lấy id
+        public String LayMaLP()
+        {
+        ArrayList<LoaiPhong_POJO>  dsLP = new ArrayList<LoaiPhong_POJO>();       
+        dsLP = LoaiPhong_Controller.getDSLoaiPhong();
+        dsLP.get(dsLP.size()-1).getMaLP();
+            return NextID(dsLP.get(dsLP.size()-1).getMaLP(), "LP");
+        }
 }
 
    

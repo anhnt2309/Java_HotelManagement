@@ -64,7 +64,7 @@ public class TraPhong extends javax.swing.JPanel {
             if (dsTP.get(i).getMaTP().equals(maTP) == true) {
                 for (int j = 0 ; j< dsDV.size(); j++){
                     if (dsDV.get(j).getMaDV().equals(dsTP.get(i).getMaDV()) == true){
-                           row[0] = dsDV.get(i).getTenDV();
+                           row[0] = dsDV.get(j).getTenDV();
                     }
                 }
              

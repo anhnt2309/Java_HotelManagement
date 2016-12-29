@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package examples;
+import static examples.NhanVien_Controller.NextID;
 import java.util.ArrayList;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -114,5 +115,12 @@ public class DichVu_Controller {
         }
         return true;
     }
-
+    //hàm lấy id
+        public String LayMaDV()
+        {
+        ArrayList<DichVu_POJO>  dsDV = new ArrayList<DichVu_POJO>();       
+        dsDV = DichVu_Controller.getDSDichVu();
+        dsDV.get(dsDV.size()-1).getMaDV();
+            return NextID(dsDV.get(dsDV.size()-1).getMaDV(), "DV");
+        }
 }

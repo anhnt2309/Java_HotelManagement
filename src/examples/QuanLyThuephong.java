@@ -490,10 +490,7 @@ public class QuanLyThuephong extends javax.swing.JPanel {
         for (int i = 0; i < dsPhong.size(); i++) {
             if (dsPhong.get(i).getMaPhong().equals(MaPhong) == true) {
                 dsPhong.get(i).setTinhTrang("Có Khách");
-                Phong_Controller.capNhatPhong(dsPhong.get(i));
-                TrangChu.getTinhTrangPhong().revalidate();
-                TrangChu.getTinhTrangPhong().repaint();
-                TrangChu.getTinhTrangPhong().doLayout();
+                Phong_Controller.capNhatPhong(dsPhong.get(i));              
             }
         }
         resetTable();

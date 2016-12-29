@@ -44,7 +44,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         //code gọi
         NhanVien_Controller dgBUS = new NhanVien_Controller();
         String madg = dgBUS.LayMaDG();
-      
         
         Text_MaNV.setText(madg);
         DefaultTableModel model = (DefaultTableModel) Table_NV.getModel();

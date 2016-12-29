@@ -5,6 +5,7 @@
  */
 package examples;
 
+import static examples.NhanVien_Controller.NextID;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -121,6 +122,14 @@ public class KhachHang_Controller {
         }
         return true;
     }
+    //hàm lấy id
+        public String LayMaKH()
+        {
+        ArrayList<KhachHang>  dsKH = new ArrayList<KhachHang>();       
+        dsKH = KhachHang_Controller.getDSKH();
+        dsKH.get(dsKH.size()-1).getMaKH();
+            return NextID(dsKH.get(dsKH.size()-1).getMaKH(), "KH");
+        }
 }
 
    

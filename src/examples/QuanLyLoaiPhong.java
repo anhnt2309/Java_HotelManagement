@@ -25,6 +25,11 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
    public void LoadDataToTable(){
        ArrayList<LoaiPhong_POJO>  dsLP = new ArrayList<LoaiPhong_POJO>();       
         dsLP = LoaiPhong_Controller.getDSLoaiPhong();
+        //code gọi
+        LoaiPhong_Controller lp = new LoaiPhong_Controller();
+        String malp = lp.LayMaLP();
+        ////set vào textbox
+        Text_LoaiPhong_MaLP.setText(malp);
         
         DefaultTableModel model = (DefaultTableModel) Table_LoaiPhong.getModel();
         Object[] row = new Object[5];
@@ -114,6 +119,7 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
         jLabel6.setText("Số giường");
 
         Text_LoaiPhong_MaLP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Text_LoaiPhong_MaLP.setEnabled(false);
 
         Text_LoaiPhong_GiaTien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -390,7 +396,6 @@ public class QuanLyLoaiPhong extends javax.swing.JPanel {
 
     private void Button_NhapLaiLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiLPMouseClicked
         // TODO add your handling code here:
-        Text_LoaiPhong_MaLP.setText("");
         Text_LoaiPhong_TenLP.setText("");
         Text_LoaiPhong_GiaTien.setText("");
         Text_LoaiPhong_GhiChu.setText("");

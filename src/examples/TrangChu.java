@@ -987,6 +987,7 @@ public class TrangChu extends javax.swing.JFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Circled User Male_48px.png"))); // NOI18N
         jButton2.setText("Xem Tài Khoản");
+        jButton2.setEnabled(false);
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setIconTextGap(5);

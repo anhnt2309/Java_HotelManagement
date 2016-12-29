@@ -125,6 +125,7 @@
                       <Image iconType="3" name="/Icon/Circled User Male_48px.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Xem T&#xe0;i Kho&#x1ea3;n"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="iconTextGap" type="int" value="5"/>
