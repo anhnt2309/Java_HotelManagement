@@ -47,6 +47,11 @@ public class TrangDatPhong extends javax.swing.JPanel {
         dsDatPhong = new ArrayList<DatPhong>();
         dsDatPhong = DatPhong_Controller.getDSDP();
         DefaultTableModel model = (DefaultTableModel) Table_DatPhong.getModel();
+        //code gọi
+        DatPhong_Controller dp = new DatPhong_Controller();
+        String madp = dp.LayMaDP();
+        ////set vào textbox
+        Text_MADP.setText(madp);
         Object[] row = new Object[7];
         for (int i = 0; i < dsDatPhong.size(); i++) {
             row[0] = dsDatPhong.get(i).getMaDK();
@@ -137,6 +142,7 @@ public class TrangDatPhong extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
+        setEnabled(false);
         setPreferredSize(new java.awt.Dimension(770, 540));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -188,6 +194,11 @@ public class TrangDatPhong extends javax.swing.JPanel {
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -247,6 +258,8 @@ public class TrangDatPhong extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Mã đặt phòng");
 
+        Text_MADP.setEnabled(false);
+
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tra phong  mini.png"))); // NOI18N
 
         Table_DatPhong.setModel(new javax.swing.table.DefaultTableModel(
@@ -272,16 +285,21 @@ public class TrangDatPhong extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(Table_DatPhong);
 
-        jSeparator2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Đặt Phòng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jSeparator2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN ĐẶT PHÒNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel16.setText("Tìm kiếm đặt phòng theo:");
 
-        Combo_NhapTTDP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo_NhapTTDP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã đặt phòng" }));
 
         Button_TKDP.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_TKDP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search_000000_25.png"))); // NOI18N
         Button_TKDP.setText("Tìm kiếm");
+        Button_TKDP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_TKDPMouseClicked(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Nhân Viên");
@@ -468,7 +486,7 @@ public class TrangDatPhong extends javax.swing.JPanel {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jSeparator1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Khách Đặt", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jSeparator1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN KHÁCH ĐẶT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -518,6 +536,7 @@ public class TrangDatPhong extends javax.swing.JPanel {
         dateTimePicker_NgayDen.setDate(SDNgaysinh);
         ///
         cbx_SoNguoi.setSelectedItem(model.getValueAt(i, 6).toString());
+        jButton1.setEnabled(false);
     }//GEN-LAST:event_Table_DatPhongMouseClicked
 
     private void PhongDat_DPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhongDat_DPActionPerformed
@@ -595,6 +614,7 @@ public class TrangDatPhong extends javax.swing.JPanel {
                 DatPhong_Controller.xoaDP(MaDP);
                 JOptionPane.showMessageDialog(jPanel1, "Xóa Đặt Phòng Thành Công!!!");
                 resetTable();
+                jButton1.setEnabled(true);
             }
         }
     }//GEN-LAST:event_jButton2MouseClicked
@@ -627,30 +647,24 @@ public class TrangDatPhong extends javax.swing.JPanel {
         Date NgayDen = dateTimePicker_NgayDen.getDate();
         int soNguoi = Integer.parseInt(cbx_SoNguoi.getSelectedItem().toString());
 
-        int flagPhong = 0;
-        for (int j = 0; j < dsDatPhong.size(); j++) {
-            if (MaPhong.equals(dsDatPhong.get(j).getMaPhong()) == true) {
-                flagPhong = 1;
-            }
-        }
-        if (flagPhong == 1) {
-            JOptionPane.showMessageDialog(null, "Phòng Đã Được Đặt", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        } else {
+       
+      
+        
             DatPhong DP = new DatPhong(MaDP, MaNV, MaPhong, MaKH, NgayDK, NgayDen, soNguoi);
             JOptionPane tbSua = new JOptionPane();
             int t = tbSua.showConfirmDialog(jPanel1, "Bạn có chắc chắn muốn sửa?", "SỬA", JOptionPane.OK_OPTION);
             if (t == 0) {
                 DatPhong_Controller.capnhatDP(DP);
-                JOptionPane.showMessageDialog(jPanel1, "Sửa Khách Hàng Thành Công!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(jPanel1, "Sửa Đặt Phòng Thành Công!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
                 resetTable();
+                jButton1.setEnabled(true);
             }
-        }
+        
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         // NHAP LAI
-        Text_MADP.setText("");
         Combo_MaNV.setSelectedIndex(0);
         PhongDat_DP.setSelectedIndex(0);
         Text_MaKH.setSelectedIndex(0);
@@ -659,7 +673,45 @@ public class TrangDatPhong extends javax.swing.JPanel {
         dateTimePicker_NgayDK.setDate(a1);
         dateTimePicker_NgayDen.setDate(a2);
         cbx_SoNguoi.setSelectedIndex(0);
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void Button_TKDPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_TKDPMouseClicked
+        // TODO add your handling code here:
+        if (jTextField6.getText().equals("") == true) {
+            resetTable();
+        } else {
+            if (Combo_NhapTTDP.getSelectedItem().equals("Mã đặt phòng") == true) {
+                String MaDP = jTextField6.getText();
+                ArrayList<DatPhong> dsDP = new ArrayList<DatPhong>();
+
+                dsDP = DatPhong_Controller.getDSDatPhongTheoMa("MaDK", MaDP);
+                if (dsDP.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Không Có Thông Tin Đặt Phòng", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    DefaultTableModel model = (DefaultTableModel) Table_DatPhong.getModel();
+                    Object[] row = new Object[7];
+                    model.setRowCount(0);
+                    for (int i = 0; i < dsDP.size(); i++) {
+                        row[0] = dsDP.get(i).getMaDK();
+                        row[1] = dsDP.get(i).getMaNV();
+                        row[2] = dsDP.get(i).getMaPhong();
+                        row[3] = dsDP.get(i).getMaKH();
+                        row[4] = dateFormat(dsDP.get(i).getNgayDK().toString());
+                        row[5] = dateFormat(dsDP.get(i).getNgayDen().toString());
+                        row[6] = dsDP.get(i).getSoNguoi();
+                        model.addRow(row);
+                    }
+                    JOptionPane.showMessageDialog(jPanel2, "Tìm Thấy Thông Tin Đặt Phòng!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+            }
+        }
+    }//GEN-LAST:event_Button_TKDPMouseClicked
     public void formatDateFromDateTime(DateTimePicker datetime) {
         Date date = datetime.getDate();
 

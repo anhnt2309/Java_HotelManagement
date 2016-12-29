@@ -262,7 +262,7 @@ public void resetTable() {
         jLabel6.setText("Tìm kiếm tài khoản theo:");
 
         Combo_ThongTinTK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Combo_ThongTinTK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo_ThongTinTK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Tài Khoản" }));
 
         Text_TimKiemTK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 

@@ -50,17 +50,11 @@ public class TrangChu extends javax.swing.JFrame {
 
 //Component[] innerFrameComponents;
 //Create các panel
-    static TrangDatPhong trangDatPhong = new TrangDatPhong();
-    static TraPhong traPhong = new TraPhong();
-    static TinhTrangPhong tinhTrangPhong =  new TinhTrangPhong(); ;
-    QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
-    QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
-    QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
-    QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
-    QuanLyphong quanLyPhong = new QuanLyphong();
-    QuanLyThuephong quanLyThuephong = new QuanLyThuephong();
-    static SuDungDichVu suDungDichVu = new SuDungDichVu();
-    XuatBaoCaoDoanhThu xuatBaoCaoDoanhThu = new XuatBaoCaoDoanhThu();
+    
+   static TraPhong traPhong;
+    static TrangDatPhong trangDatPhong;
+   static  TinhTrangPhong tinhTrangPhong ;
+   static SuDungDichVu suDungDichVu;
 
 //creat Frame
     JFrame DMK = new DoiMatKhau();
@@ -74,8 +68,7 @@ public class TrangChu extends javax.swing.JFrame {
      */
     public TrangChu() {
         initComponents();
-         
-       
+
     }
 
     public void Display(int i) {
@@ -130,6 +123,7 @@ public class TrangChu extends javax.swing.JFrame {
 //Su Dung
 
     public void AddLabelTinhTrangPhong() {
+       
         jSeparator_SD1 = new JSeparator();
         //add tình trạng phòng component to jxtaskpane
         final JLabel lb_TrinhTrangPhong = new JLabel("Tình Trạng Phòng");
@@ -143,9 +137,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_TrinhTrangPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-              
-                
-
+                tinhTrangPhong = new TinhTrangPhong();
 //                LayerPane_Trai.add(tinhTrangPhong);
 //                tinhTrangPhong.setVisible(true);
 //                LayerPane_Trai.remove(traPhong);
@@ -158,20 +150,33 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(quanLyThuephong);
 //                LayerPane_Trai.remove(suDungDichVu);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-            
-                  LayerPane_Trai.add(tinhTrangPhong);
+                // remove panel
+                LayerPane_Trai.removeAll();
+                
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
+                LayerPane_Trai.add(tinhTrangPhong);
+
                 tinhTrangPhong.setVisible(true);
-                hinh_lb.setVisible(false);
-                traPhong.setVisible(false);
-                trangDatPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                tinhTrangPhong.updateUI();
+                tinhTrangPhong.repaint();
+                tinhTrangPhong.revalidate();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+//                tinhTrangPhong.setVisible(true);
+//                hinh_lb.setVisible(false);
+//                traPhong.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
 
 //                int i =jLayeredPane1.getLayer(tinhTrangPhong);
 //                jLayeredPane1.getComponent(i).setVisible(true);
@@ -207,6 +212,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_SuDungDichVu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                suDungDichVu = new SuDungDichVu();
 //                 LayerPane_Trai.add(suDungDichVu);
 //                suDungDichVu.setVisible(true);
 //                LayerPane_Trai.remove(traPhong);
@@ -219,20 +225,30 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(quanLyThuephong);
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-                
+
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(suDungDichVu);
-                tinhTrangPhong.setVisible(false);
-                  hinh_lb.setVisible(false);
-                traPhong.setVisible(false);
-                trangDatPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
                 suDungDichVu.setVisible(true);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(suDungDichVu);
+//                tinhTrangPhong.setVisible(false);
+//                  hinh_lb.setVisible(false);
+//                traPhong.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(true);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -263,6 +279,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_DatPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                trangDatPhong = new TrangDatPhong();
 //                 LayerPane_Trai.add(trangDatPhong);
 //                trangDatPhong.setVisible(true);
 //                LayerPane_Trai.remove(traPhong);
@@ -275,20 +292,30 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(quanLyThuephong);
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-                
+
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(trangDatPhong);
                 trangDatPhong.setVisible(true);
-                  hinh_lb.setVisible(false);
-                traPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(trangDatPhong);
+//                trangDatPhong.setVisible(true);
+//                  hinh_lb.setVisible(false);
+//                traPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -316,6 +343,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_TraPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                 traPhong = new TraPhong();
 //                 LayerPane_Trai.add(traPhong);
 //                traPhong.setVisible(true);
 //                LayerPane_Trai.remove(trangDatPhong);
@@ -328,20 +356,30 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(quanLyThuephong);
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-                
+
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(traPhong);
                 traPhong.setVisible(true);
-                  hinh_lb.setVisible(false);
-                trangDatPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(traPhong);
+//                traPhong.setVisible(true);
+//                  hinh_lb.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -371,6 +409,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_ThuePhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                QuanLyThuephong quanLyThuephong = new QuanLyThuephong();
 //                LayerPane_Trai.add(quanLyThuephong);
 //                quanLyThuephong.setVisible(true);
 //                LayerPane_Trai.remove(trangDatPhong);
@@ -384,19 +423,29 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
 //                
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(quanLyThuephong);
-                traPhong.setVisible(false);
-                  hinh_lb.setVisible(false);
-                trangDatPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
                 quanLyThuephong.setVisible(true);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(quanLyThuephong);
+//                traPhong.setVisible(false);
+//                  hinh_lb.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(true);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -428,6 +477,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLLoaiPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                QuanLyLoaiPhong quanLyLoaiPhong = new QuanLyLoaiPhong();
 //                  LayerPane_Trai.add(quanLyLoaiPhong);
 //                quanLyLoaiPhong.setVisible(true);
 //                LayerPane_Trai.remove(trangDatPhong);
@@ -440,21 +490,30 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(traPhong);
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-                
-                LayerPane_Trai.add(quanLyLoaiPhong);
-                traPhong.setVisible(false);
-                  hinh_lb.setVisible(false);
-                trangDatPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(true);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
 
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
+                LayerPane_Trai.add(quanLyLoaiPhong);
+                quanLyLoaiPhong.setVisible(true);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(quanLyLoaiPhong);
+//                traPhong.setVisible(false);
+//                  hinh_lb.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(true);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -484,6 +543,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLNhanVien.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
 //                  LayerPane_Trai.add(quanLyNhanVien);
 //                quanLyNhanVien.setVisible(true);
 //                LayerPane_Trai.remove(trangDatPhong);
@@ -497,20 +557,29 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
 //                
-                LayerPane_Trai.add(quanLyNhanVien);
-                traPhong.setVisible(false);
-                  hinh_lb.setVisible(false);
-                trangDatPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(true);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
 
+                // add panel
+                LayerPane_Trai.add(quanLyNhanVien);
+                quanLyNhanVien.setVisible(true);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(quanLyNhanVien);
+//                traPhong.setVisible(false);
+//                  hinh_lb.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(true);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -538,6 +607,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLDichVu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
 //                   LayerPane_Trai.add(quanLyDichVu);
 //                quanLyDichVu.setVisible(true);
 //                LayerPane_Trai.remove(trangDatPhong);
@@ -550,20 +620,30 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(traPhong);
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-                
+
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(quanLyDichVu);
-                traPhong.setVisible(false);
-                  hinh_lb.setVisible(false);
-                trangDatPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
                 quanLyDichVu.setVisible(true);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(quanLyDichVu);
+//                traPhong.setVisible(false);
+//                  hinh_lb.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(true);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -590,6 +670,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLKhachHang.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
 //                    LayerPane_Trai.add(quanLyKhachHang);
 //                quanLyKhachHang.setVisible(true);
 //                LayerPane_Trai.remove(trangDatPhong);
@@ -602,20 +683,30 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(traPhong);
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-                
+
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(quanLyKhachHang);
-                traPhong.setVisible(false);
-                  hinh_lb.setVisible(false);
-                trangDatPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
                 quanLyKhachHang.setVisible(true);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(quanLyKhachHang);
+//                traPhong.setVisible(false);
+//                  hinh_lb.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(true);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -644,6 +735,7 @@ public class TrangChu extends javax.swing.JFrame {
         lb_QLPhong.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                QuanLyphong quanLyPhong = new QuanLyphong();
 //                LayerPane_Trai.add(quanLyPhong);
 //                quanLyPhong.setVisible(true);
 //                LayerPane_Trai.remove(trangDatPhong);
@@ -656,20 +748,30 @@ public class TrangChu extends javax.swing.JFrame {
 //                LayerPane_Trai.remove(traPhong);
 //                LayerPane_Trai.remove(tinhTrangPhong);
 //                LayerPane_Trai.remove(xuatBaoCaoDoanhThu);
-                
+
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(quanLyPhong);
-                traPhong.setVisible(false);
-                  hinh_lb.setVisible(false);
-                trangDatPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
                 quanLyPhong.setVisible(true);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
-                xuatBaoCaoDoanhThu.setVisible(false);
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(quanLyPhong);
+//                traPhong.setVisible(false);
+//                  hinh_lb.setVisible(false);
+//                trangDatPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(true);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(false);
             }
 
             @Override
@@ -775,23 +877,33 @@ public class TrangChu extends javax.swing.JFrame {
         lb_BCDoanhThu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                XuatBaoCaoDoanhThu xuatBaoCaoDoanhThu = new XuatBaoCaoDoanhThu();
                 //Xuất báo cáo
                 //Xuất báo cáo
+
+                LayerPane_Trai.removeAll();
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+                // add panel
                 LayerPane_Trai.add(xuatBaoCaoDoanhThu);
-                trangDatPhong.setVisible(true);
-                hinh_lb.setVisible(false);
-                traPhong.setVisible(false);
-                tinhTrangPhong.setVisible(false);
-                quanLyDichVu.setVisible(false);
-                quanLyLoaiPhong.setVisible(false);
-                quanLyNhanVien.setVisible(false);
-                quanLyKhachHang.setVisible(false);
-                quanLyPhong.setVisible(false);
-                quanLyThuephong.setVisible(false);
-                suDungDichVu.setVisible(false);
                 xuatBaoCaoDoanhThu.setVisible(true);
-                
-                
+                LayerPane_Trai.repaint();
+                LayerPane_Trai.revalidate();
+
+//                LayerPane_Trai.add(xuatBaoCaoDoanhThu);
+//                trangDatPhong.setVisible(true);
+//                hinh_lb.setVisible(false);
+//                traPhong.setVisible(false);
+//                tinhTrangPhong.setVisible(false);
+//                quanLyDichVu.setVisible(false);
+//                quanLyLoaiPhong.setVisible(false);
+//                quanLyNhanVien.setVisible(false);
+//                quanLyKhachHang.setVisible(false);
+//                quanLyPhong.setVisible(false);
+//                quanLyThuephong.setVisible(false);
+//                suDungDichVu.setVisible(false);
+//                xuatBaoCaoDoanhThu.setVisible(true);
             }
 
             @Override
@@ -823,15 +935,14 @@ public class TrangChu extends javax.swing.JFrame {
     public static JPanel getTinhTrangPhong() {
         return tinhTrangPhong;
     }
-    public static JPanel getSuDungDV(){
+
+    public static JPanel getSuDungDV() {
         return suDungDichVu;
-    } 
-    
-   
+    }
+
 //public static JPanel getSuDungPhong(){
 //    return SuDungDichVu;
 //}
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

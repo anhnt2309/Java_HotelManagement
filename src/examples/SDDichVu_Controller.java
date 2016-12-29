@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package examples;
+import static examples.NhanVien_Controller.NextID;
 import static examples.ThuePhong_Controller.getThuePhong;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -112,4 +113,31 @@ public static boolean capnhatSDDV(SDDichVu_POJO sddv) {
         }
         return true;
     }
+//hàm lấy id
+        public String LayMaSD()
+        {
+             ArrayList<SDDichVu_POJO>  dsSD = new ArrayList<SDDichVu_POJO>();       
+        dsSD = SDDichVu_Controller.getDSSD();
+        dsSD.get(dsSD.size()-1).getMaSD();
+            return NextID(dsSD.get(dsSD.size()-1).getMaSD(), "SD");
+        }
+
+
+public static ArrayList<SDDichVu_POJO> getDSSDTheoMa(String x,String MaSD) {
+        ArrayList<SDDichVu_POJO> dsSD = null;
+        Session session;
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            String sql = "from SDDichVu_POJO where "+x+" = '"+MaSD+"'";
+            Query query = session.createQuery(sql);
+            dsSD = (ArrayList<SDDichVu_POJO>) query.list();
+
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return dsSD;
+    }    
 }

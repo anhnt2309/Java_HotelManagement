@@ -5,6 +5,7 @@ package examples;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,6 +52,11 @@ public class QuanLyThuephong extends javax.swing.JPanel {
     public void LoadDataToTable() {
         ArrayList<ThuePhong_POJO> dsTP = new ArrayList<ThuePhong_POJO>();
         dsTP = ThuePhong_Controller.getDSThuePhong();
+        //code gọi
+        ThuePhong_Controller tp = new ThuePhong_Controller();
+        String matp = tp.LayMaTP();
+        ////set vào textbox
+        Text_mathuephong.setText(matp);
         DefaultTableModel model = (DefaultTableModel) Table_Phongthue.getModel();
         Object[] row = new Object[5];
         for (int i = 0; i < dsTP.size(); i++) {
@@ -61,7 +67,7 @@ public class QuanLyThuephong extends javax.swing.JPanel {
             row[4] = dsTP.get(i).getMaKH();
             model.addRow(row);
         }
-        
+
         ArrayList<Phong> dsPhong = new ArrayList<Phong>();
         dsPhong = Phong_Controller.getDSPhong();
 
@@ -176,6 +182,7 @@ public class QuanLyThuephong extends javax.swing.JPanel {
         jLabel6.setText("Ngày thuê");
 
         Text_mathuephong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Text_mathuephong.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Mã khách hàng ");
@@ -268,6 +275,17 @@ public class QuanLyThuephong extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Mã đặt phòng");
 
+        Text_MaDP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                Text_MaDPFocusLost(evt);
+            }
+        });
+        Text_MaDP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Text_MaDPKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -349,13 +367,18 @@ public class QuanLyThuephong extends javax.swing.JPanel {
         jLabel7.setText("Tìm kiếm phòng thuê theo:");
 
         ComboBox_ChonTTPT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ComboBox_ChonTTPT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBox_ChonTTPT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã thuê phòng" }));
 
         Text_NhapTTTKPT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         Button_TimPT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_TimPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search_000000_25.png"))); // NOI18N
         Button_TimPT.setText("Tìm kiếm");
+        Button_TimPT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_TimPTMouseClicked(evt);
+            }
+        });
 
         Table_Phongthue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -425,7 +448,7 @@ public class QuanLyThuephong extends javax.swing.JPanel {
         Text_mathuephong.setText(model.getValueAt(i, 0).toString());
         Combo_MaPhong.setSelectedItem(model.getValueAt(i, 1).toString());
         ngaythue = model.getValueAt(i, 2).toString();
-       
+
         //convert date ngày thuê
 //        sdngaythue =dateFormat(ngaythue);
         Ngaythue = new Date(ngaythue);
@@ -437,16 +460,17 @@ public class QuanLyThuephong extends javax.swing.JPanel {
         Ngaytra = new Date(ngaytra);
         Date_NgayTra.setDate(Ngaytra);
         Combo_MaKH.setSelectedItem(model.getValueAt(i, 4).toString());
+        Button_ThemP.setEnabled(false);
     }//GEN-LAST:event_Table_PhongthueMouseClicked
 
     private void Button_NhapLaiLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiLPMouseClicked
         // TODO add your handling code here:
-        Text_mathuephong.setText("");
         Text_MaDP.setText("");
         Combo_MaPhong.setSelectedIndex(0);
         Combo_MaKH.setSelectedIndex(0);
         Date date = new Date("9/30/2016");
         Date_NgayThue.setDate(date);
+        Button_ThemP.setEnabled(true);
     }//GEN-LAST:event_Button_NhapLaiLPMouseClicked
 
     private void Button_ThemPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_ThemPMouseClicked
@@ -498,6 +522,7 @@ public class QuanLyThuephong extends javax.swing.JPanel {
                     }
                 }
                 resetTable();
+                Button_ThemP.setEnabled(true);
             }
         }
     }//GEN-LAST:event_Button_XoaLPMouseClicked
@@ -516,8 +541,84 @@ public class QuanLyThuephong extends javax.swing.JPanel {
             ThuePhong_Controller.capnhatTP(TP);
             JOptionPane.showMessageDialog(jPanel2, "Sửa Thông Tin Thuê Phòng Thành Công!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
             resetTable();
+            Button_ThemP.setEnabled(true);
         }
     }//GEN-LAST:event_Button_SuaLPMouseClicked
+
+    private void Button_TimPTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_TimPTMouseClicked
+        // TODO add your handling code here:
+        if (Text_NhapTTTKPT.getText().equals("") == true) {
+            resetTable();
+
+        } else {
+            if (ComboBox_ChonTTPT.getSelectedItem().equals("Mã thuê phòng") == true) {
+                String MaTP = Text_NhapTTTKPT.getText();
+                ArrayList<ThuePhong_POJO> dsTP = new ArrayList<ThuePhong_POJO>();
+
+                dsTP = ThuePhong_Controller.getDSThuePhongTheoMa("MaTP", MaTP);
+                if (dsTP.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Không Có Thông Tin Thuê Phòng", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    DefaultTableModel model = (DefaultTableModel) Table_Phongthue.getModel();
+                    Object[] row = new Object[5];
+                    model.setRowCount(0);
+                    for (int i = 0; i < dsTP.size(); i++) {
+                        row[0] = dsTP.get(i).getMaThuePhong();
+                        row[1] = dsTP.get(i).getMaPhong();
+                        row[2] = dateFormat(dsTP.get(i).getNgayThue().toString());
+                        row[3] = dateFormat(dsTP.get(i).getNgayTra().toString());
+                        row[4] = dsTP.get(i).getMaKH();
+                        model.addRow(row);
+                    }
+                    JOptionPane.showMessageDialog(jPanel2, "Tìm Thấy Thông Tin Thuê Phòng!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+            }
+        }
+    }//GEN-LAST:event_Button_TimPTMouseClicked
+
+    private void Text_MaDPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text_MaDPKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String MaDP = Text_MaDP.getText();
+            ArrayList<DatPhong> dsTP = new ArrayList<DatPhong>();
+            dsTP = DatPhong_Controller.getDSDP();
+            for (int i = 0; i < dsTP.size(); i++) {
+                if (MaDP.equals(dsTP.get(i).getMaDK()) == true) {
+                    Combo_MaPhong.setSelectedItem(dsTP.get(i).getMaPhong());
+                    Combo_MaKH.setSelectedItem(dsTP.get(i).getMaKH());
+                    
+                    String ngaythue1 = dsTP.get(i).getNgayDK().toString();
+                    String NgayThue1 = dateFormat(ngaythue1);
+                    Date Ngaythue2 = new Date(NgayThue1);
+                    Date_NgayTra.setDate(Ngaythue2);
+                    System.out.println("avc " + NgayThue1);
+
+                }
+            }
+        }
+    }//GEN-LAST:event_Text_MaDPKeyPressed
+
+    private void Text_MaDPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Text_MaDPFocusLost
+        // TODO add your handling code here:
+        
+            String MaDP = Text_MaDP.getText();
+            ArrayList<ThuePhong_POJO> dsTP = new ArrayList<ThuePhong_POJO>();
+            dsTP = ThuePhong_Controller.getDSThuePhong();
+            for (int i = 0; i < dsTP.size(); i++) {
+                if (MaDP.equals(dsTP.get(i).getMaThuePhong()) == true) {
+                    Combo_MaPhong.setSelectedItem(dsTP.get(i).getMaPhong());
+                    Combo_MaKH.setSelectedItem(dsTP.get(i).getMaKH());
+                    
+                    String ngaythue1 = dsTP.get(i).getNgayTra().toString();
+                    String NgayThue1 = dateFormat(ngaythue1);
+                    Date Ngaythue2 = new Date(NgayThue1);
+                    Date_NgayTra.setDate(Ngaythue2);
+
+                }
+            }
+        
+    }//GEN-LAST:event_Text_MaDPFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_NhapLaiLP;

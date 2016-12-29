@@ -40,6 +40,13 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     public void LoadDataToTable(){
        ArrayList<Tblnhanvien>  dsNV = new ArrayList<Tblnhanvien>();       
         dsNV = NhanVien_Controller.getDSNV();
+        
+        //code gọi
+        NhanVien_Controller dgBUS = new NhanVien_Controller();
+        String madg = dgBUS.LayMaDG();
+      
+        
+        Text_MaNV.setText(madg);
         DefaultTableModel model = (DefaultTableModel) Table_NV.getModel();
         Object[] row = new Object[7];
         for (int i = 0 ; i< dsNV.size(); i++){
@@ -154,6 +161,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jLabel7.setText("Ngày sinh");
 
         Text_MaNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Text_MaNV.setEnabled(false);
 
         Text_TenNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -331,7 +339,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jLabel11.setText("Tìm kiếm nhân viên theo:");
 
         Combo_ChonTTNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Combo_ChonTTNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo_ChonTTNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã nhân viên" }));
         Combo_ChonTTNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Combo_ChonTTNVActionPerformed(evt);
@@ -343,6 +351,11 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         Button_TraCuuNV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_TraCuuNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search_000000_25.png"))); // NOI18N
         Button_TraCuuNV.setText("Tra cứu");
+        Button_TraCuuNV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_TraCuuNVMouseClicked(evt);
+            }
+        });
 
         Table_NV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -389,12 +402,11 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Text_NhapTTNV, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Combo_ChonTTNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Button_TraCuuNV)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Text_NhapTTNV, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Combo_ChonTTNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Button_TraCuuNV)
+                    .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addContainerGap())
@@ -439,6 +451,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         ///
         Text_SDT.setText(model.getValueAt(i, 5).toString());
         Text_Email.setText(model.getValueAt(i, 6).toString());
+        Button_ThemNV.setEnabled(false);
     }//GEN-LAST:event_Table_NVMouseClicked
 
     private void Button_ThemNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_ThemNVMouseClicked
@@ -454,6 +467,16 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         NhanVien_Controller.themNV(NV);
         JOptionPane.showMessageDialog(jPanel4, "Thêm nhân viên Thành Công!!!");
         resetTable();
+        Text_TenNV.setText("");
+        Text_SDT.setText("");
+        Text_Email.setText("");
+        Text_DiaChi.setText("");
+        System.out.println("date " + Date_NSNV.getDate());
+        Date d = new Date("01/01/2016");
+        Date_NSNV.setDate(d);
+        System.out.println("date " + Date_NGVL.getDate());
+        Date dt = new Date("01/01/2016");
+        Date_NSNV.setDate(dt);
     }//GEN-LAST:event_Button_ThemNVMouseClicked
 
     private void Button_XoaNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_XoaNVMouseClicked
@@ -469,6 +492,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
               NhanVien_Controller.xoaNV(MaNV);
                JOptionPane.showMessageDialog(jPanel4, "Xóa Nhân Viên Thành Công!!!");
                resetTable();
+               Button_ThemNV.setEnabled(true);
          }
          }
     }//GEN-LAST:event_Button_XoaNVMouseClicked
@@ -489,12 +513,12 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
               NhanVien_Controller.capnhatNV(NV);
               JOptionPane.showMessageDialog(jPanel4, "Sửa Nhân Viên Thành Công!!!","THÔNG BÁO",JOptionPane.INFORMATION_MESSAGE);             
               resetTable();
+              Button_ThemNV.setEnabled(true);
          }
     }//GEN-LAST:event_Button_SuaNVMouseClicked
 
     private void Button_NhapLaiNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiNVMouseClicked
         // TODO add your handling code here:
-        Text_MaNV.setText("");
         Text_TenNV.setText("");
         Text_SDT.setText("");
         Text_Email.setText("");
@@ -505,7 +529,44 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         System.out.println("date " + Date_NGVL.getDate());
         Date dt = new Date("01/01/2016");
         Date_NSNV.setDate(dt);
+        Button_ThemNV.setEnabled(true);
     }//GEN-LAST:event_Button_NhapLaiNVMouseClicked
+
+    private void Button_TraCuuNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_TraCuuNVMouseClicked
+        // TODO add your handling code here:
+        if (Text_NhapTTNV.getText().equals("") == true) {
+            resetTable();
+
+        } else {
+            if (Combo_ChonTTNV.getSelectedItem().equals("Mã nhân viên") == true) {
+                String MaNV = Text_NhapTTNV.getText();
+                ArrayList<Tblnhanvien>  dsNV = new ArrayList<Tblnhanvien>();       
+             
+                dsNV = NhanVien_Controller.getDSNhanVienTheoMa("manv", MaNV);
+                if (dsNV.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Không Có Nhân Viên Nào", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    DefaultTableModel model = (DefaultTableModel) Table_NV.getModel();
+                    Object[] row = new Object[5];
+                    model.setRowCount(0);
+                    for (int i = 0; i < dsNV.size(); i++) {
+                        row[0] = dsNV.get(i).getManv();
+                        row[1] = dsNV.get(i).getTennv();
+                        row[2] = dsNV.get(i).getNgvl();
+                        row[3] = dsNV.get(i).getDiachinv();
+                        row[4] = dsNV.get(i).getNgsinhnv();
+                        row[4] = dsNV.get(i).getSdtnv();
+                        row[4] = dsNV.get(i).getEmailNv();
+                        
+                        model.addRow(row);
+
+                    }
+                    JOptionPane.showMessageDialog(jPanel2, "Tìm Thấy Nhân Viên!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+            }
+        }
+    }//GEN-LAST:event_Button_TraCuuNVMouseClicked
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_NhapLaiNV;

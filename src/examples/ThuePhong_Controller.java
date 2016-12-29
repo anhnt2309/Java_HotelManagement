@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package examples;
+import static examples.NhanVien_Controller.NextID;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -116,4 +117,31 @@ public class ThuePhong_Controller {
         }
         return true;
     }
+//hàm lấy id
+        public String LayMaTP()
+        {
+             ArrayList<ThuePhong_POJO>  dsTP = new ArrayList<ThuePhong_POJO>();       
+        dsTP = ThuePhong_Controller.getDSThuePhong();
+        dsTP.get(dsTP.size()-1).getMaThuePhong();
+            return NextID(dsTP.get(dsTP.size()-1).getMaThuePhong(), "TP");
+        }
+
+
+public static ArrayList<ThuePhong_POJO> getDSThuePhongTheoMa(String x,String MaTP) {
+        ArrayList<ThuePhong_POJO> dsTP = null;
+        Session session;
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            String sql = "from ThuePhong_POJO where "+x+" = '"+MaTP+"'";
+            Query query = session.createQuery(sql);
+            dsTP = (ArrayList<ThuePhong_POJO>) query.list();
+
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return dsTP;
+    }    
 }

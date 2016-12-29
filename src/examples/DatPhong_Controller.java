@@ -5,6 +5,7 @@
  */
 package examples;
 
+import static examples.NhanVien_Controller.NextID;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -121,6 +122,33 @@ public class DatPhong_Controller {
         }
         return true;
     }
+    //hàm lấy id
+        public String LayMaDP()
+        {
+        ArrayList<DatPhong>  dsDP = new ArrayList<DatPhong>();       
+        dsDP = DatPhong_Controller.getDSDP();
+        dsDP.get(dsDP.size()-1).getMaDK();
+            return NextID(dsDP.get(dsDP.size()-1).getMaDK(), "DK");
+        }
+
+
+public static ArrayList<DatPhong> getDSDatPhongTheoMa(String x,String MaDP) {
+        ArrayList<DatPhong> dsDP = null;
+        Session session;
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            String sql = "from DatPhong where "+x+" = '"+MaDP+"'";
+            Query query = session.createQuery(sql);
+            dsDP = (ArrayList<DatPhong>) query.list();
+
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return dsDP;
+    }    
 }
 
    

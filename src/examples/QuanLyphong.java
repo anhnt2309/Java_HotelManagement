@@ -288,7 +288,7 @@ public void resetTable() {
         jLabel7.setText("Tìm kiếm phòng theo:");
 
         ComboBox_ChonTTP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ComboBox_ChonTTP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBox_ChonTTP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Phòng" }));
 
         Text_NhapTTTKP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -417,6 +417,7 @@ public void resetTable() {
               JOptionPane.showMessageDialog(jPanel2, "Sửa Phòng Thành Công!!!","THÔNG BÁO",JOptionPane.INFORMATION_MESSAGE);             
               resetTable();
          }
+         
          
     }//GEN-LAST:event_Button_SuaLPMouseClicked
 

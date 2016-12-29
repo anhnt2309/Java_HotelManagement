@@ -121,6 +121,53 @@ public class NhanVien_Controller {
         }
         return true;
     }
+    public static String NextID(String lastID, String prefixID)
+        {
+            String removed = lastID.replace(prefixID,"");
+            int nextID = Integer.parseInt(removed) + 1;
+            int lengthNumerID = lastID.length() - prefixID.length();
+            String zeroNumber = "";
+            for (int i = 1; i <= lengthNumerID; i++)
+            {
+                if (nextID < Math.pow(10, i))
+                {
+                    for (int j = 1; j <= lengthNumerID - i; i++)
+                    {
+                        zeroNumber += "0";
+                    }
+                    return prefixID + zeroNumber + String.valueOf(nextID);
+                }
+            }
+            return prefixID + nextID;
+        }
+
+
+//hàm lấy id
+        public String LayMaDG()
+        {
+             ArrayList<Tblnhanvien>  dsNV = new ArrayList<Tblnhanvien>();       
+        dsNV = NhanVien_Controller.getDSNV();
+        dsNV.get(dsNV.size()-1).getManv();
+            return NextID(dsNV.get(dsNV.size()-1).getManv(), "NV");
+        }
+
+
+public static ArrayList<Tblnhanvien> getDSNhanVienTheoMa(String x,String MaNV) {
+        ArrayList<Tblnhanvien> dsNV = null;
+        Session session;
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            String sql = "from Tblnhanvien where "+x+" = '"+MaNV+"'";
+            Query query = session.createQuery(sql);
+            dsNV = (ArrayList<Tblnhanvien>) query.list();
+
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return dsNV;
+    }
 }
 
-   

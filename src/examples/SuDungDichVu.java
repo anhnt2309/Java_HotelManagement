@@ -36,6 +36,11 @@ public void LoadDataToTable(){
         ArrayList<SDDichVu_POJO> dssddv = new ArrayList<SDDichVu_POJO>();       
         dssddv = SDDichVu_Controller.getDSSD();
         DefaultTableModel model = (DefaultTableModel) Table_SDDV.getModel();
+        //code gọi
+        SDDichVu_Controller sd = new SDDichVu_Controller();
+        String masd = sd.LayMaSD();
+        ////set vào textbox
+        Text_MaSD.setText(masd);
         Object[] row = new Object[7];
         for (int i = 0 ; i< dssddv.size(); i++){
             row[0] = dssddv.get(i).getMaSD();
@@ -236,6 +241,8 @@ public static JComboBox getMaTP(){
         jLabel8.setText("Số lượng");
         jLabel8.setToolTipText("");
 
+        Text_MaSD.setEnabled(false);
+
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Mã sử dụng");
         jLabel11.setToolTipText("");
@@ -305,11 +312,16 @@ public static JComboBox getMaTP(){
         jLabel10.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel10.setText("Tìm kiếm thông tin sử dụng theo:");
 
-        Combo_TTSDDV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo_TTSDDV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sử dụng" }));
 
         Button_TimKiem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Button_TimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search_000000_25.png"))); // NOI18N
         Button_TimKiem.setText("Tìm kiếm");
+        Button_TimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_TimKiemMouseClicked(evt);
+            }
+        });
 
         Table_SDDV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -386,6 +398,7 @@ public static JComboBox getMaTP(){
 //        Date_NgaySD.setDate(date);
         Text_SoLuong.setText(model.getValueAt(i, 5).toString());
         //Text_TienSD.setText(model.getValueAt(i, 6).toString());
+        Button_ThemSD.setEnabled(false);
     }//GEN-LAST:event_Table_SDDVMouseClicked
 
     private void Button_ThemSDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_ThemSDMouseClicked
@@ -426,6 +439,7 @@ public static JComboBox getMaTP(){
               SDDichVu_Controller.xoaSDDV(MaSD);
                JOptionPane.showMessageDialog(jPanel2, "Xóa Thông Tin Sử Dụng Thành Công!!!");
                resetTable();
+               Button_ThemSD.setEnabled(true);
          }
          }
     }//GEN-LAST:event_Button_XoaSDMouseClicked
@@ -455,18 +469,52 @@ public static JComboBox getMaTP(){
               SDDichVu_Controller.capnhatSDDV(SD);
               JOptionPane.showMessageDialog(jPanel2, "Sửa Thông Tin Sử Dụng Thành Công!!!","THÔNG BÁO",JOptionPane.INFORMATION_MESSAGE);             
               resetTable();
+              Button_ThemSD.setEnabled(true);
          }
     }//GEN-LAST:event_Button_SuaSDMouseClicked
 
     private void Button_NhapLaiSDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_NhapLaiSDMouseClicked
         // TODO add your handling code here:
-        Text_MaSD.setText("");
         Combo_MaDV.setSelectedIndex(0);
         Combo_MaNV.setSelectedIndex(0);
         Combo_MaTP.setSelectedIndex(0);
         Text_SoLuong.setText("");
-        
+        Button_ThemSD.setEnabled(true); 
     }//GEN-LAST:event_Button_NhapLaiSDMouseClicked
+
+    private void Button_TimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_TimKiemMouseClicked
+        // TODO add your handling code here:
+        if (Text_NhapGTTK.getText().equals("") == true) {
+            resetTable();
+
+        } else {
+            if (Combo_TTSDDV.getSelectedItem().equals("Mã sử dụng") == true) {
+                String MaSD = Text_NhapGTTK.getText();
+                ArrayList<SDDichVu_POJO> dsSD = new ArrayList<SDDichVu_POJO>();
+
+                dsSD = SDDichVu_Controller.getDSSDTheoMa("MaSD", MaSD);
+                if (dsSD.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Không Có Thông Tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    DefaultTableModel model = (DefaultTableModel) Table_SDDV.getModel();
+                    Object[] row = new Object[7];
+                    model.setRowCount(0);
+                    for (int i = 0; i < dsSD.size(); i++) {
+                        row[0] = dsSD.get(i).getMaSD();
+                        row[1] = dsSD.get(i).getMaDV();
+                        row[2] = dsSD.get(i).getMaNV();
+                        row[3] = dsSD.get(i).getMaTP();
+                        row[4] = dsSD.get(i).getNgaySD();
+                        row[5] = dsSD.get(i).getSoLuong();
+                        row[6] = dsSD.get(i).getTienSD();
+                        model.addRow(row);
+                    }
+                    JOptionPane.showMessageDialog(jPanel2, "Tìm Thấy Thông Tin!!!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+            }
+        }
+    }//GEN-LAST:event_Button_TimKiemMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_NhapLaiSD;

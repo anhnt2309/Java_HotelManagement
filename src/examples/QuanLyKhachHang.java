@@ -298,7 +298,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         jLabel11.setText("Tìm kiếm khách hàng theo:");
 
         Combo_ChonTTKH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Combo_ChonTTKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo_ChonTTKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Khách Hàng" }));
 
         Text_NhapTTTKKH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
